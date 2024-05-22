@@ -36,6 +36,11 @@ a {
       height: 500px;
       width: 500px;
       background-color: red;
+
+      img {
+        height: 500px;
+        width: 500px;
+      }
     }
 
     .content-container {
@@ -60,6 +65,7 @@ a {
       .description {
         color: rgba(255, 255, 255, 0.82);
         font-size: 24px;
+        text-align: center;
       }
     }
   }
@@ -76,10 +82,15 @@ a {
     justify-content: center;
 
     .image-container {
-      height: 300px;
-      width: 300px;
+      min-height: 300px;
+      min-width: 300px;
       background-color: red;
       margin-top: auto;
+
+      img {
+        height: 100%;
+        width: 300px;
+      }
     }
 
     .content-container {
