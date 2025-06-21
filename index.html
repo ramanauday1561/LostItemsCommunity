@@ -1,33 +1,731 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="/favicon.png">
-    <title>LostItemsCommunity</title>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Items Community</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Items Community</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto:wght@500&family=Telex:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
+    <style id="sections-styles">
+        /* CSS for section section:header */
+        .site-header {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 100;
+          padding: 0 20px;
+        }
+        .header-container {
+          max-width: 1568px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 76px;
+          background: #030014;
+          border: 1px solid rgba(255, 255, 255, 0.62);
+          padding: 0 40px;
+        }
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .logo-img {
+          width: 46px;
+          height: 46px;
+        }
+        .logo-text {
+          font-family: 'Telex', sans-serif;
+          font-size: 26px;
+          font-weight: 400;
+        }
+        .logo-text-lost, .logo-text-community {
+          color: var(--primary-color);
+        }
+        .logo-text-items {
+          color: var(--secondary-color);
+        }
+        .main-nav ul {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          border: 1px solid rgba(255, 255, 255, 0.6);
+          border-radius: 26px;
+          padding: 10px 20px;
+        }
+        .main-nav .nav-item a {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+        .nav-item.dropdown {
+          position: relative;
+        }
+        .dropdown-menu {
+          position: absolute;
+          top: calc(100% + 12px);
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #030014;
+          border-radius: 6px;
+          box-shadow: -4px -4px 12px 0px rgba(255, 255, 255, 0.25), 4px 4px 12px 0px rgba(255, 255, 255, 0.25);
+          padding: 12px 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          width: max-content;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.3s, visibility 0.3s;
+        }
+        .dropdown-menu hr {
+            border: none;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+        .nav-item.dropdown:hover .dropdown-menu {
+          opacity: 1;
+          visibility: visible;
+        }
+        .auth-buttons {
+          display: flex;
+          align-items: center;
+          gap: 30px;
+        }
+        .login-link {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .btn-signup {
+          border: 1px solid var(--primary-color);
+          border-radius: 6px;
+          padding: 8px 16px;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+          font-weight: 500;
+        }
+        @media (max-width: 1200px) {
+            .main-nav { display: none; } /* Simple hide for mobile, can be replaced with hamburger menu */
+        }
+        
+        /* CSS for section section:hero */
+        #hero {
+          min-height: 70vh;
+          display: flex;
+          align-items: center;
+        }
+        .hero-content h1 {
+          font-family: 'Inter', sans-serif;
+          font-size: 50px;
+          font-weight: 500;
+          line-height: 1.24;
+          letter-spacing: 1px;
+          margin-bottom: 20px;
+        }
+        .hero-content h1 .highlight-primary {
+          color: var(--primary-color);
+          font-weight: 700;
+        }
+        .hero-content h1 .highlight-secondary {
+          color: var(--secondary-color);
+          font-weight: 700;
+        }
+        .hero-content p {
+          font-size: 16px;
+          line-height: 32px;
+          color: var(--text-muted-color);
+          max-width: 520px;
+          margin-bottom: 20px;
+        }
+        .hero-buttons {
+          display: flex;
+          gap: 12px;
+        }
+        .hero-image img {
+          max-width: 100%;
+          height: auto;
+        }
+        @media (max-width: 992px) {
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-content p {
+                text-align: center;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 36px;
+            }
+        }
+        
+        /* CSS for section section:about */
+        .about-content h2 {
+          font-size: 38px;
+          font-weight: 500;
+          line-height: 52px;
+          margin-bottom: 20px;
+        }
+        .about-content p {
+          font-size: 16px;
+          line-height: 24px;
+          color: var(--text-muted-color);
+          max-width: 520px;
+          margin-bottom: 20px;
+        }
+        .feature-list {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .feature-list li {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font-size: 16px;
+          color: var(--text-muted-color);
+        }
+        .feature-list li img {
+          width: 24px;
+          height: 24px;
+        }
+        .about-image img {
+          max-width: 100%;
+          height: auto;
+        }
+        @media (max-width: 992px) {
+            .grid-2-col {
+                gap: 40px;
+            }
+            .about-content {
+                order: -1;
+            }
+            .about-content h2, .about-content p {
+                text-align: center;
+            }
+            .feature-list {
+                align-items: center;
+            }
+        }
+        
+        /* CSS for section section:features */
+        .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 30px;
+        }
+        .feature-card {
+          background-color: rgba(255, 255, 255, 0.1);
+          border: 2px solid var(--card-border-color);
+          border-radius: 12px;
+          backdrop-filter: blur(2px);
+          box-shadow: 4px 4px 12px 0px rgba(255, 255, 255, 0.25);
+          overflow: hidden;
+          text-align: center;
+        }
+        .feature-card-image img {
+          width: 100%;
+          height: 372px;
+          object-fit: cover;
+        }
+        .feature-card-content {
+          padding: 24px;
+        }
+        .feature-card-content h3 {
+          font-size: 20px;
+          line-height: 24px;
+          color: var(--text-color);
+          margin-bottom: 16px;
+        }
+        .feature-card-content p {
+          font-size: 14px;
+          line-height: 20px;
+          color: rgba(255, 255, 255, 0.72);
+        }
+        
+        /* CSS for section section:benefits */
+        .benefits-content h2 {
+          font-size: 38px;
+          font-weight: 500;
+          line-height: 52px;
+          margin-bottom: 20px;
+        }
+        .benefits-content p {
+          font-size: 16px;
+          line-height: 24px;
+          color: var(--text-muted-color);
+          max-width: 600px;
+          margin-bottom: 20px;
+        }
+        .benefits-image img {
+          max-width: 100%;
+          height: auto;
+        }
+        @media (max-width: 992px) {
+            .benefits-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .benefits-content h2, .benefits-content p {
+                text-align: center;
+            }
+        }
+        
+        /* CSS for section section:cta */
+        .cta-content-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 80px;
+        }
+        .cta-image img {
+          max-width: 360px;
+          height: auto;
+        }
+        .cta-text {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .cta-buttons {
+          display: flex;
+          gap: 12px;
+        }
+        @media (max-width: 992px) {
+            .cta-content-wrapper {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+        
+        /* CSS for section section:testimonials */
+        .testimonials-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+          gap: 16px;
+        }
+        .testimonial-card {
+          background-color: var(--card-bg-color);
+          border: 2px solid var(--card-border-color);
+          border-radius: 12px;
+          backdrop-filter: blur(2px);
+          padding: 20px 36px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .testimonial-card h3 {
+          font-size: 20px;
+          line-height: 24px;
+          font-weight: 500;
+        }
+        .testimonial-card p {
+          font-size: 14px;
+          line-height: 20px;
+          color: rgba(255, 255, 255, 0.64);
+          flex-grow: 1;
+        }
+        .author-info {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+        .author-info img {
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+        }
+        .author-info div {
+          display: flex;
+          flex-direction: column;
+        }
+        .author-name {
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 1.2;
+        }
+        .author-title {
+          font-size: 14px;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 0.62);
+          line-height: 1.2;
+        }
+        
+        /* CSS for section section:faq */
+        .faq-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          margin-bottom: 60px;
+        }
+        .faq-list {
+          flex: 1;
+          max-width: 580px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+        .faq-item {
+          background-color: var(--card-bg-color);
+          border: 2px solid var(--card-border-color);
+          border-radius: 12px;
+          backdrop-filter: blur(2px);
+          padding: 20px 30px;
+        }
+        .faq-summary {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 20px;
+          font-weight: 500;
+          cursor: pointer;
+          list-style: none;
+        }
+        .faq-summary::-webkit-details-marker {
+          display: none;
+        }
+        .faq-summary .arrow {
+          transition: transform 0.3s ease;
+        }
+        details:not([open]) .faq-summary .arrow {
+            transform: rotate(-180deg);
+        }
+        .faq-answer {
+          margin-top: 16px;
+          font-size: 14px;
+          line-height: 20px;
+          color: rgba(255, 255, 255, 0.64);
+        }
+        .faq-image {
+          flex: 1;
+          max-width: 600px;
+        }
+        .faq-image img {
+          max-width: 100%;
+        }
+        .contact-prompt {
+          text-align: left;
+          margin-top: 40px;
+        }
+        .contact-prompt h3 {
+          font-size: 26px;
+          font-weight: 500;
+          margin-bottom: 10px;
+        }
+        .contact-prompt p {
+          color: var(--text-muted-color);
+          margin-bottom: 20px;
+        }
+        @media (max-width: 992px) {
+            .faq-wrapper {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .faq-image {
+                order: -1;
+            }
+            .contact-prompt {
+                text-align: center;
+            }
+        }
+        
+        /* CSS for section section:join */
+        .join-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 80px;
+        }
+        .join-image img {
+          max-width: 360px;
+        }
+        .join-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .join-buttons {
+          display: flex;
+          gap: 12px;
+        }
+        @media (max-width: 992px) {
+            .join-wrapper {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+        
+        /* CSS for section section:footer */
+        .site-footer {
+          background-color: #000000;
+          padding: 26px;
+          text-align: center;
+          font-size: 16px;
+          font-weight: 500;
+          color: var(--text-color);
+        }
+    </style>
+    <script src="global.js" defer></script>
+</head>
 
-  <body>
-    <nav>
-      <img src="./IconWithName.png" alt="Icon With Name">
-    </nav>
-    <main>
-      <div class="image-container">
-        <img src="./ComingSoon.png" alt="Comming Soon">
-      </div>
-      <div class="content-container glassmorphism">
-        <div class="title">Lost Items Community</div>
-        <div class="sub-title">Our Journey Begins Soon!</div>
-        <div class="description">
-          Hold on to your hats (and keep track of your keys while you’re at it)! LostItemsCommunity.com is zooming your way to rescue those misplaced treasures. We’re like the search party you never knew you needed. Launching soon to help you reunite with your beloved items—no treasure map needed!
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <img src="images/e59c20c17628a4a2cbb5c6367d61857a50409d98.png" alt="Logo" class="logo-img">
+                <span class="logo-text">
+        <span class="logo-text-lost">Lost</span><span class="logo-text-items">Items</span><span class="logo-text-community">Community</span>
+                </span>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li class="nav-item dropdown">
+                        <a href="#">Report Item <img src="images/I184_331_184_316_31_35.svg" alt="dropdown arrow" class="arrow"></a>
+                        <div class="dropdown-menu">
+                            <a href="#">Report a Lost Item</a>
+                            <hr>
+                            <a href="#">Report Found Item</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#">Search Items <img src="images/I184_331_184_317_31_9.svg" alt="dropdown arrow" class="arrow"></a>
+                        <div class="dropdown-menu">
+                            <a href="#">Search Lost Items</a>
+                            <hr>
+                            <a href="#">Search Found Items</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="#">Community Forum</a></li>
+                    <li class="nav-item"><a href="#">About Us</a></li>
+                    <li class="nav-item"><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="login-link">Login</a>
+                <a href="#" class="btn-signup">Signup</a>
+            </div>
         </div>
-      </div>
-    </main>
+    </header>
+    <section id="hero" class="container" style="padding-top: 150px;">
+        <div class="grid-2-col">
+            <div class="hero-content">
+                <h1>
+        <span class="highlight-secondary">REUNITING</span> lost items with their rightful owners through <span class="highlight-primary">COMMUNITY</span>
+      </h1>
+                <p>At Lost Items Community, we believe in the power of community to help find lost items. Our platform serves as a central hub where individuals can report found items and search for their lost belongings. Join our community today and let
+                    us help you reunite with what's rightfully yours.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <a href="#" class="btn btn-secondary">Signup</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/9f2cec06c49c895c283441429cd4b6b1e737b939.png" alt="Illustration of a person returning a lost item">
+            </div>
+        </div>
+    </section>
+    <section id="about" class="container">
+        <div class="grid-2-col">
+            <div class="about-image">
+                <img src="images/71d8ed785a20e6d15dc5ead4609dc4a4b04b7931.png" alt="Illustration of a boy returning a lost dog">
+            </div>
+            <div class="about-content">
+                <h2>Reuniting Lost Items with Their Rightful Owners</h2>
+                <p>Lost & Found Hub is a community-driven platform that helps individuals report found items and search for their lost belongings. Our mission is to reunite lost items with their rightful owners, whether it's a misplaced purse, valuable ornaments,
+                    important cards, or even lost money.</p>
+                <ul class="feature-list">
+                    <li><img src="images/78_177.svg" alt="icon"> Report Found Items</li>
+                    <li><img src="images/79_184.svg" alt="icon"> Search for Lost Belongings</li>
+                    <li><img src="images/79_189.svg" alt="icon"> Community-Driven Platform for Lost & Found</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="features" class="container">
+        <h2 class="section-title">Find Lost Items and Reunite with Owners</h2>
+        <p class="section-subtitle">Lost & Found Hub is a community-driven platform that allows individuals to report found items and search for lost belongings. Join our community today and help reunite lost items with their rightful owners.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-card-image">
+                    <img src="images/2e9da34020719e37d854223f5b8c63f060ef3c88.png" alt="Report Found Items">
+                </div>
+                <div class="feature-card-content">
+                    <h3>Report Found Items</h3>
+                    <p>Easily report any items you have found and help others find what they have lost.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-image">
+                    <img src="images/cd3ca9158b66e28c73ae53c1102a67c3871692e0.png" alt="Search for Lost Belongings">
+                </div>
+                <div class="feature-card-content">
+                    <h3>Search for Lost Belongings</h3>
+                    <p>Effortlessly search through our database to find your lost belongings.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-image">
+                    <img src="images/db0ba1f9b753e126c63e560afe0fd8b41a7d1e64.png" alt="Success Stories">
+                </div>
+                <div class="feature-card-content">
+                    <h3>Success Stories</h3>
+                    <p>Read heartwarming stories of lost items being reunited with their owners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="benefits" class="container">
+        <div class="grid-2-col">
+            <div class="benefits-content">
+                <h2>Benefits</h2>
+                <p>Find lost items or report found items to help reunite them with their owners. Our community-driven platform makes it easy to connect with others and recover lost belongings.</p>
+                <ul class="feature-list">
+                    <li><img src="images/100_306.svg" alt="icon"> Reunite lost items with their rightful owners.</li>
+                    <li><img src="images/100_311.svg" alt="icon"> Connect with others to recover lost belongings.</li>
+                    <li><img src="images/100_316.svg" alt="icon"> Report found items to help reunite them.</li>
+                </ul>
+            </div>
+            <div class="benefits-image">
+                <img src="images/00afe7198ad400fc004539788c093d5c2fff6fbd.png" alt="Illustration of people exchanging a lost item">
+            </div>
+        </div>
+    </section>
+    <section id="cta" class="container">
+        <div class="cta-content-wrapper">
+            <div class="cta-image">
+                <img src="images/4ee6753f9498560e0bf9b5f1f505917aa8d41726.png" alt="Illustration of a person finding lost items">
+            </div>
+            <div class="cta-text">
+                <h2 class="section-title">Find Lost Items and Reunite with Owners</h2>
+                <p class="section-subtitle" style="margin-bottom: 20px;">Lost & Found Hub is a community-driven platform that allows individuals to report found items and search for lost belongings. Join our community today and help reunite lost items with their rightful owners.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Report</a>
+                    <a href="#" class="btn btn-tertiary">Search</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="testimonials" class="container">
+        <h2 class="section-title">Customer Testimonials</h2>
+        <p class="section-subtitle">Read what our customers have to say</p>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <h3>Best Website for Lost Items</h3>
+                <p>“I lost my wallet and thanks to Lost & Found Hub, I was able to recover it within a day. Amazing Service by the website!”</p>
+                <div class="author-info">
+                    <img src="images/113_115.svg" alt="John Doe">
+                    <div>
+                        <span class="author-name">John Doe</span>
+                        <span class="author-title">Marketing Manager, ABC Company</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <h3>Helping Others</h3>
+                <p>“I found a lost phone and was able to return it to its owner through Lost & Found Hub. It feels great to help others.”</p>
+                <div class="author-info">
+                    <img src="images/113_125.svg" alt="Jane Smith">
+                    <div>
+                        <span class="author-name">Jane Smith</span>
+                        <span class="author-title">Software Engineer, YXZ Inc.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <h3>Get Lost Items Easily</h3>
+                <p>“Lost & Found Hub is a lifesaver! I lost my keys and someone found them and reported it on the website. I got them back in no time.”</p>
+                <div class="author-info">
+                    <img src="images/113_135.svg" alt="Sarah Johnson">
+                    <div>
+                        <span class="author-name">Sarah Johnson</span>
+                        <span class="author-title">HR Manager, XYZ Corp.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="faq" class="container">
+        <h2 class="section-title">FAQs</h2>
+        <p class="section-subtitle">Find answers to common questions about reporting or claiming lost items on our platform.</p>
+        <div class="faq-wrapper">
+            <div class="faq-list">
+                <details class="faq-item" open>
+                    <summary class="faq-summary">
+                        How do I report an item?
+                        <img src="images/I116_337_116_162.svg" class="arrow" alt="arrow">
+                    </summary>
+                    <p class="faq-answer">To report a lost item, simply go to our website and click on the 'Report Lost Item' button. Fill out the required information and submit the form. Our team will review your report and notify you if your item is found.</p>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-summary">
+                        How can I claim an item?
+                        <img src="images/I116_338_116_154.svg" class="arrow" alt="arrow">
+                    </summary>
+                    <p class="faq-answer">Details on how to claim an item will be provided here.</p>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-summary">
+                        What if I can't find my lost item?
+                        <img src="images/I116_339_116_154.svg" class="arrow" alt="arrow">
+                    </summary>
+                    <p class="faq-answer">Details on what to do if you can't find your item will be provided here.</p>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-summary">
+                        Is the platform free?
+                        <img src="images/I116_340_116_154.svg" class="arrow" alt="arrow">
+                    </summary>
+                    <p class="faq-answer">Information about platform fees will be provided here.</p>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-summary">
+                        How can I contact support?
+                        <img src="images/I116_341_116_154.svg" class="arrow" alt="arrow">
+                    </summary>
+                    <p class="faq-answer">Contact information for support will be provided here.</p>
+                </details>
+            </div>
+            <div class="faq-image">
+                <img src="images/8b01246adfacaaf379d8038f11053fae146f7897.png" alt="Illustration of a person with a question mark">
+            </div>
+        </div>
+        <div class="contact-prompt">
+            <h3>Still have Questions?</h3>
+            <p>Feel free to reach out to us for any queries</p>
+            <a href="#" class="btn btn-tertiary">Contact Us</a>
+        </div>
+    </section>
+    <section id="join" class="container">
+        <div class="join-wrapper">
+            <div class="join-image">
+                <img src="images/edb7e7f36d695a3f4edc239b979754ce6a196111.png" alt="Illustration of a person with a treasure chest">
+            </div>
+            <div class="join-content">
+                <h2 class="section-title">Join our community today!</h2>
+                <p class="section-subtitle" style="margin-bottom: 20px;">Discover lost treasures and help reunite them with their owners</p>
+                <div class="join-buttons">
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <a href="#" class="btn btn-tertiary">Signup</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer id="footer" class="site-footer">
+        <p>© 2023 Lost and Found Hub. All rights reserved.</p>
+    </footer>
+</body>
 
-    <script type="module" src="script.js"></script>
-  </body>
 </html>
