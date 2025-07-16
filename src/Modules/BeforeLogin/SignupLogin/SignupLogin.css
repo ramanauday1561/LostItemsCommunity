@@ -1,0 +1,40 @@
+.LoginSignupContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    padding: 40px 60px;
+    border: 2px solid rgba(255, 255, 255, 0.82);
+
+    .WelcomeBack {
+        font-size: 24px;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+
+    .WelcomeBackInfo {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.74);
+        text-align: center;
+    }
+
+    .LoginSingupContent {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 32px;
+        width: 320px;
+
+        input {
+            width: 320px;
+        }
+
+        .RememberPassword {
+            input {
+                width: 100% !important;
+            }
+        }
+    }
+}

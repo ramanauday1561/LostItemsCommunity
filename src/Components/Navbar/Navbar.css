@@ -1,0 +1,107 @@
+.navbar-appbar {
+    position: sticky !important;
+    top: 0;
+    z-index: 1000;
+    background-color: #030014 !important;
+    left: 0;
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.62) !important;
+}
+
+.navbar-toolbar {
+    display: flex !important;
+}
+
+.navbar-logo-box {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo-img {
+    height: 2.25rem;
+    /* 36px */
+    margin-right: 0.5rem;
+    /* 8px */
+}
+
+.navbar-title {
+    font-weight: 700 !important;
+    color: #2196f3 !important;
+}
+
+.navbar-title-highlight {
+    color: #fbc02d;
+}
+
+.navbar-links-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-grow: 1;
+
+    .navbar-links {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0 auto;
+    }
+}
+
+.navbar-link-btn {
+    /* Add any custom styles for nav buttons here */
+}
+
+.navbar-link-dropdown {
+    /* For dropdown container if needed */
+}
+
+.navbar-login-btn {
+    margin-left: 1rem !important;
+    /* 16px */
+    margin-bottom: 0.5rem !important;
+    /* 8px */
+}
+
+.navbar-signup-btn {
+    margin-left: 0.5rem !important;
+    /* 8px */
+}
+
+.navbar-drawer-box {
+    width: 15.625rem;
+    background-color: #030014 !important;
+    color: #ffffff !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.62) !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.navbar-drawer-actions {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.navbar-login-btn {
+    margin-bottom: 0rem !important;
+}
+
+.navbar-drawer-subitem {
+    padding-left: 2rem !important;
+}
+
+.navbar-menu-btn {
+    margin-left: auto !important;
+}
+
+.navbar-drawer-paper {
+    background-color: #030014 !important;
+}
+
+.navbar-submenu {
+    ul {
+        background-color: #020014 !important;
+    }
+}

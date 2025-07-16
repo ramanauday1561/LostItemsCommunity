@@ -1,0 +1,109 @@
+/* Default styles for desktop/laptop */
+.welcome-page {
+	padding: 40px 80px;
+	text-align: left;
+	color: #ffffff;
+}
+
+.welcome-page h1 {
+	font-size: 2.5rem;
+}
+
+.welcome-page p {
+	font-size: 1.25rem;
+}
+
+.welcome-page button {
+	padding: 12px 32px;
+	font-size: 1rem;
+	width: auto;
+}
+
+.features-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px !important;
+	margin-top: 30px;
+	justify-content: space-evenly;
+
+	.feature-card {
+		background-color: rgba(255, 255, 255, 0.1);
+		border: 1px solid #ffffff;
+		border-radius: 12px;
+		backdrop-filter: blur(15px);
+		box-shadow: 4px 4px 12px 0px rgba(255, 255, 255, 0.25);
+		overflow: hidden;
+		text-align: center;
+		padding: 24px;
+		width: 320px;
+	}
+}
+
+.testimonials-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+	gap: 16px;
+	margin-top: 30px;
+
+	.testimonial-card {
+		background-color: rgba(3, 0, 20, 0.32);
+		border: 2px solid rgba(255, 255, 255, 0.74);
+		border-radius: 12px;
+		backdrop-filter: blur(2px);
+		padding: 20px 36px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+}
+
+.faq-grid {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 30px;
+}
+
+/* Tablet styles (max-width: 900px) */
+@media screen and (max-width: 900px) {
+	.welcome-page {
+		padding: 32px 24px;
+		text-align: left;
+	}
+
+	.welcome-page h1 {
+		font-size: 2rem;
+	}
+
+	.welcome-page p {
+		font-size: 1.1rem;
+	}
+
+	.welcome-page button {
+		width: 100%;
+		padding: 12px;
+		font-size: 1rem;
+	}
+}
+
+/* Mobile styles (max-width: 600px) */
+@media screen and (max-width: 600px) {
+	.welcome-page {
+		padding: 20px 8px;
+		text-align: center;
+	}
+
+	.welcome-page h1 {
+		font-size: 1.5rem;
+	}
+
+	.welcome-page p {
+		font-size: 1rem;
+	}
+
+	.welcome-page button {
+		width: 100%;
+		padding: 10px;
+		font-size: 0.95rem;
+	}
+}

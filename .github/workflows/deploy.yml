@@ -1,0 +1,39 @@
+# Name of your workflow
+name: Build and Deploy to GitHub Pages
+
+# Run this workflow on every push to the master branch
+on:
+  push:
+    branches: [ main ] # Important: Change to 'main' if that's your default branch
+
+# Define the jobs to run
+jobs:
+  build-and-deploy:
+    # Use the latest version of Ubuntu
+    runs-on: ubuntu-latest
+
+    # Define the sequence of steps
+    steps:
+      # 1. Check out your repository's code
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      # 2. Set up Node.js for building the React app
+      - name: Setup Node.js ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use a current LTS Node.js version
+          cache: 'npm'
+
+      # 3. Install dependencies and build the project
+      - name: Install and Build 🛠️
+        run: |
+          npm install
+          npm run build
+
+      # 4. Deploy the built project to the gh-pages branch
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build # The directory the build outputs to
