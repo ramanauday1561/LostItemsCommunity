@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './Components/Navbar/Navbar';
+import Footer from './Components/Footer/Footer';
+import { ThemeProvider } from '@mui/material/styles';
+import customTheme from './theme/customTheme';
+import AppRoutes from './AppRoutes';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<ThemeProvider theme={customTheme}>
+			<Router> {/* Wrap your app with Router */}
+				<div className="App">
+					<div className="navbar-container">
+						<Navbar />
+					</div>
+					<AppRoutes />
+					<Footer />
+				</div>
+			</Router>
+		</ThemeProvider>
+	);
 }
 
 export default App;
