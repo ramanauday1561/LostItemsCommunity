@@ -1,10 +1,12 @@
+
+import { ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
-import { ThemeProvider } from '@mui/material/styles';
 import customTheme from './theme/customTheme';
 import AppRoutes from './AppRoutes';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
 	return (
