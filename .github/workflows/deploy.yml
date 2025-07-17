@@ -38,7 +38,7 @@ jobs:
         run: |
           npm install
           npm run build
-          cp CNAME build/
+          if [ -f "CNAME" ]; then cp CNAME build/; fi
 
       # 4. Setup Pages
       - name: Setup Pages
