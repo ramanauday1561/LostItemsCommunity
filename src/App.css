@@ -1,5 +1,5 @@
 @import './index.css';
-@import '../../lost-items-community/src/utils/variables.css';
+@import '../src/utils/variables.css';
 
 body,
 .App {
