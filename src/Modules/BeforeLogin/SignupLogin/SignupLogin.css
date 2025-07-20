@@ -5,7 +5,7 @@
     justify-content: center;
     background: rgba(255, 255, 255, 0.07);
     border-radius: 20px;
-    padding: 40px 60px;
+    padding: 30px 40px;
     border: 2px solid rgba(255, 255, 255, 0.82);
 
     .WelcomeBack {
@@ -23,8 +23,8 @@
     .LoginSingupContent {
         display: flex;
         flex-direction: column;
-        gap: 24px;
-        margin-top: 32px;
+        gap: 16px;
+        margin-top: 20px;
         width: 320px;
 
         input {
@@ -34,6 +34,30 @@
         .RememberPassword {
             input {
                 width: 100% !important;
+            }
+        }
+        .OrSignIn {
+            text-align: center;
+            opacity: 0.46;
+        }
+        .Icons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            svg {
+                cursor: pointer;
+                transition: all 0.2s ease;
+                &:hover {
+                    fill: var(--primary-color);
+                }
+            }
+        }
+        .SignupLink {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            a {
+                text-decoration: none;
+                color: var(--primary-color);
             }
         }
     }

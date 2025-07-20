@@ -10,6 +10,10 @@ import {
 } from '@mui/material';
 import { useNavigate } from "react-router";
 import { useForm } from 'react-hook-form';
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import { Link } from 'react-router-dom';
 
 import "./SignupLogin.css";
 
@@ -55,7 +59,7 @@ function SignupLogin() {
                             />
                         </Box>
                     </Grid>
-                    <Grid item xs={12} md={6} sx={{ maxWidth: 440 }} className="LoginSignupContainer">
+                    <Grid item xs={12} md={6} sx={{ maxWidth: 400, boxSizing: 'content-box' }} className="LoginSignupContainer">
                         <form onSubmit={handleSubmit(onSubmit)} className='LoginSignupForm'>
                             <div className='WelcomeBack'>Welcome Back</div>
                             <div className='WelcomeBackInfo'>Please enter your details</div>
@@ -155,8 +159,19 @@ function SignupLogin() {
                                     </Button>
                                 </Box>
                                 <Button type="submit" variant="contained" color="primary" fullWidth>
-                                    Login
+                                    Sign In
                                 </Button>
+                                <div className='OrSignIn'>
+                                    Or sign in with
+                                </div>
+                                <div className='Icons'>
+                                    <GoogleIcon />
+                                    <FacebookIcon />
+                                    <TwitterIcon />
+                                </div>
+                                <div className='SignupLink'>
+                                    Don't have an account? <Link to="/signup">Sign up now</Link>
+                                </div>
                             </div>
                         </form>
                     </Grid>
