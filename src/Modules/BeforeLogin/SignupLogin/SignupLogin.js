@@ -28,7 +28,7 @@ function SignupLogin() {
     };
 
     return (
-        <Box className="LoginSignup" sx={{ position: 'relative', py: { xs: 4, md: 8 }, overflow: 'hidden' }}>
+        <Box className="LoginSignupMainContainer" sx={{ position: 'relative', py: { xs: 4, md: 8 }, overflow: 'hidden' }}>
             <Box
                 sx={{
                     position: 'absolute',

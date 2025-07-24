@@ -1,3 +1,8 @@
+.LoginSignupMainContainer {
+    overflow: scroll;
+    box-sizing: border-box;
+    height: 100%;
+}
 .LoginSignupContainer {
     display: flex;
     flex-direction: column;
