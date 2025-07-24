@@ -35,7 +35,7 @@ function LoginNeeded() {
                             <Box component="span" color="primary.main">Unlock</Box> exclusive content by <Box component="span" color="secondary.main">Signing</Box> in!
                         </Typography>
                         <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
-                            <Button variant="outlined" color="primary" size="large">Login</Button>
+                            <Button variant="outlined" color="primary" onClick={() => navigate('/login')} size="large">Login</Button>
                             <Button onClick={() => navigate('/signup')} variant="contained" color="secondary" size="large">Signup</Button>
                         </Box>
                     </Grid>

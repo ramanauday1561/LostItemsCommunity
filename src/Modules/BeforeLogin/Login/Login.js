@@ -15,9 +15,9 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Link } from 'react-router-dom';
 
-import "./SignupLogin.css";
+import "./Login.css";
 
-function SignupLogin() {
+function Login() {
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -190,4 +190,4 @@ function SignupLogin() {
     )
 }
 
-export default SignupLogin;
+export default Login;
