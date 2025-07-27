@@ -1,7 +1,7 @@
 .LoginSignupMainContainer {
     overflow: scroll;
     box-sizing: border-box;
-    height: calc(100vh - 115.5px);
+    height: calc(100vh - 100px);
 }
 .LoginSignupContainer {
     display: flex;

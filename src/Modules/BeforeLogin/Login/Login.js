@@ -34,7 +34,7 @@ function Login() {
                     position: 'absolute',
                     inset: 0,
                     width: '100%',
-                    height: `calc(100vh - 115.5px)`,
+                    height: `calc(100vh - 100px)`,
                     backgroundImage: `url(${"images/Background2.png"})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
@@ -46,7 +46,7 @@ function Login() {
             <Container maxWidth="lg" sx={{ 
                 position: 'relative', 
                 zIndex: 1, 
-                height: `calc(100vh - 115.5px)`, 
+                height: `calc(100vh - 100px)`, 
                 paddingTop: '20px', 
                 paddingBottom: '20px', 
                 display: 'flex',

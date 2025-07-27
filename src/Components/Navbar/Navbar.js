@@ -21,11 +21,23 @@ import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
 const navItems = [
-    { label: 'Report Item', submenu: ['Report a Lost Item', 'Report Found Item'] },
-    { label: 'Search Items', submenu: ['Search Lost Items', 'Search Found Items'] },
-    { label: 'Community Forum' },
-    { label: 'About Us' },
-    { label: 'Contact Us' },
+    {
+        label: 'Report Item',
+        submenu: [
+            { label: 'Report a Lost Item', routerLink: '/login-needed' },
+            { label: 'Report Found Item', routerLink: '/login-needed' },
+        ],
+    },
+    {
+        label: 'Search Items',
+        submenu: [
+            { label: 'Search Lost Items', routerLink: '/login-needed' },
+            { label: 'Search Found Items', routerLink: '/login-needed' },
+        ],
+    },
+    { label: 'Community Forum', routerLink: '/login-needed' },
+    { label: 'About Us', routerLink: '/login-needed' },
+    { label: 'Contact Us', routerLink: '/login-needed' },
 ];
 
 const Navbar = () => {
@@ -50,6 +62,13 @@ const Navbar = () => {
         setSubmenu([]);
     };
 
+    // New: handle navigation for any item
+    const handleNavigate = (routerLink) => {
+        navigate(routerLink);
+        setDrawerOpen(false); // close drawer if open (mobile)
+        handleMenuClose(); // close menu if open (desktop)
+    };
+
     const drawer = (
         <Box sx={{ background: 'red' }} className="navbar-drawer-box" role="presentation" onClick={handleDrawerToggle}>
             <List>
@@ -60,14 +79,14 @@ const Navbar = () => {
                                 <ListItemText primary={item.label} />
                             </ListItem>
                             {item.submenu.map((sub, subIdx) => (
-                                <ListItemButton key={sub} className="navbar-drawer-subitem">
-                                    <ListItemText primary={sub} />
+                                <ListItemButton key={sub.label} className="navbar-drawer-subitem" onClick={() => handleNavigate(sub.routerLink)}>
+                                    <ListItemText primary={sub.label} />
                                 </ListItemButton>
                             ))}
                             <Divider />
                         </React.Fragment>
                     ) : (
-                        <ListItemButton key={item.label}>
+                        <ListItemButton key={item.label} onClick={() => handleNavigate(item.routerLink)}>
                             <ListItemText primary={item.label} />
                         </ListItemButton>
                     )
@@ -130,12 +149,18 @@ const Navbar = () => {
                                             onClose={handleMenuClose}
                                         >
                                             {item.submenu.map((sub) => (
-                                                <MenuItem key={sub} onClick={handleMenuClose}>{sub}</MenuItem>
+                                                <MenuItem
+                                                    sx={{ fontSize: '14px' }}
+                                                    key={sub.label}
+                                                    onClick={() => handleNavigate(sub.routerLink)}
+                                                >
+                                                    {sub.label}
+                                                </MenuItem>
                                             ))}
                                         </Menu>
                                     </Box>
                                 ) : (
-                                    <Button color="inherit" key={item.label} className="navbar-link-btn">{item.label}</Button>
+                                    <Button color="inherit" key={item.label} className="navbar-link-btn" onClick={() => handleNavigate(item.routerLink)}>{item.label}</Button>
                                 )
                             )}
                         </Box>
