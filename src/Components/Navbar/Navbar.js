@@ -165,8 +165,8 @@ const Navbar = () => {
                             )}
                         </Box>
                         <Box className="navbar-actions">
-                            <Button color="inherit" className="navbar-login-btn">Login</Button>
-                            <Button variant="contained" color="warning" className="navbar-signup-btn">Signup</Button>
+                            <Button color="inherit" className="navbar-login-btn" onClick={() => navigate("/login")}>Login</Button>
+                            <Button variant="contained" color="warning" className="navbar-signup-btn" onClick={() => navigate("/signup")}>Signup</Button>
                         </Box>
                     </Box>
                 )}

@@ -212,8 +212,8 @@ const WelcomePageModule = () => {
                     }}
                 />
                 <Container maxWidth="lg">
-                    <Grid container spacing={4} alignItems="center">
-                        <Grid item xs={12} md={6} sx={{ maxWidth: 600 }}>
+                    <Grid container spacing={4} alignItems="center" justifyContent="center">
+                        <Grid item xs={12} md={6} sx={{ maxWidth: 500 }}>
                             <Typography variant="h4" fontWeight={700} gutterBottom>
                                 Benefits
                             </Typography>
