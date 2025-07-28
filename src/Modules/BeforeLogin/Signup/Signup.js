@@ -2,7 +2,6 @@ import {
     Container,
     Grid,
     Box,
-    Typography,
     Button,
     TextField
 } from '@mui/material';
@@ -16,7 +15,6 @@ import { Link } from 'react-router-dom';
 import "./Signup.css";
 
 function Signup() {
-    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
