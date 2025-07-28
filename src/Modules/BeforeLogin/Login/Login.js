@@ -74,7 +74,7 @@ function Login() {
                             <div className='WelcomeBackInfo'>Please enter your details</div>
                             <div className='LoginSingupContent'>
                                 <TextField
-                                    label="Username"
+                                    label="Username / Email"
                                     variant="outlined"
                                     fullWidth
                                     placeholder="Enter your username"
