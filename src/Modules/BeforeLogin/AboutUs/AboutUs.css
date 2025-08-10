@@ -1,0 +1,22 @@
+.AboutUsContainer {
+    position: relative;
+    .AboutUsTitle {
+        font-weight: 500;
+        font-size: 36px;
+        position: absolute;
+        left: 50%;
+        letter-spacing: 0.2px;
+        transform: translate(-50%, 20px);
+    }
+    .OurStoryContainer {
+        div:nth-child(1) {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+        div:nth-child(2), div:nth-child(3) {
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 24px;
+        }
+    }
+}

@@ -4,12 +4,14 @@ import WelcomePageModule from './Modules/BeforeLogin/WelcomePage/WelcomePageModu
 import LoginNeeded from './Modules/BeforeLogin/LoginNeeded/LoginNeeded';
 import Login from './Modules/BeforeLogin/Login/Login';
 import Signup from './Modules/BeforeLogin/Signup/Signup';
+import AboutUs from './Modules/BeforeLogin/AboutUs/AboutUs';
 
 const AppRoutes = () => (
     <Routes>
         <Route path="/login-needed" element={<LoginNeeded />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/about-us" element={<AboutUs />} />
         <Route path="/" element={<WelcomePageModule />} />
     </Routes>
 );
