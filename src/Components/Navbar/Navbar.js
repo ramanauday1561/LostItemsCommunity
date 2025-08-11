@@ -36,7 +36,7 @@ const navItems = [
         ],
     },
     { label: 'Community Forum', routerLink: '/login-needed' },
-    { label: 'About Us', routerLink: '/login-needed' },
+    { label: 'About Us', routerLink: '/about-us' },
     { label: 'Contact Us', routerLink: '/login-needed' },
 ];
 
