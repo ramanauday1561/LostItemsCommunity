@@ -6,7 +6,70 @@
         position: absolute;
         left: 50%;
         letter-spacing: 0.2px;
-        transform: translate(-50%, 20px);
+        transform: translate(-50%, 30px);
+    }
+    .AboutUsHero {
+        padding-top: 90px;
+    }
+    .AboutUsTeam {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 0 50px 0;
+        gap: 20px;
+        .TeamTitle {
+            font-size: 36px;
+            font-weight: 500;
+        }
+        .TeamSubTitle {
+            font-size: 16px;
+            text-align: center;
+        }
+    }
+    .AllMembers {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        .EachMember {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            width: 400px;
+            padding: 20px 36px;
+            background: #030014;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            .MemberImage {
+                width: 66px;
+                height: 66px;
+                border-radius: 50%;
+                overflow: hidden;
+                background-color: #D9D9D9;
+                flex-shrink: 0;
+            }
+            .NameDescription {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                .MemberDescription {
+                    opacity: 0.72;
+                    line-height: 24px;
+                }
+            }
+            .MemberName { 
+                font-size: 16px;
+                font-weight: 500;
+            }
+            .MemberRole {
+                font-size: 14px;
+                font-weight: 400;
+            }
+        }
     }
     .OurStoryContainer {
         div:nth-child(1) {

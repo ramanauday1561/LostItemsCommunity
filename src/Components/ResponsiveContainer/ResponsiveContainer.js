@@ -1,8 +1,8 @@
 import { Box, Container, Grid } from "@mui/material";
 
-const ResponsiveContainer = ({ leftContent, rightContent }) => {
+const ResponsiveContainer = ({ leftContent, rightContent, className="" }) => {
     return (
-        <Box id="hero" sx={{ position: 'relative', py: { xs: 4, md: 8 }, overflow: 'hidden' }}>
+        <Box className={className} sx={{ position: 'relative', py: { xs: 4, md: 8 }, overflow: 'hidden' }}>
                 <Box
                     sx={{
                         position: 'absolute',

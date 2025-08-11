@@ -17,6 +17,7 @@ const AboutUs = () => {
                 About Us
             </Typography>
             <ResponsiveContainer
+                className="AboutUsHero"
                 leftContent={
                     <Typography variant="h5" component="h5" gutterBottom sx={{ fontWeight: 500, lineHeight: { xs: '1.8rem', md: '2.4rem' }, fontSize: { xs: '1rem', md: '1.4rem' } }}>
                         Welcome to
@@ -70,6 +71,51 @@ const AboutUs = () => {
                     </Box>
                 }
             />
+            <div className="AboutUsTeam">
+                <Typography
+                    className="TeamTitle"
+                    variant="h5"
+                    component="h5"
+                    sx={{
+                        color: 'color.white',
+                        fontWeight: 500,
+                        fontSize: { xs: '1rem', md: '1.6rem' }
+                    }}>
+                    Meet the Team
+                </Typography>
+                <Typography
+                    className="TeamSubTitle"
+                    variant="h5"
+                    component="h5"
+                    sx={{
+                        color: 'color.white',
+                        fontWeight: 500,
+                        fontSize: { xs: '1rem', md: '1.6rem' }
+                    }}>
+                    Behind Lost and Found Hub is a team of passionate individuals dedicated to making a difference in the lives of others.
+                    <br />Meet the faces behind our platform:
+                </Typography>
+                <div className="AllMembers">
+                    <div className="EachMember">
+                        <div className="MemberImage">
+
+                        </div>
+                        <div className="NameDescription">
+                            <Typography variant="h6" component="h6">A D V Ramana</Typography>
+                            <Typography className="MemberDescription" variant="h7" component="h7">Working as a Designer and Developer for Lost and Found Hub.</Typography>
+                        </div>
+                    </div>
+                    <div className="EachMember">
+                        <div className="MemberImage">
+
+                        </div>
+                        <div className="NameDescription">
+                            <Typography variant="h6" component="h6">A N S L Parameswari</Typography>
+                            <Typography className="MemberDescription" variant="h7" component="h7">Working as a Developer for Backend and DevOps for Lost and Found Hub.</Typography>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
