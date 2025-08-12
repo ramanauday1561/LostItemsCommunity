@@ -1,6 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import ResponsiveContainer from "../../../Components/ResponsiveContainer/ResponsiveContainer";
 import "./AboutUs.css";
+import SendIcon from '@mui/icons-material/Send';
 
 const AboutUs = () => {
     return (
@@ -43,6 +44,7 @@ const AboutUs = () => {
                 }
             />
             <ResponsiveContainer
+                className="OurStoryResponsive"
                 rightContent={
                     <div className="OurStoryContainer">
                         <div>
@@ -96,7 +98,9 @@ const AboutUs = () => {
                     <br />Meet the faces behind our platform:
                 </Typography>
                 <div className="AllMembers">
-                    <div className="EachMember">
+                    <div className="EachMember" style={{
+                        fontSize: { xs: '1rem', md: '1.6rem' }
+                    }}>
                         <div className="MemberImage">
 
                         </div>
@@ -116,6 +120,91 @@ const AboutUs = () => {
                     </div>
                 </div>
             </div>
+            <ResponsiveContainer
+                className="AboutUsInvolved"
+                leftContent={
+                    <div className="GetInvolvedContainer">
+                        <div className="GetInvolvedTitle">
+                            Get Involved
+                        </div>
+                        <div className="GetInvolvedDescription">
+                            Join the Lost and Found Hub community today and be part of our mission to reunite lost items with their rightful owners. Here's how you can get involved:
+                        </div>
+                        <div>
+                            <List>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <SendIcon />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="We encourage users to report lost or found items."
+                                    />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <SendIcon />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="We encourage users to check our social media profiles or community forums to connect with each other"
+                                    />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <SendIcon />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="We encourage users to share their own success stories and experiences with Lost and Found Hub."
+                                    />
+                                </ListItem>
+                            </List>
+                        </div>
+                    </div>
+                }
+                rightContent={
+                    <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
+                        <Box
+                            component="img"
+                            src="images/AboutUs3.png"
+                            alt="Illustration of a person returning a lost item"
+                            sx={{
+                                maxWidth: '100%',
+                                height: 'auto',
+                                width: { xs: '80%', md: '100%' },
+                            }}
+                        />
+                    </Box>
+                }
+            />
+            <ResponsiveContainer
+                className="AboutContactUs"
+                rightContent={
+                    <div className="OurStoryContainer">
+                        <div>
+                            Contact Information
+                        </div>
+                        <div>
+                            If you have any questions, feedback, or inquiries, we'd love to hear from you.
+                        </div>
+                        <div>
+                            Feel free to reach out to us.
+                        </div>
+                    </div>
+                }
+                leftContent={
+                    <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
+                        <Box
+                            component="img"
+                            src="images/AboutUs4.png"
+                            alt="Illustration of a person returning a lost item"
+                            sx={{
+                                maxWidth: '100%',
+                                height: 'auto',
+                                width: { xs: '80%', md: '100%' },
+                            }}
+                        />
+                    </Box>
+                }
+            />
         </div>
     );
 };
