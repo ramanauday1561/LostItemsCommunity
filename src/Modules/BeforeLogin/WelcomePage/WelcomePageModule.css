@@ -54,6 +54,16 @@
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
+		p {
+			font-size: 14px;
+			color: rgba(255, 255, 255, 0.8);
+		}
+		.MuiTypography-caption {
+			color: rgba(255, 255, 255, 0.7);
+		}
+		.MuiTypography-subtitle2 {
+			font-size: 20px;
+		}
 	}
 }
 
