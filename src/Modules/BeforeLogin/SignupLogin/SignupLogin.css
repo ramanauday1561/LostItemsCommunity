@@ -12,11 +12,15 @@
     border-radius: 20px;
     padding: 30px 40px;
     border: 2px solid rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 
     .WelcomeBack {
         font-size: 24px;
         margin-bottom: 8px;
         text-align: center;
+        font-weight: 700;
     }
 
     .WelcomeBackInfo {
@@ -34,6 +38,7 @@
 
         input {
             width: 320px;
+            transition: all 0.3s ease;
         }
 
         .RememberPassword {
@@ -43,27 +48,73 @@
         }
         .OrSignIn {
             text-align: center;
-            opacity: 0.46;
+            opacity: 0.75;
+            margin-top: 8px;
+            color: rgba(255, 255, 255, 0.8);
         }
         .Icons {
             display: flex;
             gap: 16px;
             justify-content: center;
+            
             svg {
                 cursor: pointer;
-                transition: all 0.2s ease;
+                transition: all 0.3s ease;
+                font-size: 32px;
+                padding: 8px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.1);
+                
                 &:hover {
-                    fill: var(--primary-color);
+                    transform: translateY(-3px) scale(1.1);
+                    background: rgba(255, 255, 255, 0.2);
+                    box-shadow: 0 4px 12px rgba(56, 223, 255, 0.3);
                 }
+                
+                &:active {
+                    transform: translateY(-1px) scale(1.05);
+                }
+            }
+
+            .social-icon {
+                transition: all 0.3s ease;
             }
         }
         .SignupLink {
             text-align: center;
             color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+            
             a {
                 text-decoration: none;
                 color: var(--primary-color);
+                font-weight: 600;
+                transition: all 0.3s ease;
+                
+                &:hover {
+                    color: #5ce1ff;
+                    text-decoration: underline;
+                }
             }
         }
     }
+}
+
+/* Add smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Image hover effects */
+img {
+    transition: transform 0.3s ease;
+}
+
+/* Enhance form inputs with focus effects */
+.MuiOutlinedInput-root {
+    transition: all 0.3s ease !important;
+}
+
+.MuiOutlinedInput-root:hover {
+    background: rgba(255, 255, 255, 0.05);
 }

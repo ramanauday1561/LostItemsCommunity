@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +13,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
@@ -16,4 +25,49 @@ button {
   text-transform: none !important;
   font-weight: 500 !important;
   letter-spacing: 0.02em !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Global image hover effects */
+img {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Custom scrollbar styling for modern look */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 223, 255, 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 223, 255, 0.8);
+}
+
+/* Smooth transitions for all MUI components */
+.MuiButton-root {
+  transition: all 0.3s ease !important;
+}
+
+.MuiAccordion-root {
+  transition: all 0.3s ease !important;
+}
+
+/* Add subtle animations to links */
+a {
+  transition: all 0.3s ease;
+}
+
+/* Improve focus visibility for accessibility */
+*:focus-visible {
+  outline: 2px solid rgba(56, 223, 255, 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
 }

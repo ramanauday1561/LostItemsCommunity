@@ -10,12 +10,52 @@ import {
 } from '@mui/material';
 import { useNavigate } from "react-router";
 import { useForm } from 'react-hook-form';
+import { motion } from 'framer-motion';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Link } from 'react-router-dom';
 
 import "./Login.css";
+
+// Animation variants
+const fadeInLeft = {
+    hidden: { opacity: 0, x: -60 },
+    visible: { 
+        opacity: 1, 
+        x: 0,
+        transition: { duration: 0.6, ease: "easeOut" }
+    }
+};
+
+const fadeInRight = {
+    hidden: { opacity: 0, x: 60 },
+    visible: { 
+        opacity: 1, 
+        x: 0,
+        transition: { duration: 0.6, ease: "easeOut" }
+    }
+};
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.2
+        }
+    }
+};
+
+const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { duration: 0.4, ease: "easeOut" }
+    }
+};
 
 function Login() {
     const navigate = useNavigate();
@@ -55,29 +95,48 @@ function Login() {
                 overflow: 'scroll' }}>
                 <Grid container spacing={4} alignItems="center" justifyContent="space-evenly">
                     <Grid item xs={12} md={6} sx={{ maxWidth: 500 }}>
-                        <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
-                            <Box
-                                component="img"
-                                src="images/LoginSignup.png"
-                                alt="Illustration of Login and Signup"
-                                sx={{
-                                    maxWidth: '100%',
-                                    height: 'auto',
-                                    width: { xs: '80%', md: '100%' },
-                                }}
-                            />
-                        </Box>
+                        <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            variants={fadeInLeft}
+                        >
+                            <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
+                                <Box
+                                    component="img"
+                                    src="images/LoginSignup.png"
+                                    alt="Illustration of Login and Signup"
+                                    sx={{
+                                        maxWidth: '100%',
+                                        height: 'auto',
+                                        width: { xs: '80%', md: '100%' },
+                                    }}
+                                />
+                            </Box>
+                        </motion.div>
                     </Grid>
                     <Grid item xs={12} md={6} sx={{ maxWidth: 400, boxSizing: 'content-box' }} className="LoginSignupContainer">
-                        <form onSubmit={handleSubmit(onSubmit)} className='LoginSignupForm'>
-                            <div className='WelcomeBack'>Welcome Back</div>
-                            <div className='WelcomeBackInfo'>Please enter your details</div>
-                            <div className='LoginSingupContent'>
-                                <TextField
-                                    label="Username / Email"
-                                    variant="outlined"
-                                    fullWidth
-                                    placeholder="Enter your username"
+                        <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            variants={fadeInRight}
+                        >
+                            <form onSubmit={handleSubmit(onSubmit)} className='LoginSignupForm'>
+                                <motion.div variants={fadeInUp}>
+                                    <div className='WelcomeBack'>Welcome Back!</div>
+                                    <div className='WelcomeBackInfo'>Great to see you again! Let's find what you're looking for.</div>
+                                </motion.div>
+                                <motion.div 
+                                    className='LoginSingupContent'
+                                    variants={staggerContainer}
+                                    initial="hidden"
+                                    animate="visible"
+                                >
+                                    <motion.div variants={fadeInUp}>
+                                        <TextField
+                                            label="Username / Email"
+                                            variant="outlined"
+                                            fullWidth
+                                            placeholder="Your username or email"
                                     sx={{
                                         "& .MuiOutlinedInput-root": {
                                             "& fieldset": {
@@ -104,16 +163,18 @@ function Login() {
                                             borderColor: "#38DFFF",
                                         },
                                     }}
-                                    {...register("username", { required: "Username is required" })}
-                                    error={!!errors.username}
-                                    helperText={errors.username?.message}
-                                />
-                                <TextField
-                                    label="Password"
-                                    type="password"
-                                    variant="outlined"
-                                    fullWidth
-                                    placeholder="Enter your password"
+                                            {...register("username", { required: "Username is required" })}
+                                            error={!!errors.username}
+                                            helperText={errors.username?.message}
+                                        />
+                                    </motion.div>
+                                    <motion.div variants={fadeInUp}>
+                                        <TextField
+                                            label="Password"
+                                            type="password"
+                                            variant="outlined"
+                                            fullWidth
+                                            placeholder="Your secure password"
                                     sx={{
                                         "& .MuiOutlinedInput-root": {
                                             "& fieldset": {
@@ -140,11 +201,13 @@ function Login() {
                                             borderColor: "#38DFFF",
                                         },
                                     }}
-                                    {...register("password", { required: "Password is required" })}
-                                    error={!!errors.password}
-                                    helperText={errors.password?.message}
-                                />
-                                <Box className="RememberPassword" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                            {...register("password", { required: "Password is required" })}
+                                            error={!!errors.password}
+                                            helperText={errors.password?.message}
+                                        />
+                                    </motion.div>
+                                    <motion.div variants={fadeInUp}>
+                                        <Box className="RememberPassword" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                     <FormControlLabel
                                         control={
                                             <Checkbox
@@ -167,22 +230,30 @@ function Login() {
                                         Forgot Password?
                                     </Button>
                                 </Box>
-                                <Button type="submit" variant="contained" color="primary" fullWidth>
-                                    Sign In
-                                </Button>
-                                <div className='OrSignIn'>
-                                    Or sign in with
-                                </div>
-                                <div className='Icons'>
-                                    <GoogleIcon />
-                                    <FacebookIcon />
-                                    <TwitterIcon />
-                                </div>
-                                <div className='SignupLink'>
-                                    Don't have an account? <Link to="/signup">Sign up now</Link>
-                                </div>
-                            </div>
-                        </form>
+                                    </motion.div>
+                                    <motion.div variants={fadeInUp}>
+                                        <Button type="submit" variant="contained" color="primary" fullWidth className="animated-button">
+                                            Sign In & Continue
+                                        </Button>
+                                    </motion.div>
+                                    <motion.div variants={fadeInUp}>
+                                        <div className='OrSignIn'>
+                                            Or continue with
+                                        </div>
+                                        <div className='Icons'>
+                                            <GoogleIcon className="social-icon" />
+                                            <FacebookIcon className="social-icon" />
+                                            <TwitterIcon className="social-icon" />
+                                        </div>
+                                    </motion.div>
+                                    <motion.div variants={fadeInUp}>
+                                        <div className='SignupLink'>
+                                            New here? <Link to="/signup">Join free in 30 seconds!</Link>
+                                        </div>
+                                    </motion.div>
+                                </motion.div>
+                            </form>
+                        </motion.div>
                     </Grid>
                 </Grid>
             </Container>

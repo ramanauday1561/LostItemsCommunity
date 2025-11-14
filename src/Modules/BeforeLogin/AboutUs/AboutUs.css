@@ -49,6 +49,16 @@
             background: #030014;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.72);
+            transition: all 0.3s ease;
+            cursor: pointer;
+
+            &:hover {
+                transform: translateY(-5px);
+                border-color: rgba(255, 255, 255, 0.95);
+                background: rgba(3, 0, 20, 0.8);
+                box-shadow: 0 10px 30px rgba(56, 223, 255, 0.2);
+            }
+
             .MemberImage {
                 width: 66px;
                 height: 66px;
@@ -56,16 +66,28 @@
                 overflow: hidden;
                 background-color: #D9D9D9;
                 flex-shrink: 0;
+                transition: transform 0.3s ease;
             }
+
+            &:hover .MemberImage {
+                transform: scale(1.1);
+            }
+
             .NameDescription {
                 display: flex;
                 flex-direction: column;
                 gap: 2px;
                 .MemberDescription {
-                    opacity: 0.72;
+                    opacity: 0.9;
                     line-height: 24px;
+                    transition: opacity 0.3s ease;
                 }
             }
+
+            &:hover .MemberDescription {
+                opacity: 1;
+            }
+
             .MemberName { 
                 font-size: 20px;
                 font-weight: 500;

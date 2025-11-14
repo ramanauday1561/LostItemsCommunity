@@ -14,8 +14,57 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useNavigate } from "react-router";
+import { motion } from 'framer-motion';
 
 import "./WelcomePageModule.css";
+
+// Animation variants
+const fadeInUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" }
+    }
+};
+
+const fadeInLeft = {
+    hidden: { opacity: 0, x: -60 },
+    visible: { 
+        opacity: 1, 
+        x: 0,
+        transition: { duration: 0.6, ease: "easeOut" }
+    }
+};
+
+const fadeInRight = {
+    hidden: { opacity: 0, x: 60 },
+    visible: { 
+        opacity: 1, 
+        x: 0,
+        transition: { duration: 0.6, ease: "easeOut" }
+    }
+};
+
+const scaleIn = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { 
+        opacity: 1, 
+        scale: 1,
+        transition: { duration: 0.5, ease: "easeOut" }
+    }
+};
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+            delayChildren: 0.1
+        }
+    }
+};
 
 const WelcomePageModule = () => {
     const navigate = useNavigate();
@@ -41,30 +90,60 @@ const WelcomePageModule = () => {
                 <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
                     <Grid container spacing={4} alignItems="center" justifyContent="space-evenly">
                         <Grid item xs={12} md={6} sx={{ maxWidth: 490 }}>
-                            <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '2rem', md: '2.8rem' } }}>
-                                <Box component="span" sx={{ color: 'secondary.main' }}>REUNITING</Box> lost items with their rightful owners through <Box component="span" sx={{ color: 'primary.main' }}>COMMUNITY</Box>
-                            </Typography>
-                            <Typography variant="body1">
-                                At Lost Items Community, we believe in the power of community to help find lost items. Our platform serves as a central hub where individuals can report found items and search for their lost belongings. Join our community today and let us help you reunite with what's rightfully yours.
-                            </Typography>
-                            <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
-                                <Button variant="outlined" color="primary" size="large">Learn More</Button>
-                                <Button onClick={() => navigate('/signup')} variant="contained" color="secondary" size="large">Signup</Button>
-                            </Box>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={fadeInLeft}
+                            >
+                                <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '2rem', md: '2.8rem' } }}>
+                                    <Box component="span" sx={{ color: 'secondary.main' }}>Lost Something?</Box> We'll Help You <Box component="span" sx={{ color: 'primary.main' }}>Find It!</Box>
+                                </Typography>
+                            </motion.div>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={fadeInLeft}
+                                transition={{ delay: 0.2 }}
+                            >
+                                <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.1rem' }, lineHeight: 1.7 }}>
+                                    Join thousands of people reuniting with their lost belongings every day. Report what you've found, search for what you've lost, and be part of a caring community that believes in helping each other.
+                                </Typography>
+                            </motion.div>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={fadeInUp}
+                                transition={{ delay: 0.4 }}
+                            >
+                                <Box sx={{ mt: 3, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                                    <Button variant="outlined" color="primary" size="large" className="animated-button">Search Items</Button>
+                                    <Button onClick={() => navigate('/signup')} variant="contained" color="secondary" size="large" className="animated-button">Get Started Free</Button>
+                                </Box>
+                            </motion.div>
                         </Grid>
                         <Grid item xs={12} md={6} sx={{ maxWidth: 600 }}>
-                            <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
-                                <Box
-                                    component="img"
-                                    src="images/HomePage1.png"
-                                    alt="Illustration of a person returning a lost item"
-                                    sx={{
-                                        maxWidth: '100%',
-                                        height: 'auto',
-                                        width: { xs: '80%', md: '100%' },
-                                    }}
-                                />
-                            </Box>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={fadeInRight}
+                            >
+                                <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
+                                    <Box
+                                        component="img"
+                                        src="images/HomePage1.png"
+                                        alt="Illustration of a person returning a lost item"
+                                        sx={{
+                                            maxWidth: '100%',
+                                            height: 'auto',
+                                            width: { xs: '80%', md: '100%' },
+                                        }}
+                                    />
+                                </Box>
+                            </motion.div>
                         </Grid>
                     </Grid>
                 </Container>
@@ -89,52 +168,79 @@ const WelcomePageModule = () => {
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center">
                         <Grid item xs={12} md={6} sx={{ maxWidth: 600 }}>
-                            <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
-                                <Box
-                                    component="img"
-                                    src="images/71d8ed785a20e6d15dc5ead4609dc4a4b04b7931.png"
-                                    alt="Illustration of a boy returning a lost dog"
-                                    sx={{
-                                        maxWidth: '100%',
-                                        height: 'auto',
-                                        width: { xs: '80%', md: '100%' },
-                                    }}
-                                />
-                            </Box>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={fadeInLeft}
+                            >
+                                <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
+                                    <Box
+                                        component="img"
+                                        src="images/71d8ed785a20e6d15dc5ead4609dc4a4b04b7931.png"
+                                        alt="Illustration of a boy returning a lost dog"
+                                        sx={{
+                                            maxWidth: '100%',
+                                            height: 'auto',
+                                            width: { xs: '80%', md: '100%' },
+                                        }}
+                                    />
+                                </Box>
+                            </motion.div>
                         </Grid>
                         <Grid item xs={12} md={6} sx={{ maxWidth: 490 }}>
-                            <Typography variant="h4" gutterBottom fontWeight={700}>
-                                Reuniting Lost Items with Their Rightful Owners
-                            </Typography>
-                            <Typography variant="body1">
-                                Lost & Found Hub is a community-driven platform that helps individuals report found items and search for their lost belongings. Our mission is to reunite lost items with their rightful owners, whether it's a misplaced purse, valuable ornaments, important cards, or even lost money.
-                            </Typography>
-                            <List>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <img src="images/78_177.svg" alt="icon" width={24} />
-                                    </ListItemIcon>
-                                    <ListItemText>
-                                        <Typography>Report Found Items</Typography>
-                                    </ListItemText>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <img src="images/79_184.svg" alt="icon" width={24} />
-                                    </ListItemIcon>
-                                    <ListItemText>
-                                        <Typography>Search for Lost Belongings</Typography>
-                                    </ListItemText>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <img src="images/79_189.svg" alt="icon" width={24} />
-                                    </ListItemIcon>
-                                    <ListItemText>
-                                        <Typography>Community-Driven Platform for Lost & Found</Typography>
-                                    </ListItemText>
-                                </ListItem>
-                            </List>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={fadeInRight}
+                            >
+                                <Typography variant="h4" gutterBottom fontWeight={700}>
+                                    How It Works - Simple, Fast & Effective
+                                </Typography>
+                                <Typography variant="body1" sx={{ fontSize: '1.05rem', lineHeight: 1.7 }}>
+                                    We've made finding lost items incredibly easy. Whether you've lost your wallet, keys, phone, jewelry, or any precious item, our community is here to help. Found something? Be a hero and help someone's day!
+                                </Typography>
+                            </motion.div>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={staggerContainer}
+                            >
+                                <List>
+                                    <motion.div variants={fadeInUp}>
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <img src="images/78_177.svg" alt="icon" width={24} />
+                                            </ListItemIcon>
+                                            <ListItemText>
+                                                <Typography>Report Found Items</Typography>
+                                            </ListItemText>
+                                        </ListItem>
+                                    </motion.div>
+                                    <motion.div variants={fadeInUp}>
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <img src="images/79_184.svg" alt="icon" width={24} />
+                                            </ListItemIcon>
+                                            <ListItemText>
+                                                <Typography>Search for Lost Belongings</Typography>
+                                            </ListItemText>
+                                        </ListItem>
+                                    </motion.div>
+                                    <motion.div variants={fadeInUp}>
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <img src="images/79_189.svg" alt="icon" width={24} />
+                                            </ListItemIcon>
+                                            <ListItemText>
+                                                <Typography>Community-Driven Platform for Lost & Found</Typography>
+                                            </ListItemText>
+                                        </ListItem>
+                                    </motion.div>
+                                </List>
+                            </motion.div>
                         </Grid>
                     </Grid>
                 </Container>
@@ -157,41 +263,61 @@ const WelcomePageModule = () => {
                     }}
                 />
                 <Container maxWidth="lg">
-                    <Typography variant="h4" align="center" fontWeight={700} gutterBottom>
-                        Find Lost Items and Reunite with Owners
-                    </Typography>
-                    <Typography variant="body1" align="center" sx={{ maxWidth: 766, margin: '0 auto' }}>
-                        Lost & Found Hub is a community-driven platform that allows individuals to report found items and search for lost belongings. Join our community today and help reunite lost items with their rightful owners.
-                    </Typography>
-                    <Grid container className="features-grid">
-                        <Grid item xs={12} md={4} className="feature-card">
-                            <Box sx={{ textAlign: 'center' }}>
-                                <img src="images/2e9da34020719e37d854223f5b8c63f060ef3c88.png" alt="Report Found Items" width={260} />
-                                <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Report Found Items</Typography>
-                                <Typography variant="body2">
-                                    Easily report any items you have found and help others find what they have lost.
-                                </Typography>
-                            </Box>
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                        variants={fadeInUp}
+                    >
+                        <Typography variant="h4" align="center" fontWeight={700} gutterBottom>
+                            Everything You Need in One Place
+                        </Typography>
+                        <Typography variant="body1" align="center" sx={{ maxWidth: 766, margin: '0 auto', fontSize: '1.05rem', lineHeight: 1.7 }}>
+                            From reporting found items to searching our extensive database, we've built the most comprehensive lost & found platform. Join over 10,000+ users who trust us to help them find what matters most.
+                        </Typography>
+                    </motion.div>
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        variants={staggerContainer}
+                    >
+                        <Grid container className="features-grid">
+                            <motion.div variants={scaleIn}>
+                                <Grid item xs={12} md={4} className="feature-card">
+                                    <Box sx={{ textAlign: 'center' }}>
+                                        <img src="images/2e9da34020719e37d854223f5b8c63f060ef3c88.png" alt="Report Found Items" width={260} />
+                                        <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Report Found Items</Typography>
+                                        <Typography variant="body2" sx={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                            Found something? Upload details in 30 seconds and help someone's day! Include photos, location, and description to maximize chances of reunion.
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                            </motion.div>
+                            <motion.div variants={scaleIn}>
+                                <Grid item xs={12} md={4} className="feature-card">
+                                    <Box sx={{ textAlign: 'center' }}>
+                                        <img src="images/cd3ca9158b66e28c73ae53c1102a67c3871692e0.png" alt="Search for Lost Belongings" width={260} />
+                                        <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Smart Search System</Typography>
+                                        <Typography variant="body2" sx={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                            Use our intelligent search with filters by category, location, date, and color. Get instant notifications when matching items are reported!
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                            </motion.div>
+                            <motion.div variants={scaleIn}>
+                                <Grid item xs={12} md={4} className="feature-card">
+                                    <Box sx={{ textAlign: 'center' }}>
+                                        <img src="images/db0ba1f9b753e126c63e560afe0fd8b41a7d1e64.png" alt="Success Stories" width={260} />
+                                        <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Success Stories</Typography>
+                                        <Typography variant="body2" sx={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                            Over 5,000 happy reunions and counting! Read inspiring stories of wallets, pets, jewelry, and precious memories found through our community.
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                            </motion.div>
                         </Grid>
-                        <Grid item xs={12} md={4} className="feature-card">
-                            <Box sx={{ textAlign: 'center' }}>
-                                <img src="images/cd3ca9158b66e28c73ae53c1102a67c3871692e0.png" alt="Search for Lost Belongings" width={260} />
-                                <Typography y variant="h6" fontWeight={600} sx={{ mt: 2 }}>Search for Lost Belongings</Typography>
-                                <Typography variant="body2">
-                                    Effortlessly search through our database to find your lost belongings.
-                                </Typography>
-                            </Box>
-                        </Grid>
-                        <Grid item xs={12} md={4} className="feature-card">
-                            <Box sx={{ textAlign: 'center' }}>
-                                <img src="images/db0ba1f9b753e126c63e560afe0fd8b41a7d1e64.png" alt="Success Stories" width={260} />
-                                <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Success Stories</Typography>
-                                <Typography variant="body2">
-                                    Read heartwarming stories of lost items being reunited with their owners.
-                                </Typography>
-                            </Box>
-                        </Grid>
-                    </Grid>
+                    </motion.div>
                 </Container>
             </Box>
 
@@ -214,43 +340,70 @@ const WelcomePageModule = () => {
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center" justifyContent="center">
                         <Grid item xs={12} md={6} sx={{ maxWidth: 500 }}>
-                            <Typography variant="h4" fontWeight={700} gutterBottom>
-                                Benefits
-                            </Typography>
-                            <Typography variant="body1">
-                                Find lost items or report found items to help reunite them with their owners. Our community-driven platform makes it easy to connect with others and recover lost belongings.
-                            </Typography>
-                            <List>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <img src="images/100_306.svg" alt="icon" width={24} />
-                                    </ListItemIcon>
-                                    <ListItemText>
-                                        <Typography>Reunite lost items with their rightful owners.</Typography>
-                                    </ListItemText>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <img src="images/100_311.svg" alt="icon" width={24} />
-                                    </ListItemIcon>
-                                    <ListItemText>
-                                        <Typography>Connect with others to recover lost belongings.</Typography>
-                                    </ListItemText>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <img src="images/100_316.svg" alt="icon" width={24} />
-                                    </ListItemIcon>
-                                    <ListItemText>
-                                        <Typography>Report found items to help reunite them.</Typography>
-                                    </ListItemText>
-                                </ListItem>
-                            </List>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={fadeInLeft}
+                            >
+                                <Typography variant="h4" fontWeight={700} gutterBottom>
+                                    Why Choose Us?
+                                </Typography>
+                                <Typography variant="body1" sx={{ fontSize: '1.05rem', lineHeight: 1.7 }}>
+                                    We're more than just a lost & found platform - we're a community of caring people. Fast, secure, and completely free to use. Your next reunion is just a click away!
+                                </Typography>
+                            </motion.div>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={staggerContainer}
+                            >
+                                <List>
+                                    <motion.div variants={fadeInUp}>
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <img src="images/100_306.svg" alt="icon" width={24} />
+                                            </ListItemIcon>
+                                            <ListItemText>
+                                                <Typography sx={{ fontSize: '1rem', color: 'rgba(255, 255, 255, 0.95)' }}><strong>100% Free Forever</strong> - No hidden fees, no premium plans. Everyone deserves help finding what's lost.</Typography>
+                                            </ListItemText>
+                                        </ListItem>
+                                    </motion.div>
+                                    <motion.div variants={fadeInUp}>
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <img src="images/100_311.svg" alt="icon" width={24} />
+                                            </ListItemIcon>
+                                            <ListItemText>
+                                                <Typography sx={{ fontSize: '1rem', color: 'rgba(255, 255, 255, 0.95)' }}><strong>Instant Notifications</strong> - Get alerts when items matching your description are found.</Typography>
+                                            </ListItemText>
+                                        </ListItem>
+                                    </motion.div>
+                                    <motion.div variants={fadeInUp}>
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <img src="images/100_316.svg" alt="icon" width={24} />
+                                            </ListItemIcon>
+                                            <ListItemText>
+                                                <Typography sx={{ fontSize: '1rem', color: 'rgba(255, 255, 255, 0.95)' }}><strong>Trusted Community</strong> - Verified users, secure messaging, and safe meetup guidelines.</Typography>
+                                            </ListItemText>
+                                        </ListItem>
+                                    </motion.div>
+                                </List>
+                            </motion.div>
                         </Grid>
                         <Grid item xs={12} md={6} sx={{ maxWidth: 600 }}>
-                            <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
-                                <img src="images/00afe7198ad400fc004539788c093d5c2fff6fbd.png" alt="Illustration of people exchanging a lost item" style={{ width: '100%', maxWidth: 520 }} />
-                            </Box>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={fadeInRight}
+                            >
+                                <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
+                                    <img src="images/00afe7198ad400fc004539788c093d5c2fff6fbd.png" alt="Illustration of people exchanging a lost item" style={{ width: '100%', maxWidth: 520 }} />
+                                </Box>
+                            </motion.div>
                         </Grid>
                     </Grid>
                 </Container>
@@ -275,21 +428,35 @@ const WelcomePageModule = () => {
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center">
                         <Grid item xs={12} md={6}>
-                            <Box sx={{ textAlign: 'center' }}>
-                                <img src="images/4ee6753f9498560e0bf9b5f1f505917aa8d41726.png" alt="Illustration of a person finding lost items" style={{ width: '100%', maxWidth: 420 }} />
-                            </Box>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={scaleIn}
+                            >
+                                <Box sx={{ textAlign: 'center' }}>
+                                    <img src="images/4ee6753f9498560e0bf9b5f1f505917aa8d41726.png" alt="Illustration of a person finding lost items" style={{ width: '100%', maxWidth: 420 }} />
+                                </Box>
+                            </motion.div>
                         </Grid>
                         <Grid item xs={12} md={6} sx={{ maxWidth: 680 }}>
-                            <Typography variant="h4" fontWeight={700} gutterBottom>
-                                Find Lost Items and Reunite with Owners
-                            </Typography>
-                            <Typography variant="body1">
-                                Lost & Found Hub is a community-driven platform that allows individuals to report found items and search for lost belongings. Join our community today and help reunite lost items with their rightful owners.
-                            </Typography>
-                            <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
-                                <Button variant="contained" color="primary" size="large">Report</Button>
-                                <Button variant="outlined" color="secondary" size="large">Search</Button>
-                            </Box>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={fadeInRight}
+                            >
+                                <Typography variant="h4" fontWeight={700} gutterBottom>
+                                    Ready to Make a Difference?
+                                </Typography>
+                                <Typography variant="body1" sx={{ fontSize: '1.05rem', lineHeight: 1.7 }}>
+                                    Whether you've found something or lost something precious, take action now. Every second counts when it comes to reuniting people with their belongings. Join our growing community today!
+                                </Typography>
+                                <Box sx={{ mt: 3, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                                    <Button variant="contained" color="primary" size="large" className="animated-button">Report Found Item</Button>
+                                    <Button variant="outlined" color="secondary" size="large" className="animated-button">Search Lost Items</Button>
+                                </Box>
+                            </motion.div>
                         </Grid>
                     </Grid>
                 </Container>
@@ -312,59 +479,79 @@ const WelcomePageModule = () => {
                     }}
                 />
                 <Container maxWidth="lg">
-                    <Typography variant="h4" align="center" fontWeight={700} gutterBottom>
-                        Customer Testimonials
-                    </Typography>
-                    <Typography variant="body1" align="center">
-                        Read what our customers have to say
-                    </Typography>
-                    <Grid className="testimonials-grid">
-                        <Grid className="testimonial-card">
-                            <Box>
-                                <Typography variant="h6" fontWeight={600}>Best Website for Lost Items</Typography>
-                                <Typography variant="body2" color="text.secondary" sx={{ my: 2 }}>
-                                    "I lost my wallet and thanks to Lost & Found Hub, I was able to recover it within a day. Amazing Service by the website!"
-                                </Typography>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                    <img src="images/113_115.svg" alt="John Doe" width={48} />
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                        variants={fadeInUp}
+                    >
+                        <Typography variant="h4" align="center" fontWeight={700} gutterBottom>
+                            Real Stories, Real Results
+                        </Typography>
+                        <Typography variant="body1" align="center" sx={{ fontSize: '1.05rem' }}>
+                            Don't just take our word for it - see how we've helped thousands reunite with their lost items
+                        </Typography>
+                    </motion.div>
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        variants={staggerContainer}
+                    >
+                        <Grid className="testimonials-grid">
+                            <motion.div variants={fadeInUp}>
+                                <Grid className="testimonial-card">
                                     <Box>
-                                        <Typography variant="subtitle2">John Doe</Typography>
-                                        <Typography variant="caption" color="text.secondary">Marketing Manager, ABC Company</Typography>
+                                        <Typography variant="h6" fontWeight={600}>Best Website for Lost Items</Typography>
+                                        <Typography variant="body2" sx={{ my: 2, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                            "I lost my wallet and thanks to Lost & Found Hub, I was able to recover it within a day. Amazing Service by the website!"
+                                        </Typography>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                            <img src="images/113_115.svg" alt="John Doe" width={48} />
+                                            <Box>
+                                                <Typography variant="subtitle2">John Doe</Typography>
+                                                <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.75)' }}>Marketing Manager, ABC Company</Typography>
+                                            </Box>
+                                        </Box>
                                     </Box>
-                                </Box>
-                            </Box>
-                        </Grid>
-                        <Grid className="testimonial-card">
-                            <Box>
-                                <Typography variant="h6" fontWeight={600}>Helping Others</Typography>
-                                <Typography variant="body2" color="text.secondary" sx={{ my: 2 }}>
-                                    "I found a lost phone and was able to return it to its owner through Lost & Found Hub. It feels great to help others."
-                                </Typography>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                    <img src="images/113_125.svg" alt="Jane Smith" width={48} />
+                                </Grid>
+                            </motion.div>
+                            <motion.div variants={fadeInUp}>
+                                <Grid className="testimonial-card">
                                     <Box>
-                                        <Typography variant="subtitle2">Jane Smith</Typography>
-                                        <Typography variant="caption" color="text.secondary">Software Engineer, YXZ Inc.</Typography>
+                                        <Typography variant="h6" fontWeight={600}>Helping Others</Typography>
+                                        <Typography variant="body2" sx={{ my: 2, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                            "I found a lost phone and was able to return it to its owner through Lost & Found Hub. It feels great to help others."
+                                        </Typography>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                            <img src="images/113_125.svg" alt="Jane Smith" width={48} />
+                                            <Box>
+                                                <Typography variant="subtitle2">Jane Smith</Typography>
+                                                <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.75)' }}>Software Engineer, YXZ Inc.</Typography>
+                                            </Box>
+                                        </Box>
                                     </Box>
-                                </Box>
-                            </Box>
-                        </Grid>
-                        <Grid className="testimonial-card">
-                            <Box>
-                                <Typography variant="h6" fontWeight={600}>Get Lost Items Easily</Typography>
-                                <Typography variant="body2" color="text.secondary" sx={{ my: 2 }}>
-                                    "Lost & Found Hub is a lifesaver! I lost my keys and someone found them and reported it on the website. I got them back in no time."
-                                </Typography>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                    <img src="images/113_135.svg" alt="Sarah Johnson" width={48} />
+                                </Grid>
+                            </motion.div>
+                            <motion.div variants={fadeInUp}>
+                                <Grid className="testimonial-card">
                                     <Box>
-                                        <Typography variant="subtitle2">Sarah Johnson</Typography>
-                                        <Typography variant="caption" color="text.secondary">HR Manager, XYZ Corp.</Typography>
+                                        <Typography variant="h6" fontWeight={600}>Get Lost Items Easily</Typography>
+                                        <Typography variant="body2" sx={{ my: 2, color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                            "Lost & Found Hub is a lifesaver! I lost my keys and someone found them and reported it on the website. I got them back in no time."
+                                        </Typography>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                            <img src="images/113_135.svg" alt="Sarah Johnson" width={48} />
+                                            <Box>
+                                                <Typography variant="subtitle2">Sarah Johnson</Typography>
+                                                <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.75)' }}>HR Manager, XYZ Corp.</Typography>
+                                            </Box>
+                                        </Box>
                                     </Box>
-                                </Box>
-                            </Box>
+                                </Grid>
+                            </motion.div>
                         </Grid>
-                    </Grid>
+                    </motion.div>
                 </Container>
             </Box>
 
@@ -385,14 +572,27 @@ const WelcomePageModule = () => {
                     }}
                 />
                 <Container maxWidth="lg">
-                    <Typography variant="h4" sx={{ textAlign: 'center' }} fontWeight={700} gutterBottom>
-                        FAQs
-                    </Typography>
-                    <Typography variant="body1" sx={{ textAlign: 'center' }}>
-                        Find answers to common questions about reporting or claiming lost items on our platform.
-                    </Typography>
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                        variants={fadeInUp}
+                    >
+                        <Typography variant="h4" sx={{ textAlign: 'center' }} fontWeight={700} gutterBottom>
+                            Got Questions? We've Got Answers!
+                        </Typography>
+                        <Typography variant="body1" sx={{ textAlign: 'center', fontSize: '1.05rem' }}>
+                            Everything you need to know about finding lost items and helping others
+                        </Typography>
+                    </motion.div>
                     <Grid className="faq-grid">
                         <Grid item xs={12} md={7} sx={{ maxWidth: 580 }}>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.2 }}
+                                variants={fadeInLeft}
+                            >
                             <Box>
                                 <Accordion defaultExpanded sx={{
                                     my: 2,
@@ -413,8 +613,8 @@ const WelcomePageModule = () => {
                                         How do I report an item?
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography variant="body2" sx={{ mt: 1 }}>
-                                            To report a lost item, simply go to our website and click on the 'Report Lost Item' button. Fill out the required information and submit the form. Our team will review your report and notify you if your item is found.
+                                        <Typography variant="body2" sx={{ mt: 1, fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                            Super easy! Click 'Report Found Item', upload a photo, add description (color, brand, location found), and submit. You'll get notifications when potential owners reach out. The whole process takes less than 2 minutes!
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
@@ -511,20 +711,35 @@ const WelcomePageModule = () => {
                                     </AccordionDetails>
                                 </Accordion>
                             </Box>
+                            </motion.div>
                         </Grid>
                         <Grid item xs={12} md={5} sx={{ maxWidth: 540 }}>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={fadeInRight}
+                            >
                             <Box sx={{ textAlign: 'center' }}>
                                 <img src="images/8b01246adfacaaf379d8038f11053fae146f7897.png" alt="Illustration of a person with a question mark" style={{ width: '100%' }} />
                             </Box>
+                            </motion.div>
                         </Grid>
                     </Grid>
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                        variants={fadeInUp}
+                    >
                     <Box sx={{ mt: 6, textAlign: 'center' }}>
-                        <Typography variant="h6" fontWeight={600}>Still have Questions?</Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                            Feel free to reach out to us for any queries
+                        <Typography variant="h6" fontWeight={600}>Need More Help?</Typography>
+                        <Typography variant="body2" sx={{ mb: 2, fontSize: '0.95rem', color: 'rgba(255, 255, 255, 0.85)' }}>
+                            Our friendly support team is here 24/7. Get answers in minutes!
                         </Typography>
-                        <Button variant="contained" color="primary" size="large">Contact Us</Button>
+                        <Button variant="contained" color="primary" size="large" className="animated-button">Chat With Us</Button>
                     </Box>
+                    </motion.div>
                 </Container>
             </Box>
 
@@ -533,21 +748,35 @@ const WelcomePageModule = () => {
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center" justifyContent="center">
                         <Grid item xs={12} md={6}>
-                            <Box sx={{ textAlign: 'center' }}>
-                                <img src="images/edb7e7f36d695a3f4edc239b979754ce6a196111.png" alt="Illustration of a person with a treasure chest" style={{ width: '100%', maxWidth: 300, borderRadius: 8, boxShadow: 2 }} />
-                            </Box>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={scaleIn}
+                            >
+                                <Box sx={{ textAlign: 'center' }}>
+                                    <img src="images/edb7e7f36d695a3f4edc239b979754ce6a196111.png" alt="Illustration of a person with a treasure chest" style={{ width: '100%', maxWidth: 300, borderRadius: 8, boxShadow: 2 }} />
+                                </Box>
+                            </motion.div>
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <Typography variant="h4" fontWeight={700} gutterBottom>
-                                Join our community today!
-                            </Typography>
-                            <Typography variant="body1">
-                                Discover lost treasures and help reunite them with their owners
-                            </Typography>
-                            <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
-                                <Button variant="outlined" color="primary" size="large">Learn More</Button>
-                                <Button variant="contained" color="secondary" size="large">Signup</Button>
-                            </Box>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={fadeInRight}
+                            >
+                                <Typography variant="h4" fontWeight={700} gutterBottom>
+                                    Join 10,000+ Community Members!
+                                </Typography>
+                                <Typography variant="body1" sx={{ fontSize: '1.05rem', lineHeight: 1.7 }}>
+                                    Be part of something special. Whether you're looking for lost items or helping others find theirs, every member makes a difference. Sign up free in 30 seconds!
+                                </Typography>
+                                <Box sx={{ mt: 3, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                                    <Button variant="outlined" color="primary" size="large" className="animated-button">How It Works</Button>
+                                    <Button variant="contained" color="secondary" size="large" className="animated-button">Join Free Now</Button>
+                                </Box>
+                            </motion.div>
                         </Grid>
                     </Grid>
                 </Container>

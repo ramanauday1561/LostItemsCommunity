@@ -21,7 +21,7 @@
 
     .WelcomeBackInfo {
         font-size: 14px;
-        color: rgba(255, 255, 255, 0.74);
+        color: rgba(255, 255, 255, 0.85);
         text-align: center;
     }
 
@@ -43,7 +43,8 @@
         }
         .OrSignIn {
             text-align: center;
-            opacity: 0.46;
+            opacity: 0.75;
+            color: rgba(255, 255, 255, 0.8);
         }
         .Icons {
             display: flex;
@@ -59,7 +60,7 @@
         }
         .SignupLink {
             text-align: center;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             a {
                 text-decoration: none;
                 color: var(--primary-color);
