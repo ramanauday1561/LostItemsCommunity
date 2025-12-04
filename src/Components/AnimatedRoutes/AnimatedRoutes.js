@@ -8,17 +8,24 @@ import Signup from '../../Modules/BeforeLogin/Signup/Signup';
 import AboutUs from '../../Modules/BeforeLogin/AboutUs/AboutUs';
 import PageTransition from '../PageTransition/PageTransition';
 
+// Helper function to wrap components with PageTransition
+const withPageTransition = (Component) => (
+    <PageTransition>
+        <Component />
+    </PageTransition>
+);
+
 const AnimatedRoutes = () => {
     const location = useLocation();
 
     return (
         <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
-                <Route path="/login-needed" element={<PageTransition><LoginNeeded /></PageTransition>} />
-                <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
-                <Route path="/signup" element={<PageTransition><Signup /></PageTransition>} />
-                <Route path="/about-us" element={<PageTransition><AboutUs /></PageTransition>} />
-                <Route path="/" element={<PageTransition><WelcomePageModule /></PageTransition>} />
+                <Route path="/login-needed" element={withPageTransition(LoginNeeded)} />
+                <Route path="/login" element={withPageTransition(Login)} />
+                <Route path="/signup" element={withPageTransition(Signup)} />
+                <Route path="/about-us" element={withPageTransition(AboutUs)} />
+                <Route path="/" element={withPageTransition(WelcomePageModule)} />
             </Routes>
         </AnimatePresence>
     );
