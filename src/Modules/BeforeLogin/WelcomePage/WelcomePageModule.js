@@ -177,7 +177,7 @@ const WelcomePageModule = () => {
                                 <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
                                     <Box
                                         component="img"
-                                        src="images/71d8ed785a20e6d15dc5ead4609dc4a4b04b7931.png"
+                                        src="images/hero-boy-with-dog.png"
                                         alt="Illustration of a boy returning a lost dog"
                                         sx={{
                                             maxWidth: '100%',
@@ -286,7 +286,7 @@ const WelcomePageModule = () => {
                             <motion.div variants={scaleIn}>
                                 <Grid item xs={12} md={4} className="feature-card">
                                     <Box sx={{ textAlign: 'center' }}>
-                                        <img src="images/2e9da34020719e37d854223f5b8c63f060ef3c88.png" alt="Report Found Items" width={260} />
+                                        <img src="images/feature-report-found.png" alt="Report Found Items" width={260} />
                                         <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Report Found Items</Typography>
                                         <Typography variant="body2" sx={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
                                             Found something? Upload details in 30 seconds and help someone's day! Include photos, location, and description to maximize chances of reunion.
@@ -297,7 +297,7 @@ const WelcomePageModule = () => {
                             <motion.div variants={scaleIn}>
                                 <Grid item xs={12} md={4} className="feature-card">
                                     <Box sx={{ textAlign: 'center' }}>
-                                        <img src="images/cd3ca9158b66e28c73ae53c1102a67c3871692e0.png" alt="Search for Lost Belongings" width={260} />
+                                        <img src="images/feature-search-system.png" alt="Search for Lost Belongings" width={260} />
                                         <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Smart Search System</Typography>
                                         <Typography variant="body2" sx={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
                                             Use our intelligent search with filters by category, location, date, and color. Get instant notifications when matching items are reported!
@@ -308,7 +308,7 @@ const WelcomePageModule = () => {
                             <motion.div variants={scaleIn}>
                                 <Grid item xs={12} md={4} className="feature-card">
                                     <Box sx={{ textAlign: 'center' }}>
-                                        <img src="images/db0ba1f9b753e126c63e560afe0fd8b41a7d1e64.png" alt="Success Stories" width={260} />
+                                        <img src="images/feature-success-stories.png" alt="Success Stories" width={260} />
                                         <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Success Stories</Typography>
                                         <Typography variant="body2" sx={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
                                             Over 5,000 happy reunions and counting! Read inspiring stories of wallets, pets, jewelry, and precious memories found through our community.
@@ -401,7 +401,7 @@ const WelcomePageModule = () => {
                                 variants={fadeInRight}
                             >
                                 <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
-                                    <img src="images/00afe7198ad400fc004539788c093d5c2fff6fbd.png" alt="Illustration of people exchanging a lost item" style={{ width: '100%', maxWidth: 520 }} />
+                                    <img src="images/illustration-exchange-item.png" alt="Illustration of people exchanging a lost item" style={{ width: '100%', maxWidth: 520 }} />
                                 </Box>
                             </motion.div>
                         </Grid>
@@ -435,7 +435,7 @@ const WelcomePageModule = () => {
                                 variants={scaleIn}
                             >
                                 <Box sx={{ textAlign: 'center' }}>
-                                    <img src="images/4ee6753f9498560e0bf9b5f1f505917aa8d41726.png" alt="Illustration of a person finding lost items" style={{ width: '100%', maxWidth: 420 }} />
+                                    <img src="images/illustration-person-finding-items.png" alt="Illustration of a person finding lost items" style={{ width: '100%', maxWidth: 420 }} />
                                 </Box>
                             </motion.div>
                         </Grid>
@@ -721,7 +721,7 @@ const WelcomePageModule = () => {
                                 variants={fadeInRight}
                             >
                             <Box sx={{ textAlign: 'center' }}>
-                                <img src="images/8b01246adfacaaf379d8038f11053fae146f7897.png" alt="Illustration of a person with a question mark" style={{ width: '100%' }} />
+                                <img src="images/illustration-person-question.png" alt="Illustration of a person with a question mark" style={{ width: '100%' }} />
                             </Box>
                             </motion.div>
                         </Grid>
@@ -755,7 +755,7 @@ const WelcomePageModule = () => {
                                 variants={scaleIn}
                             >
                                 <Box sx={{ textAlign: 'center' }}>
-                                    <img src="images/edb7e7f36d695a3f4edc239b979754ce6a196111.png" alt="Illustration of a person with a treasure chest" style={{ width: '100%', maxWidth: 300, borderRadius: 8, boxShadow: 2 }} />
+                                    <img src="images/illustration-treasure-chest.png" alt="Illustration of a person with a treasure chest" style={{ width: '100%', maxWidth: 300, borderRadius: 8, boxShadow: 2 }} />
                                 </Box>
                             </motion.div>
                         </Grid>
