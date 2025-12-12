@@ -20,7 +20,7 @@ function LoginNeeded() {
                     inset: 0,
                     width: '100%',
                     height: '100%',
-                    backgroundImage: `url(${"images/Background2.png"})`,
+                    backgroundImage: `url(${"images/Background2.webp"})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     opacity: 0.82,

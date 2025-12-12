@@ -75,7 +75,7 @@ function Login() {
                     inset: 0,
                     width: '100%',
                     height: `calc(100vh - 100px)`,
-                    backgroundImage: `url(${"images/Background2.png"})`,
+                    backgroundImage: `url(${"images/Background2.webp"})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     opacity: 0.82,
