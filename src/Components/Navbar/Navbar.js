@@ -105,7 +105,7 @@ const Navbar = () => {
             <Toolbar className="navbar-toolbar">
                 <Box className="navbar-logo-box" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
                     <img
-                        src="images/e59c20c17628a4a2cbb5c6367d61857a50409d98.png"
+                        src="images/logo.png"
                         alt="Logo"
                         className="navbar-logo-img"
                     />
