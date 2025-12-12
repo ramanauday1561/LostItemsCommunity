@@ -29,7 +29,9 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
 
   // Handle image requests with cache-first strategy
-  if (request.destination === 'image' || url.pathname.includes('/images/')) {
+  if (request.destination === 'image' || url.pathname.includes('/images/') || 
+      url.pathname.endsWith('.webp') || url.pathname.endsWith('.png') || 
+      url.pathname.endsWith('.jpg') || url.pathname.endsWith('.jpeg')) {
     event.respondWith(
       caches.open(IMAGE_CACHE_NAME).then((cache) => {
         return cache.match(request).then((cachedResponse) => {

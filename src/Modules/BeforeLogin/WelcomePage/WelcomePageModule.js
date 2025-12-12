@@ -79,7 +79,7 @@ const WelcomePageModule = () => {
                         inset: 0,
                         width: '100%',
                         height: '100%',
-                        backgroundImage: `url(${"images/Background2.png"})`,
+                        backgroundImage: `url(${"images/Background2.webp"})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         opacity: 0.82,
@@ -134,7 +134,7 @@ const WelcomePageModule = () => {
                                 <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
                                     <Box
                                         component="img"
-                                        src="images/HomePage1.png"
+                                        src="images/HomePage1.webp"
                                         alt="Illustration of a person returning a lost item"
                                         sx={{
                                             maxWidth: '100%',
@@ -157,7 +157,7 @@ const WelcomePageModule = () => {
                         inset: 0,
                         width: '100%',
                         height: '100%',
-                        backgroundImage: `url(${"images/Background2.png"})`,
+                        backgroundImage: `url(${"images/Background2.webp"})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         opacity: 0.82,
@@ -177,7 +177,7 @@ const WelcomePageModule = () => {
                                 <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
                                     <Box
                                         component="img"
-                                        src="images/hero-boy-with-dog.png"
+                                        src="images/hero-boy-with-dog.webp"
                                         alt="Illustration of a boy returning a lost dog"
                                         sx={{
                                             maxWidth: '100%',
@@ -254,7 +254,7 @@ const WelcomePageModule = () => {
                         inset: 0,
                         width: '100%',
                         height: '100%',
-                        backgroundImage: `url(${"images/Background2.png"})`,
+                        backgroundImage: `url(${"images/Background2.webp"})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         opacity: 0.82,
@@ -308,7 +308,7 @@ const WelcomePageModule = () => {
                             <motion.div variants={scaleIn}>
                                 <Grid item xs={12} md={4} className="feature-card">
                                     <Box sx={{ textAlign: 'center' }}>
-                                        <img src="images/feature-success-stories.png" alt="Success Stories" width={260} />
+                                        <img src="images/feature-success-stories.webp" alt="Success Stories" width={260} />
                                         <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Success Stories</Typography>
                                         <Typography variant="body2" sx={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
                                             Over 5,000 happy reunions and counting! Read inspiring stories of wallets, pets, jewelry, and precious memories found through our community.
@@ -329,7 +329,7 @@ const WelcomePageModule = () => {
                         inset: 0,
                         width: '100%',
                         height: '100%',
-                        backgroundImage: `url(${"images/Background2.png"})`,
+                        backgroundImage: `url(${"images/Background2.webp"})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         opacity: 0.82,
@@ -417,7 +417,7 @@ const WelcomePageModule = () => {
                         inset: 0,
                         width: '100%',
                         height: '100%',
-                        backgroundImage: `url(${"images/Background2.png"})`,
+                        backgroundImage: `url(${"images/Background2.webp"})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         opacity: 0.82,
@@ -435,7 +435,7 @@ const WelcomePageModule = () => {
                                 variants={scaleIn}
                             >
                                 <Box sx={{ textAlign: 'center' }}>
-                                    <img src="images/illustration-person-finding-items.png" alt="Illustration of a person finding lost items" style={{ width: '100%', maxWidth: 420 }} />
+                                    <img src="images/illustration-person-finding-items.webp" alt="Illustration of a person finding lost items" style={{ width: '100%', maxWidth: 420 }} />
                                 </Box>
                             </motion.div>
                         </Grid>
@@ -470,7 +470,7 @@ const WelcomePageModule = () => {
                         inset: 0,
                         width: '100%',
                         height: '100%',
-                        backgroundImage: `url(${"images/Background2.png"})`,
+                        backgroundImage: `url(${"images/Background2.webp"})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         opacity: 0.82,
@@ -563,7 +563,7 @@ const WelcomePageModule = () => {
                         inset: 0,
                         width: '100%',
                         height: '100%',
-                        backgroundImage: `url(${"images/Background2.png"})`,
+                        backgroundImage: `url(${"images/Background2.webp"})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         opacity: 0.82,
@@ -755,7 +755,7 @@ const WelcomePageModule = () => {
                                 variants={scaleIn}
                             >
                                 <Box sx={{ textAlign: 'center' }}>
-                                    <img src="images/illustration-treasure-chest.png" alt="Illustration of a person with a treasure chest" style={{ width: '100%', maxWidth: 300, borderRadius: 8, boxShadow: 2 }} />
+                                    <img src="images/illustration-treasure-chest.webp" alt="Illustration of a person with a treasure chest" style={{ width: '100%', maxWidth: 300, borderRadius: 8, boxShadow: 2 }} />
                                 </Box>
                             </motion.div>
                         </Grid>
