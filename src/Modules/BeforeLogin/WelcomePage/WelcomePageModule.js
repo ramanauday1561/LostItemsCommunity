@@ -137,6 +137,8 @@ const WelcomePageModule = () => {
                                         src="images/HomePage1.webp"
                                         alt="Illustration of a person returning a lost item"
                                         fetchpriority="high"
+                                        width="600"
+                                        height="450"
                                         sx={{
                                             maxWidth: '100%',
                                             height: 'auto',

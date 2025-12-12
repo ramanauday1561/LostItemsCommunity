@@ -56,15 +56,18 @@ function isCacheExpired(cachedResponse, maxAge) {
 }
 
 // Helper function to create response with cache date
-function createCachedResponse(response) {
-  const headers = new Headers(response.headers);
+function createCachedResponse(response, maxAge) {
+  const clonedResponse = response.clone();
+  const headers = new Headers(clonedResponse.headers);
   headers.set('sw-cache-date', new Date().toISOString());
-  headers.set('Cache-Control', 'public, max-age=604800'); // 7 days
+  headers.set('Cache-Control', `public, max-age=${maxAge}`);
   
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers: headers
+  return clonedResponse.blob().then(blob => {
+    return new Response(blob, {
+      status: clonedResponse.status,
+      statusText: clonedResponse.statusText,
+      headers: headers
+    });
   });
 }
 
@@ -88,8 +91,10 @@ self.addEventListener('fetch', (event) => {
           // Fetch from network and cache with date
           return fetch(request).then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {
-              const responseToCache = createCachedResponse(networkResponse.clone());
-              cache.put(request, responseToCache);
+              return createCachedResponse(networkResponse, Math.floor(CACHE_EXPIRATION.images / 1000)).then(responseToCache => {
+                cache.put(request, responseToCache);
+                return networkResponse;
+              });
             }
             return networkResponse;
           }).catch(() => {
@@ -119,8 +124,10 @@ self.addEventListener('fetch', (event) => {
           // Network first for static assets
           return fetch(request).then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {
-              const responseToCache = createCachedResponse(networkResponse.clone());
-              cache.put(request, responseToCache);
+              return createCachedResponse(networkResponse, Math.floor(CACHE_EXPIRATION.static / 1000)).then(responseToCache => {
+                cache.put(request, responseToCache);
+                return networkResponse;
+              });
             }
             return networkResponse;
           }).catch(() => {
@@ -139,9 +146,10 @@ self.addEventListener('fetch', (event) => {
       .then((response) => {
         // Cache successful responses with default expiration
         if (response && response.status === 200) {
-          const responseClone = createCachedResponse(response.clone());
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, responseClone);
+          createCachedResponse(response, Math.floor(CACHE_EXPIRATION.default / 1000)).then(responseClone => {
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, responseClone);
+            });
           });
         }
         return response;
