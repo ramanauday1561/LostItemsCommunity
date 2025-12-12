@@ -286,7 +286,7 @@ const WelcomePageModule = () => {
                             <motion.div variants={scaleIn}>
                                 <Grid item xs={12} md={4} className="feature-card">
                                     <Box sx={{ textAlign: 'center' }}>
-                                        <img src="images/feature-report-found.png" alt="Report Found Items" width={260} />
+                                        <img src="images/feature-report-found.png" alt="Report Found Items" width={260} loading="lazy" />
                                         <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Report Found Items</Typography>
                                         <Typography variant="body2" sx={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
                                             Found something? Upload details in 30 seconds and help someone's day! Include photos, location, and description to maximize chances of reunion.
@@ -297,7 +297,7 @@ const WelcomePageModule = () => {
                             <motion.div variants={scaleIn}>
                                 <Grid item xs={12} md={4} className="feature-card">
                                     <Box sx={{ textAlign: 'center' }}>
-                                        <img src="images/feature-search-system.png" alt="Search for Lost Belongings" width={260} />
+                                        <img src="images/feature-search-system.png" alt="Search for Lost Belongings" width={260} loading="lazy" />
                                         <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Smart Search System</Typography>
                                         <Typography variant="body2" sx={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
                                             Use our intelligent search with filters by category, location, date, and color. Get instant notifications when matching items are reported!
@@ -308,7 +308,7 @@ const WelcomePageModule = () => {
                             <motion.div variants={scaleIn}>
                                 <Grid item xs={12} md={4} className="feature-card">
                                     <Box sx={{ textAlign: 'center' }}>
-                                        <img src="images/feature-success-stories.webp" alt="Success Stories" width={260} />
+                                        <img src="images/feature-success-stories.webp" alt="Success Stories" width={260} loading="lazy" />
                                         <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Success Stories</Typography>
                                         <Typography variant="body2" sx={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
                                             Over 5,000 happy reunions and counting! Read inspiring stories of wallets, pets, jewelry, and precious memories found through our community.
@@ -401,7 +401,7 @@ const WelcomePageModule = () => {
                                 variants={fadeInRight}
                             >
                                 <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
-                                    <img src="images/illustration-exchange-item.png" alt="Illustration of people exchanging a lost item" style={{ width: '100%', maxWidth: 520 }} />
+                                    <img src="images/illustration-exchange-item.png" alt="Illustration of people exchanging a lost item" style={{ width: '100%', maxWidth: 520 }} loading="lazy" />
                                 </Box>
                             </motion.div>
                         </Grid>
@@ -435,7 +435,7 @@ const WelcomePageModule = () => {
                                 variants={scaleIn}
                             >
                                 <Box sx={{ textAlign: 'center' }}>
-                                    <img src="images/illustration-person-finding-items.webp" alt="Illustration of a person finding lost items" style={{ width: '100%', maxWidth: 420 }} />
+                                    <img src="images/illustration-person-finding-items.webp" alt="Illustration of a person finding lost items" style={{ width: '100%', maxWidth: 420 }} loading="lazy" />
                                 </Box>
                             </motion.div>
                         </Grid>
@@ -721,7 +721,7 @@ const WelcomePageModule = () => {
                                 variants={fadeInRight}
                             >
                             <Box sx={{ textAlign: 'center' }}>
-                                <img src="images/illustration-person-question.png" alt="Illustration of a person with a question mark" style={{ width: '100%' }} />
+                                <img src="images/illustration-person-question.png" alt="Illustration of a person with a question mark" style={{ width: '100%' }} loading="lazy" />
                             </Box>
                             </motion.div>
                         </Grid>
@@ -755,7 +755,7 @@ const WelcomePageModule = () => {
                                 variants={scaleIn}
                             >
                                 <Box sx={{ textAlign: 'center' }}>
-                                    <img src="images/illustration-treasure-chest.webp" alt="Illustration of a person with a treasure chest" style={{ width: '100%', maxWidth: 300, borderRadius: 8, boxShadow: 2 }} />
+                                    <img src="images/illustration-treasure-chest.webp" alt="Illustration of a person with a treasure chest" style={{ width: '100%', maxWidth: 300, borderRadius: 8, boxShadow: 2 }} loading="lazy" />
                                 </Box>
                             </motion.div>
                         </Grid>
