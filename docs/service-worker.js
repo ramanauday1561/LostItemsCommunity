@@ -83,19 +83,27 @@ function staleWhileRevalidate(request, cacheName, maxAge) {
           });
         }
         return networkResponse;
-      }).catch(() => null);
+      }).catch(() => {
+        // Network fetch failed - will use cached response if available
+        return null;
+      });
 
       // Return cached response immediately if available, fetch in background
       if (cachedResponse) {
         // If cache is expired, still return it but fetch fresh in background
         if (isCacheExpired(cachedResponse, maxAge)) {
-          fetchPromise.then(() => {}); // Trigger background fetch
+          fetchPromise.catch(() => {}); // Trigger background fetch, ignore errors
         }
         return cachedResponse;
       }
       
       // No cache, wait for network
-      return fetchPromise || new Response('Resource not available', { status: 503 });
+      return fetchPromise.then(response => {
+        if (response) {
+          return response;
+        }
+        return new Response('Resource not available', { status: 503 });
+      });
     });
   });
 }
