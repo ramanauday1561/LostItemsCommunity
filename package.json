@@ -22,6 +22,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "optimize-images": "node scripts/optimize-images.js",
+    "prebuild": "npm run optimize-images",
     "build": "react-scripts build && rm -rf docs && mv build docs && cp docs/index.html docs/404.html",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
