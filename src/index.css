@@ -35,9 +35,14 @@ button {
   transition: all 0.3s ease !important;
 }
 
-/* Global image hover effects with will-change for better performance */
+/* Global image optimization - only add will-change to images that will transform */
 img {
   transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Add will-change only to images that will be transformed on hover */
+.feature-card img,
+.animated-button img {
   will-change: transform;
 }
 
