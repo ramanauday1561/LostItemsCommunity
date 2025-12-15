@@ -74,8 +74,9 @@ const AboutUs = () => {
                         <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
                             <Box
                                 component="img"
-                                src="images/AboutUs1.png"
+                                src="images/AboutUs1.webp"
                                 alt="Illustration of a person returning a lost item"
+                                loading="lazy"
                                 sx={{
                                     maxWidth: '100%',
                                     height: 'auto',
@@ -111,8 +112,9 @@ const AboutUs = () => {
                         <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
                             <Box
                                 component="img"
-                                src="images/AboutUs2.png"
+                                src="images/AboutUs2.webp"
                                 alt="Illustration of a person returning a lost item"
+                                loading="lazy"
                                 sx={{
                                     maxWidth: '100%',
                                     height: 'auto',
@@ -240,8 +242,9 @@ const AboutUs = () => {
                         <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
                             <Box
                                 component="img"
-                                src="images/AboutUs3.png"
+                                src="images/AboutUs3.webp"
                                 alt="Illustration of a person returning a lost item"
+                                loading="lazy"
                                 sx={{
                                     maxWidth: '100%',
                                     height: 'auto',
@@ -277,8 +280,9 @@ const AboutUs = () => {
                         <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
                             <Box
                                 component="img"
-                                src="images/AboutUs4.png"
+                                src="images/AboutUs4.webp"
                                 alt="Illustration of a person returning a lost item"
+                                loading="lazy"
                                 sx={{
                                     maxWidth: '100%',
                                     height: 'auto',

@@ -2,6 +2,13 @@
   box-sizing: border-box;
 }
 
+/* Font optimizations - font-display swap for better LCP */
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: local('Roboto');
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -28,9 +35,15 @@ button {
   transition: all 0.3s ease !important;
 }
 
-/* Global image hover effects */
+/* Global image optimization - only add will-change to images that will transform */
 img {
   transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Add will-change only to images that will be transformed on hover */
+.feature-card img,
+.animated-button img {
+  will-change: transform;
 }
 
 /* Custom scrollbar styling for modern look */
