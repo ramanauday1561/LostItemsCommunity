@@ -639,8 +639,8 @@ const WelcomePageModule = () => {
                                         How can I claim an item?
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography variant="body2" sx={{ mt: 1 }}>
-                                            Details on how to claim an item will be provided here.
+                                        <Typography variant="body2" sx={{ mt: 1, fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                            Found your lost item? Great! Click on the item listing to view details and use our secure messaging system to contact the finder. Verify ownership by describing unique features only you would know. Arrange a safe meetup in a public place to collect your item!
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
@@ -662,8 +662,8 @@ const WelcomePageModule = () => {
                                         What if I can't find my lost item?
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography variant="body2" sx={{ mt: 1 }}>
-                                            Details on what to do if you can't find your item will be provided here.
+                                        <Typography variant="body2" sx={{ mt: 1, fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                            Don't give up! Create a lost item post with detailed descriptions, photos if available, and location. Enable notifications to get instant alerts when matching items are reported. Check back regularly and expand your search radius. Our community is always growing, and new items are added daily!
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
@@ -685,8 +685,8 @@ const WelcomePageModule = () => {
                                         Is the platform free?
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography variant="body2" sx={{ mt: 1 }}>
-                                            Information about platform fees will be provided here.
+                                        <Typography variant="body2" sx={{ mt: 1, fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                            Absolutely! Lost & Found Hub is 100% free forever. No hidden fees, no premium plans, no catch. We believe everyone deserves help finding what's lost. Create unlimited posts, search the entire database, and message other users completely free!
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
@@ -708,8 +708,8 @@ const WelcomePageModule = () => {
                                         How can I contact support?
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography variant="body2" sx={{ mt: 1 }}>
-                                            Contact information for support will be provided here.
+                                        <Typography variant="body2" sx={{ mt: 1, fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                            We're here to help 24/7! Click the "Chat With Us" button below for instant support. You can also reach us through the contact form in your account settings. Our friendly team typically responds within minutes and we're committed to helping you reunite with your lost items!
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
