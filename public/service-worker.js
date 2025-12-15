@@ -1,7 +1,7 @@
 // Service Worker for caching images and static assets with optimized cache lifetimes
-const CACHE_NAME = 'lost-items-community-v2';
-const IMAGE_CACHE_NAME = 'lost-items-images-v2';
-const STATIC_CACHE_NAME = 'lost-items-static-v2';
+const CACHE_NAME = 'lost-items-community-v3';
+const IMAGE_CACHE_NAME = 'lost-items-images-v3';
+const STATIC_CACHE_NAME = 'lost-items-static-v3';
 
 // Cache expiration times (in milliseconds)
 const CACHE_EXPIRATION = {
@@ -71,72 +71,51 @@ function createCachedResponse(response, maxAge) {
   });
 }
 
+// Stale-while-revalidate strategy
+function staleWhileRevalidate(request, cacheName, maxAge) {
+  return caches.open(cacheName).then((cache) => {
+    return cache.match(request).then((cachedResponse) => {
+      const fetchPromise = fetch(request).then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          return createCachedResponse(networkResponse, Math.floor(maxAge / 1000)).then(responseToCache => {
+            cache.put(request, responseToCache);
+            return networkResponse;
+          });
+        }
+        return networkResponse;
+      }).catch(() => null);
+
+      // Return cached response immediately if available, fetch in background
+      if (cachedResponse) {
+        // If cache is expired, still return it but fetch fresh in background
+        if (isCacheExpired(cachedResponse, maxAge)) {
+          fetchPromise.then(() => {}); // Trigger background fetch
+        }
+        return cachedResponse;
+      }
+      
+      // No cache, wait for network
+      return fetchPromise || new Response('Resource not available', { status: 503 });
+    });
+  });
+}
+
 // Fetch event - serve from cache with expiration checks
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Handle image requests with cache-first strategy and expiration
+  // Handle image requests with stale-while-revalidate strategy
   if (request.destination === 'image' || url.pathname.includes('/images/') || 
       url.pathname.endsWith('.webp') || url.pathname.endsWith('.png') || 
       url.pathname.endsWith('.jpg') || url.pathname.endsWith('.jpeg')) {
-    event.respondWith(
-      caches.open(IMAGE_CACHE_NAME).then((cache) => {
-        return cache.match(request).then((cachedResponse) => {
-          // Check if cache is expired
-          if (cachedResponse && !isCacheExpired(cachedResponse, CACHE_EXPIRATION.images)) {
-            return cachedResponse;
-          }
-
-          // Fetch from network and cache with date
-          return fetch(request).then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              return createCachedResponse(networkResponse, Math.floor(CACHE_EXPIRATION.images / 1000)).then(responseToCache => {
-                cache.put(request, responseToCache);
-                return networkResponse;
-              });
-            }
-            return networkResponse;
-          }).catch(() => {
-            // Return cached version even if expired when offline
-            if (cachedResponse) return cachedResponse;
-            return new Response('Image not available offline', {
-              status: 503,
-              statusText: 'Service Unavailable'
-            });
-          });
-        });
-      })
-    );
+    event.respondWith(staleWhileRevalidate(request, IMAGE_CACHE_NAME, CACHE_EXPIRATION.images));
     return;
   }
 
-  // Handle static asset requests (CSS, JS)
+  // Handle static asset requests (CSS, JS) with stale-while-revalidate
   if (url.pathname.endsWith('.css') || url.pathname.endsWith('.js')) {
-    event.respondWith(
-      caches.open(STATIC_CACHE_NAME).then((cache) => {
-        return cache.match(request).then((cachedResponse) => {
-          // Use cache if not expired
-          if (cachedResponse && !isCacheExpired(cachedResponse, CACHE_EXPIRATION.static)) {
-            return cachedResponse;
-          }
-
-          // Network first for static assets
-          return fetch(request).then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              return createCachedResponse(networkResponse, Math.floor(CACHE_EXPIRATION.static / 1000)).then(responseToCache => {
-                cache.put(request, responseToCache);
-                return networkResponse;
-              });
-            }
-            return networkResponse;
-          }).catch(() => {
-            if (cachedResponse) return cachedResponse;
-            return new Response('Resource not available', { status: 503 });
-          });
-        });
-      })
-    );
+    event.respondWith(staleWhileRevalidate(request, STATIC_CACHE_NAME, CACHE_EXPIRATION.static));
     return;
   }
 
