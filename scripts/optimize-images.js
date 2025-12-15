@@ -8,6 +8,14 @@ const imagesToOptimize = [
   'feature-search-system.png',
   'illustration-person-question.png',
   'illustration-exchange-item.png',
+  'AboutUs1.png',
+  'AboutUs2.png',
+  'AboutUs3.png',
+  'AboutUs4.png',
+  'LoginNeeded.png',
+  'LoginSignup.png',
+  'feature-success-stories.png',
+  'screenshot.png',
 ];
 
 const publicDir = path.join(__dirname, '..', 'public', 'images');

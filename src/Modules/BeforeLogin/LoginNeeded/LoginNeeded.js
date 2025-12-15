@@ -43,8 +43,9 @@ function LoginNeeded() {
                         <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
                             <Box
                                 component="img"
-                                src="images/LoginNeeded.png"
+                                src="images/LoginNeeded.webp"
                                 alt="Illustration of login needed"
+                                loading="lazy"
                                 sx={{
                                     maxWidth: '100%',
                                     height: 'auto',

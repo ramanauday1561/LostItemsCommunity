@@ -103,8 +103,9 @@ function Login() {
                             <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
                                 <Box
                                     component="img"
-                                    src="images/LoginSignup.png"
+                                    src="images/LoginSignup.webp"
                                     alt="Illustration of Login and Signup"
+                                    loading="lazy"
                                     sx={{
                                         maxWidth: '100%',
                                         height: 'auto',

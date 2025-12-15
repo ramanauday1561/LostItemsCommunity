@@ -19,12 +19,13 @@
 	width: auto;
 }
 
-/* Modern button animations */
+/* Modern button animations with will-change for better performance */
 .animated-button {
 	position: relative;
 	overflow: hidden;
 	transition: all 0.3s ease !important;
 	transform: translateY(0);
+	will-change: transform;
 }
 
 .animated-button:hover {
@@ -56,6 +57,7 @@
 		width: 320px;
 		transition: all 0.3s ease;
 		cursor: pointer;
+		will-change: transform;
 	}
 
 	.feature-card:hover {
@@ -67,6 +69,7 @@
 
 	.feature-card img {
 		transition: transform 0.3s ease;
+		will-change: transform;
 	}
 
 	.feature-card:hover img {
@@ -91,6 +94,7 @@
 		gap: 16px;
 		transition: all 0.3s ease;
 		cursor: pointer;
+		will-change: transform;
 
 		p {
 			font-size: 14px;
