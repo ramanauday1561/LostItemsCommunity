@@ -598,14 +598,13 @@ const WelcomePageModule = () => {
                             >
                             <Box>
                                 <Accordion defaultExpanded sx={{
-                                    my: 2,
-                                    marginBottom: 0,
+                                    mb: 2,
                                     backgroundColor: 'transparent',
                                     border: '1px solid #fff',
                                     boxShadow: 'none',
                                     '&.Mui-expanded': {
                                         border: '1px solid #fff',
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
                                         boxShadow: 'none',
                                     },
                                 }}>
@@ -622,13 +621,13 @@ const WelcomePageModule = () => {
                                     </AccordionDetails>
                                 </Accordion>
                                 <Accordion sx={{
-                                    my: 2,
+                                    mb: 2,
                                     backgroundColor: 'transparent',
                                     border: '1px solid #fff',
                                     boxShadow: 'none',
                                     '&.Mui-expanded': {
                                         border: '1px solid #fff',
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
                                         boxShadow: 'none',
                                     },
                                 }}>
@@ -668,13 +667,13 @@ const WelcomePageModule = () => {
                                     </AccordionDetails>
                                 </Accordion>
                                 <Accordion sx={{
-                                    my: 2,
+                                    mb: 2,
                                     backgroundColor: 'transparent',
                                     border: '1px solid #fff',
                                     boxShadow: 'none',
                                     '&.Mui-expanded': {
                                         border: '1px solid #fff',
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
                                         boxShadow: 'none',
                                     },
                                 }}>
@@ -691,13 +690,13 @@ const WelcomePageModule = () => {
                                     </AccordionDetails>
                                 </Accordion>
                                 <Accordion sx={{
-                                    my: 2,
+                                    mb: 2,
                                     backgroundColor: 'transparent',
                                     border: '1px solid #fff',
                                     boxShadow: 'none',
                                     '&.Mui-expanded': {
                                         border: '1px solid #fff',
-                                        backgroundColor: 'transparent',
+                                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
                                         boxShadow: 'none',
                                     },
                                 }}>
