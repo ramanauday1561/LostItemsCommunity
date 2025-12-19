@@ -154,20 +154,6 @@ const WelcomePageModule = () => {
 
             {/* About Section */}
             <Box id="about" sx={{ py: { xs: 4, md: 8 }, position: 'relative', overflow: 'hidden' }}>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundImage: `url(${"images/Background2.webp"})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        opacity: 0.82,
-                        zIndex: 0,
-                        transform: 'scaleX(-1) scaleY(-1)',
-                    }}
-                />
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center">
                         <Grid item xs={12} md={6} sx={{ maxWidth: 600 }}>
@@ -247,6 +233,20 @@ const WelcomePageModule = () => {
                         </Grid>
                     </Grid>
                 </Container>
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        inset: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundImage: `url(${"images/Background2.webp"})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        opacity: 0.82,
+                        zIndex: 0,
+                        transform: 'scaleX(-1) scaleY(-1)',
+                    }}
+                />
             </Box>
 
             {/* Features Section */}
