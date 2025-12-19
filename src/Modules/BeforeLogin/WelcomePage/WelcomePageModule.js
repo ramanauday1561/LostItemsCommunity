@@ -610,12 +610,12 @@ const WelcomePageModule = () => {
                                 }}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon />}
-                                        sx={{ cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}
+                                        sx={{ cursor: 'pointer', fontSize: '1.2rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}
                                     >
                                         How do I report an item?
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography variant="body2" sx={{ mt: 1, fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                        <Typography variant="body2" sx={{ mt: 1, fontSize: '0.9rem', lineHeight: 1.6 }}>
                                             Super easy! Click 'Report Found Item', upload a photo, add description (color, brand, location found), and submit. You'll get notifications when potential owners reach out. The whole process takes less than 2 minutes!
                                         </Typography>
                                     </AccordionDetails>
@@ -633,7 +633,7 @@ const WelcomePageModule = () => {
                                 }}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon />}
-                                        sx={{ cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}
+                                        sx={{ cursor: 'pointer', fontSize: '1.2rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}
                                     >
                                         How can I claim an item?
                                     </AccordionSummary>
@@ -656,7 +656,7 @@ const WelcomePageModule = () => {
                                 }}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon />}
-                                        sx={{ cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}
+                                        sx={{ cursor: 'pointer', fontSize: '1.2rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}
                                     >
                                         What if I can't find my lost item?
                                     </AccordionSummary>
@@ -679,7 +679,7 @@ const WelcomePageModule = () => {
                                 }}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon />}
-                                        sx={{ cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}
+                                        sx={{ cursor: 'pointer', fontSize: '1.2rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}
                                     >
                                         Is the platform free?
                                     </AccordionSummary>
@@ -702,7 +702,7 @@ const WelcomePageModule = () => {
                                 }}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon />}
-                                        sx={{ cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}
+                                        sx={{ cursor: 'pointer', fontSize: '1.2rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}
                                     >
                                         How can I contact support?
                                     </AccordionSummary>
