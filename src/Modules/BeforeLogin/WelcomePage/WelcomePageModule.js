@@ -73,20 +73,6 @@ const WelcomePageModule = () => {
         <Box className="welcome-page-module">
             {/* Hero Section */}
             <Box id="hero" sx={{ position: 'relative', py: { xs: 4, md: 8 }, overflow: 'hidden' }}>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundImage: `url(${"images/Background2.webp"})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        opacity: 0.82,
-                        zIndex: 0,
-                        transform: 'scaleX(-1)'
-                    }}
-                />
                 <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
                     <Grid container spacing={4} alignItems="center" justifyContent="space-evenly">
                         <Grid item xs={12} md={6} sx={{ maxWidth: 490 }}>
@@ -154,6 +140,7 @@ const WelcomePageModule = () => {
 
             {/* About Section */}
             <Box id="about" sx={{ py: { xs: 4, md: 8 }, position: 'relative', overflow: 'hidden' }}>
+                
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center">
                         <Grid item xs={12} md={6} sx={{ maxWidth: 600 }}>
@@ -233,38 +220,11 @@ const WelcomePageModule = () => {
                         </Grid>
                     </Grid>
                 </Container>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundImage: `url(${"images/Background2.webp"})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        opacity: 0.82,
-                        zIndex: 0,
-                        transform: 'scaleX(-1) scaleY(-1)',
-                    }}
-                />
             </Box>
 
             {/* Features Section */}
             <Box id="features" sx={{ position: 'relative', py: { xs: 4, md: 8 }, overflow: 'hidden' }}>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundImage: `url(${"images/Background2.webp"})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        opacity: 0.82,
-                        zIndex: 0,
-                        transform: 'scaleX(-1)'
-                    }}
-                />
+                
                 <Container maxWidth="lg">
                     <motion.div
                         initial="hidden"
@@ -326,20 +286,7 @@ const WelcomePageModule = () => {
 
             {/* Benefits Section */}
             <Box id="benefits" sx={{ position: 'relative', py: { xs: 4, md: 8 } }}>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundImage: `url(${"images/Background2.webp"})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        opacity: 0.82,
-                        zIndex: 0,
-                        transform: 'scaleX(-1) scaleY(-1)',
-                    }}
-                />
+                
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center" justifyContent="center">
                         <Grid item xs={12} md={6} sx={{ maxWidth: 500 }}>
@@ -414,20 +361,7 @@ const WelcomePageModule = () => {
 
             {/* CTA Section */}
             <Box id="cta" sx={{ position: 'relative', py: { xs: 4, md: 8 } }}>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundImage: `url(${"images/Background2.webp"})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        opacity: 0.82,
-                        zIndex: 0,
-                        transform: 'scaleX(-1) scaleY(1)'
-                    }}
-                />
+                
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center">
                         <Grid item xs={12} md={6}>
@@ -467,20 +401,7 @@ const WelcomePageModule = () => {
 
             {/* Testimonials Section */}
             <Box id="testimonials" sx={{ position: 'relative', py: { xs: 4, md: 8 } }}>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundImage: `url(${"images/Background2.webp"})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        opacity: 0.82,
-                        zIndex: 0,
-                        transform: 'scaleX(-1) scaleY(-1)',
-                    }}
-                />
+                
                 <Container maxWidth="lg">
                     <motion.div
                         initial="hidden"
@@ -560,20 +481,7 @@ const WelcomePageModule = () => {
 
             {/* FAQ Section */}
             <Box id="faq" sx={{ position: "relative", py: { xs: 4, md: 8 } }}>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundImage: `url(${"images/Background2.webp"})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        opacity: 0.82,
-                        zIndex: 0,
-                        transform: 'scaleX(-1) scaleY(1)'
-                    }}
-                />
+                
                 <Container maxWidth="lg">
                     <motion.div
                         initial="hidden"
