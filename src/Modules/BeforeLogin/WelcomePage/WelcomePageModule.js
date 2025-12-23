@@ -122,7 +122,7 @@ const WelcomePageModule = () => {
                                         component="img"
                                         src="images/HomePage1.webp"
                                         alt="Illustration of a person returning a lost item"
-                                        fetchpriority="high"
+                                        fetchPriority="high"
                                         width="600"
                                         height="450"
                                         sx={{
