@@ -7,6 +7,10 @@ import Login from '../../Modules/BeforeLogin/Login/Login';
 import Signup from '../../Modules/BeforeLogin/Signup/Signup';
 import AboutUs from '../../Modules/BeforeLogin/AboutUs/AboutUs';
 import Dashboard from '../../Modules/AfterLogin/Dashboard/Dashboard';
+import ReportLostItem from '../../Modules/AfterLogin/ReportLostItem/ReportLostItem';
+import ReportFoundItem from '../../Modules/AfterLogin/ReportFoundItem/ReportFoundItem';
+import SearchLostItems from '../../Modules/AfterLogin/SearchLostItems/SearchLostItems';
+import SearchFoundItems from '../../Modules/AfterLogin/SearchFoundItems/SearchFoundItems';
 import PageTransition from '../PageTransition/PageTransition';
 import { useAuth } from '../../context/AuthContext';
 
@@ -40,6 +44,10 @@ const AnimatedRoutes = () => {
                 <Route path="/signup" element={withPageTransition(Signup)} />
                 <Route path="/about-us" element={withPageTransition(AboutUs)} />
                 <Route path="/dashboard" element={<ProtectedRoute component={Dashboard} />} />
+                <Route path="/report-lost-item" element={<ProtectedRoute component={ReportLostItem} />} />
+                <Route path="/report-found-item" element={<ProtectedRoute component={ReportFoundItem} />} />
+                <Route path="/search-lost-items" element={<ProtectedRoute component={SearchLostItems} />} />
+                <Route path="/search-found-items" element={<ProtectedRoute component={SearchFoundItems} />} />
                 <Route path="/" element={withPageTransition(WelcomePageModule)} />
             </Routes>
         </AnimatePresence>

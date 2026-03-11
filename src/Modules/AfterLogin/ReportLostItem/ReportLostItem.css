@@ -1,0 +1,60 @@
+.report-form-root {
+    min-height: calc(100vh - 64px);
+    background: linear-gradient(135deg, #f6f9ff 0%, #eef6ff 55%, #f7fbff 100%);
+    padding: 2.5rem 0 4rem 0;
+}
+
+.report-form-header {
+    background: linear-gradient(90deg, rgba(33, 150, 243, 0.12) 0%, rgba(56, 223, 255, 0.05) 100%);
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(17, 33, 58, 0.08);
+    margin-bottom: 2.5rem;
+}
+
+.report-form-header-icon {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.report-form-title {
+    color: #132948 !important;
+    font-weight: 700 !important;
+}
+
+.report-form-subtitle {
+    color: rgba(19, 41, 72, 0.7) !important;
+    margin-top: 0.25rem !important;
+}
+
+.report-form-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(17, 33, 58, 0.1) !important;
+    border-radius: 16px !important;
+    padding: 2rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.report-section-title {
+    color: #132948 !important;
+    font-weight: 600 !important;
+    margin-bottom: 1.25rem !important;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(33, 150, 243, 0.2);
+}
+
+.report-submit-btn {
+    padding: 0.75rem 3rem !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+}
+
+.report-success-banner {
+    background: linear-gradient(90deg, #e8f5e9, #f1f8e9) !important;
+    border: 1px solid #a5d6a7 !important;
+    border-radius: 12px !important;
+    padding: 1.5rem 2rem !important;
+    text-align: center;
+}
