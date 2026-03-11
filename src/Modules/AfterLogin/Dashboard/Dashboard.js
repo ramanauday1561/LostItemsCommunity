@@ -32,7 +32,7 @@ const fadeInUp = {
     }),
 };
 
-const dashboardCards = [
+const userDashboardCards = [
     {
         title: 'Report Lost Item',
         description: 'Lost something? Report it here so the community can help you find it.',
@@ -91,12 +91,57 @@ const dashboardCards = [
     },
 ];
 
+const superAdminDashboardCards = [
+    {
+        title: 'Review Lost Reports',
+        description: 'Audit and verify newly reported lost items before publishing.',
+        icon: <ReportProblemIcon sx={{ fontSize: 40, color: '#d32f2f' }} />,
+        route: '/login-needed',
+        tag: 'Moderation',
+        tagColor: 'error',
+    },
+    {
+        title: 'Review Found Reports',
+        description: 'Validate found-item listings and reduce duplicate or invalid posts.',
+        icon: <FindInPageIcon sx={{ fontSize: 40, color: '#2e7d32' }} />,
+        route: '/login-needed',
+        tag: 'Moderation',
+        tagColor: 'success',
+    },
+    {
+        title: 'Community Oversight',
+        description: 'Monitor activity and guide users in the community forum.',
+        icon: <ForumIcon sx={{ fontSize: 40, color: '#6a1b9a' }} />,
+        route: '/login-needed',
+        tag: 'Community',
+        tagColor: 'secondary',
+    },
+    {
+        title: 'Support Requests',
+        description: 'Handle escalated user support and contact requests quickly.',
+        icon: <ContactMailIcon sx={{ fontSize: 40, color: '#1565c0' }} />,
+        route: '/login-needed',
+        tag: 'Support',
+        tagColor: 'primary',
+    },
+    {
+        title: 'About Platform',
+        description: 'See current mission details and public platform information.',
+        icon: <InfoIcon sx={{ fontSize: 40, color: '#0288d1' }} />,
+        route: '/about-us',
+        tag: 'Info',
+        tagColor: 'info',
+    },
+];
+
 function Dashboard() {
     const navigate = useNavigate();
     const { currentUser } = useAuth();
+    const isSuperAdmin = currentUser?.role === 'superadmin';
+    const dashboardCards = isSuperAdmin ? superAdminDashboardCards : userDashboardCards;
 
     return (
-        <Box className="dashboard-root">
+        <Box className={`dashboard-root ${isSuperAdmin ? 'dashboard-root-superadmin' : 'dashboard-root-user'}`}>
             {/* Hero Section */}
             <Box className="dashboard-hero">
                 <Container maxWidth="lg">
@@ -118,7 +163,9 @@ function Dashboard() {
                                     ! 👋
                                 </Typography>
                                 <Typography variant="body1" className="dashboard-welcome-subtitle">
-                                    What would you like to do today?
+                                    {isSuperAdmin
+                                        ? 'Manage and moderate the platform from your admin workspace.'
+                                        : 'What would you like to do today?'}
                                 </Typography>
                             </Box>
                         </Box>
@@ -136,7 +183,7 @@ function Dashboard() {
                     transition={{ duration: 0.4 }}
                 >
                     <Typography variant="h5" className="dashboard-section-title" gutterBottom>
-                        Available Features
+                        {isSuperAdmin ? 'Super Admin Controls' : 'Available Features'}
                     </Typography>
                 </motion.div>
                 <Grid container spacing={3}>
