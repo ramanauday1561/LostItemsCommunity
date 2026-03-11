@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     Container,
     Grid,
@@ -6,7 +7,8 @@ import {
     Button,
     TextField,
     Checkbox,
-    FormControlLabel
+    FormControlLabel,
+    Alert
 } from '@mui/material';
 import { useNavigate } from "react-router";
 import { useForm } from 'react-hook-form';
@@ -15,6 +17,8 @@ import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Link } from 'react-router-dom';
+import { validateCredentials } from '../../../utils/auth';
+import { useAuth } from '../../../context/AuthContext';
 
 import "./Login.css";
 
@@ -59,12 +63,19 @@ const fadeInUp = {
 
 function Login() {
     const navigate = useNavigate();
+    const { login } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [authError, setAuthError] = React.useState('');
 
     const onSubmit = (data) => {
-        // Handle login logic here
-        console.log(data);
-        // Example: navigate('/dashboard');
+        setAuthError('');
+        const result = validateCredentials(data.username, data.password);
+        if (result.success) {
+            login(result.user);
+            navigate('/dashboard');
+        } else {
+            setAuthError(result.error);
+        }
     };
 
     return (
@@ -132,6 +143,11 @@ function Login() {
                                     initial="hidden"
                                     animate="visible"
                                 >
+                                    {authError && (
+                                        <motion.div variants={fadeInUp}>
+                                            <Alert severity="error" sx={{ mb: 1 }}>{authError}</Alert>
+                                        </motion.div>
+                                    )}
                                     <motion.div variants={fadeInUp}>
                                         <TextField
                                             label="Username / Email"
