@@ -7,19 +7,22 @@ import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import customTheme from './theme/customTheme';
 import AnimatedRoutes from './Components/AnimatedRoutes/AnimatedRoutes';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
 	return (
 		<ThemeProvider theme={customTheme}>
-			<Router> {/* Wrap your app with Router */}
-				<div className="App">
-					<div className="navbar-container">
-						<Navbar />
+			<AuthProvider>
+				<Router> {/* Wrap your app with Router */}
+					<div className="App">
+						<div className="navbar-container">
+							<Navbar />
+						</div>
+						<AnimatedRoutes />
+						<Footer />
 					</div>
-					<AnimatedRoutes />
-					<Footer />
-				</div>
-			</Router>
+				</Router>
+			</AuthProvider>
 		</ThemeProvider>
 	);
 }

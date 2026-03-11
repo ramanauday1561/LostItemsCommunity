@@ -14,11 +14,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const navItems = [
     {
@@ -43,10 +46,12 @@ const navItems = [
 const Navbar = () => {
     const theme = useTheme();
     const navigate = useNavigate();
+    const { currentUser, logout } = useAuth();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [drawerOpen, setDrawerOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [submenu, setSubmenu] = React.useState([]);
+    const [userMenuAnchor, setUserMenuAnchor] = React.useState(null);
 
     const handleDrawerToggle = () => {
         setDrawerOpen(!drawerOpen);
@@ -60,6 +65,20 @@ const Navbar = () => {
     const handleMenuClose = () => {
         setAnchorEl(null);
         setSubmenu([]);
+    };
+
+    const handleUserMenuOpen = (event) => {
+        setUserMenuAnchor(event.currentTarget);
+    };
+
+    const handleUserMenuClose = () => {
+        setUserMenuAnchor(null);
+    };
+
+    const handleLogout = () => {
+        logout();
+        handleUserMenuClose();
+        navigate('/');
     };
 
     // New: handle navigation for any item
@@ -94,8 +113,20 @@ const Navbar = () => {
             </List>
             <Divider />
             <Box className="navbar-drawer-actions">
-                <Button variant="text" className="navbar-login-btn">Login</Button>
-                <Button variant="contained" color="warning" className="navbar-signup-btn">Signup</Button>
+                {currentUser ? (
+                    <>
+                        <Typography variant="body2" sx={{ px: 1, pb: 1, color: 'rgba(255,255,255,0.7)' }}>
+                            Signed in as <strong>{currentUser.displayName}</strong>
+                        </Typography>
+                        <Button variant="text" className="navbar-login-btn" onClick={() => { handleNavigate('/dashboard'); }}>Dashboard</Button>
+                        <Button variant="contained" color="error" className="navbar-signup-btn" onClick={handleLogout}>Logout</Button>
+                    </>
+                ) : (
+                    <>
+                        <Button variant="text" className="navbar-login-btn" onClick={() => handleNavigate('/login')}>Login</Button>
+                        <Button variant="contained" color="warning" className="navbar-signup-btn" onClick={() => handleNavigate('/signup')}>Signup</Button>
+                    </>
+                )}
             </Box>
         </Box>
     );
@@ -165,8 +196,49 @@ const Navbar = () => {
                             )}
                         </Box>
                         <Box className="navbar-actions">
-                            <Button color="inherit" className="navbar-login-btn" onClick={() => navigate("/login")}>Login</Button>
-                            <Button variant="contained" color="warning" className="navbar-signup-btn" onClick={() => navigate("/signup")}>Signup</Button>
+                            {currentUser ? (
+                                <>
+                                    <Tooltip title={currentUser.displayName}>
+                                        <IconButton onClick={handleUserMenuOpen} size="small" sx={{ ml: 1 }}>
+                                            <Avatar
+                                                sx={{
+                                                    width: 36,
+                                                    height: 36,
+                                                    bgcolor: 'primary.main',
+                                                    fontSize: '1rem',
+                                                    border: '2px solid rgba(56,223,255,0.5)',
+                                                }}
+                                            >
+                                                {currentUser.displayName?.[0]?.toUpperCase() || 'U'}
+                                            </Avatar>
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Menu
+                                        anchorEl={userMenuAnchor}
+                                        open={Boolean(userMenuAnchor)}
+                                        onClose={handleUserMenuClose}
+                                        PaperProps={{
+                                            sx: { bgcolor: '#020014', color: '#fff', border: '1px solid rgba(255,255,255,0.15)', minWidth: 180 },
+                                        }}
+                                    >
+                                        <MenuItem disabled sx={{ fontSize: 13, opacity: 0.7 }}>
+                                            {currentUser.displayName}
+                                        </MenuItem>
+                                        <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)' }} />
+                                        <MenuItem sx={{ fontSize: 14 }} onClick={() => { handleUserMenuClose(); navigate('/dashboard'); }}>
+                                            Dashboard
+                                        </MenuItem>
+                                        <MenuItem sx={{ fontSize: 14, color: '#f44336' }} onClick={handleLogout}>
+                                            Logout
+                                        </MenuItem>
+                                    </Menu>
+                                </>
+                            ) : (
+                                <>
+                                    <Button color="inherit" className="navbar-login-btn" onClick={() => navigate("/login")}>Login</Button>
+                                    <Button variant="contained" color="warning" className="navbar-signup-btn" onClick={() => navigate("/signup")}>Signup</Button>
+                                </>
+                            )}
                         </Box>
                     </Box>
                 )}
