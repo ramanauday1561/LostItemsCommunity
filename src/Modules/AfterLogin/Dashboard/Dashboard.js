@@ -17,6 +17,7 @@ import ForumIcon from '@mui/icons-material/Forum';
 import InfoIcon from '@mui/icons-material/Info';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
@@ -32,7 +33,7 @@ const fadeInUp = {
     }),
 };
 
-const dashboardCards = [
+const userCards = [
     {
         title: 'Report Lost Item',
         description: 'Lost something? Report it here so the community can help you find it.',
@@ -65,6 +66,17 @@ const dashboardCards = [
         tag: 'Search',
         tagColor: 'warning',
     },
+];
+
+const adminOnlyCards = [
+    {
+        title: 'Manage All Posts',
+        description: 'Edit or delete any user post. Review reports and maintain community content.',
+        icon: <AdminPanelSettingsIcon sx={{ fontSize: 40, color: '#7c3aed' }} />,
+        route: '/login-needed',
+        tag: 'Admin',
+        tagColor: 'secondary',
+    },
     {
         title: 'Community Forum',
         description: 'Connect with other members, share tips, and collaborate.',
@@ -94,6 +106,8 @@ const dashboardCards = [
 function Dashboard() {
     const navigate = useNavigate();
     const { currentUser } = useAuth();
+    const isSuperAdmin = currentUser?.role === 'superadmin';
+    const dashboardCards = isSuperAdmin ? [...userCards, ...adminOnlyCards] : userCards;
 
     return (
         <Box className="dashboard-root">
@@ -117,9 +131,18 @@ function Dashboard() {
                                     </span>
                                     ! 👋
                                 </Typography>
-                                <Typography variant="body1" className="dashboard-welcome-subtitle">
-                                    What would you like to do today?
-                                </Typography>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 0.5 }}>
+                                    <Typography variant="body1" className="dashboard-welcome-subtitle">
+                                        What would you like to do today?
+                                    </Typography>
+                                    <Chip
+                                        label={isSuperAdmin ? 'Super Admin' : 'User'}
+                                        color={isSuperAdmin ? 'secondary' : 'primary'}
+                                        size="small"
+                                        icon={isSuperAdmin ? <AdminPanelSettingsIcon /> : undefined}
+                                        sx={{ fontWeight: 600 }}
+                                    />
+                                </Box>
                             </Box>
                         </Box>
                     </motion.div>
@@ -185,3 +208,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+

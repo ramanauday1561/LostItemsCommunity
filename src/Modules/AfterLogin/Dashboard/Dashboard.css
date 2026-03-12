@@ -1,13 +1,13 @@
 .dashboard-root {
     min-height: calc(100vh - 64px);
-    background: linear-gradient(135deg, #030014 0%, #0a0a2e 60%, #0d1b3e 100%);
-    color: #fff;
+    background: #f5f7fa;
+    color: #1a1a2e;
 }
 
 .dashboard-hero {
-    background: linear-gradient(90deg, rgba(33, 150, 243, 0.15) 0%, rgba(56, 223, 255, 0.08) 100%);
+    background: linear-gradient(90deg, rgba(25, 118, 210, 0.08) 0%, rgba(25, 118, 210, 0.04) 100%);
     padding: 2.5rem 0 2rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-hero-content {
@@ -20,48 +20,48 @@
     width: 64px !important;
     height: 64px !important;
     font-size: 1.75rem !important;
-    background: linear-gradient(135deg, #2196f3, #38dfff) !important;
-    border: 3px solid rgba(56, 223, 255, 0.5) !important;
-    box-shadow: 0 4px 20px rgba(56, 223, 255, 0.3) !important;
+    background: linear-gradient(135deg, #1976d2, #42a5f5) !important;
+    border: 3px solid rgba(25, 118, 210, 0.4) !important;
+    box-shadow: 0 4px 20px rgba(25, 118, 210, 0.2) !important;
 }
 
 .dashboard-welcome-title {
     font-weight: 700 !important;
-    color: #fff !important;
+    color: #1a1a2e !important;
     font-size: 1.75rem !important;
 }
 
 .dashboard-username-highlight {
-    color: #38dfff;
+    color: #1976d2;
 }
 
 .dashboard-welcome-subtitle {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: #555555 !important;
     margin-top: 0.25rem !important;
 }
 
 .dashboard-divider {
-    border-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 .dashboard-section-title {
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: #1a1a2e !important;
     font-weight: 600 !important;
     margin-bottom: 1.5rem !important;
     letter-spacing: 0.03em;
 }
 
 .dashboard-card {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
     border-radius: 16px !important;
     transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
     height: 100%;
 }
 
 .dashboard-card:hover {
-    border-color: rgba(56, 223, 255, 0.4) !important;
-    box-shadow: 0 8px 32px rgba(56, 223, 255, 0.15) !important;
+    border-color: rgba(25, 118, 210, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(25, 118, 210, 0.12) !important;
 }
 
 .dashboard-card-action {
@@ -89,12 +89,13 @@
 }
 
 .dashboard-card-title {
-    color: #fff !important;
+    color: #1a1a2e !important;
     font-weight: 600 !important;
     font-size: 1.05rem !important;
 }
 
 .dashboard-card-desc {
-    color: rgba(255, 255, 255, 0.65) !important;
+    color: #555555 !important;
     line-height: 1.6 !important;
 }
+

@@ -8,6 +8,22 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.62) !important;
 }
 
+/* Light mode navbar (when user is logged in) */
+.light-mode .navbar-appbar {
+    background-color: #ffffff !important;
+    color: #1a1a2e !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08) !important;
+}
+
+.light-mode .navbar-title {
+    color: #1976d2 !important;
+}
+
+.light-mode .navbar-title-highlight {
+    color: #f59e0b !important;
+}
+
 .navbar-toolbar {
     display: flex !important;
 }
@@ -69,13 +85,17 @@
 
 .navbar-drawer-box {
     width: 15.625rem;
-    background-color: #030014 !important;
-    color: #ffffff !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.62) !important;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+/* Dark mode drawer (before login) */
+.dark-mode .navbar-drawer-box {
+    background-color: #030014 !important;
+    color: #ffffff !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.62) !important;
 }
 
 .navbar-drawer-actions {
@@ -97,10 +117,18 @@
 }
 
 .navbar-drawer-paper {
+    /* Default drawer paper - MUI handles light/dark via theme */
+}
+
+.dark-mode .navbar-drawer-paper {
     background-color: #030014 !important;
 }
 
 .navbar-submenu {
+    /* MUI handles light/dark dropdown background via theme */
+}
+
+.dark-mode .navbar-submenu {
     ul {
         background-color: #020014 !important;
     }

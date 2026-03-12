@@ -89,7 +89,7 @@ const Navbar = () => {
     };
 
     const drawer = (
-        <Box sx={{ background: 'red' }} className="navbar-drawer-box" role="presentation" onClick={handleDrawerToggle}>
+        <Box className="navbar-drawer-box" role="presentation" onClick={handleDrawerToggle}>
             <List>
                 {navItems.map((item, idx) =>
                     item.submenu ? (
@@ -115,7 +115,7 @@ const Navbar = () => {
             <Box className="navbar-drawer-actions">
                 {currentUser ? (
                     <>
-                        <Typography variant="body2" sx={{ px: 1, pb: 1, color: 'rgba(255,255,255,0.7)' }}>
+                        <Typography variant="body2" sx={{ px: 1, pb: 1 }}>
                             Signed in as <strong>{currentUser.displayName}</strong>
                         </Typography>
                         <Button variant="text" className="navbar-login-btn" onClick={() => { handleNavigate('/dashboard'); }}>Dashboard</Button>
@@ -217,14 +217,11 @@ const Navbar = () => {
                                         anchorEl={userMenuAnchor}
                                         open={Boolean(userMenuAnchor)}
                                         onClose={handleUserMenuClose}
-                                        PaperProps={{
-                                            sx: { bgcolor: '#020014', color: '#fff', border: '1px solid rgba(255,255,255,0.15)', minWidth: 180 },
-                                        }}
                                     >
                                         <MenuItem disabled sx={{ fontSize: 13, opacity: 0.7 }}>
                                             {currentUser.displayName}
                                         </MenuItem>
-                                        <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)' }} />
+                                        <Divider />
                                         <MenuItem sx={{ fontSize: 14 }} onClick={() => { handleUserMenuClose(); navigate('/dashboard'); }}>
                                             Dashboard
                                         </MenuItem>

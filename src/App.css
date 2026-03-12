@@ -6,14 +6,18 @@ body,
   font-family: 'Roboto', Arial, sans-serif;
 }
 
-body * {
+/* Dark mode (before login) */
+.App.dark-mode {
+  min-height: 100vh;
+  background: #030014;
   color: #fff;
 }
 
-.App {
+/* Light mode (after login) */
+.App.light-mode {
   min-height: 100vh;
-  background: #030014;
-  /* Dark background color */
+  background: #f5f7fa;
+  color: #1a1a2e;
 }
 
 .navbar-container {

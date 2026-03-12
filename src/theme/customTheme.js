@@ -1,7 +1,24 @@
 import { createTheme } from '@mui/material/styles';
 
-const customTheme = createTheme({
+const sharedTypography = {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    h1: {
+        fontSize: '2.5rem',
+        fontWeight: 700,
+    },
+    h2: {
+        fontSize: '2rem',
+        fontWeight: 700,
+    },
+    body1: {
+        fontSize: '1rem',
+        fontWeight: 400,
+    },
+};
+
+export const darkTheme = createTheme({
     palette: {
+        mode: 'dark',
         primary: {
             main: '#38DFFF',
         },
@@ -9,33 +26,38 @@ const customTheme = createTheme({
             main: '#FF9900',
         },
         background: {
-            primary: '#020014',
-            default: '#f5f5f5',
+            default: '#030014',
+            paper: '#0a0a2e',
+        },
+        text: {
+            primary: '#ffffff',
+            secondary: 'rgba(255,255,255,0.7)',
+        },
+    },
+    typography: sharedTypography,
+});
+
+export const lightTheme = createTheme({
+    palette: {
+        mode: 'light',
+        primary: {
+            main: '#1976d2',
+        },
+        secondary: {
+            main: '#FF9900',
+        },
+        background: {
+            default: '#f5f7fa',
             paper: '#ffffff',
         },
         text: {
-            primary: '#020014',
+            primary: '#1a1a2e',
             secondary: '#555555',
         },
-        color: {
-            white: '#FFFFFF',
-        }
     },
-    typography: {
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        h1: {
-            fontSize: '2.5rem',
-            fontWeight: 700,
-        },
-        h2: {
-            fontSize: '2rem',
-            fontWeight: 700,
-        },
-        body1: {
-            fontSize: '1rem',
-            fontWeight: 400,
-        },
-    },
+    typography: sharedTypography,
 });
 
+// Default export kept for backward compatibility
+const customTheme = darkTheme;
 export default customTheme;

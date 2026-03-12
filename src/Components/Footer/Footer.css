@@ -7,6 +7,12 @@
   color: var(--text-color);
 }
 
+/* Light mode footer */
+.light-mode .site-footer {
+  background-color: #e8eaf0;
+  color: #1a1a2e;
+}
+
 @media (max-width: 600px) {
   .site-footer {
     font-size: 12px;
