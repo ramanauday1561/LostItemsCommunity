@@ -133,3 +133,34 @@
         background-color: #020014 !important;
     }
 }
+
+/* Theme toggle switch - desktop */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-theme-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-theme-toggle-inner {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.navbar-theme-icon {
+    opacity: 0.85;
+}
+
+/* Theme toggle switch - mobile drawer */
+.navbar-drawer-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    gap: 4px;
+}
