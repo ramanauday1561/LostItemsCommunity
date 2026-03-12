@@ -8,12 +8,13 @@ import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import { darkTheme, lightTheme } from './theme/customTheme';
 import AnimatedRoutes from './Components/AnimatedRoutes/AnimatedRoutes';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
+import { ThemeContextProvider, useThemeContext } from './context/ThemeContext';
 
 function ThemedApp() {
-	const { currentUser } = useAuth();
-	const theme = currentUser ? lightTheme : darkTheme;
-	const modeClass = currentUser ? 'light-mode' : 'dark-mode';
+	const { mode } = useThemeContext();
+	const theme = mode === 'light' ? lightTheme : darkTheme;
+	const modeClass = mode === 'light' ? 'light-mode' : 'dark-mode';
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -34,7 +35,9 @@ function ThemedApp() {
 function App() {
 	return (
 		<AuthProvider>
-			<ThemedApp />
+			<ThemeContextProvider>
+				<ThemedApp />
+			</ThemeContextProvider>
 		</AuthProvider>
 	);
 }

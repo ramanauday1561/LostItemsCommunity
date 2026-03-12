@@ -16,12 +16,16 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
+import Switch from '@mui/material/Switch';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { useThemeContext } from '../../context/ThemeContext';
 
 const navItems = [
     {
@@ -47,6 +51,7 @@ const Navbar = () => {
     const theme = useTheme();
     const navigate = useNavigate();
     const { currentUser, logout } = useAuth();
+    const { mode, toggleTheme } = useThemeContext();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [drawerOpen, setDrawerOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -111,6 +116,18 @@ const Navbar = () => {
                     )
                 )}
             </List>
+            <Divider />
+            <Box className="navbar-drawer-theme-toggle" onClick={(e) => e.stopPropagation()}>
+                <DarkModeIcon fontSize="small" />
+                <Switch
+                    checked={mode === 'light'}
+                    onChange={toggleTheme}
+                    color="warning"
+                    size="small"
+                    inputProps={{ 'aria-label': 'toggle theme' }}
+                />
+                <LightModeIcon fontSize="small" />
+            </Box>
             <Divider />
             <Box className="navbar-drawer-actions">
                 {currentUser ? (
@@ -196,6 +213,21 @@ const Navbar = () => {
                             )}
                         </Box>
                         <Box className="navbar-actions">
+                            <Box className="navbar-theme-toggle">
+                                <Tooltip title={mode === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
+                                    <Box className="navbar-theme-toggle-inner">
+                                        <DarkModeIcon fontSize="small" className="navbar-theme-icon" />
+                                        <Switch
+                                            checked={mode === 'light'}
+                                            onChange={toggleTheme}
+                                            color="warning"
+                                            size="small"
+                                            inputProps={{ 'aria-label': 'toggle theme' }}
+                                        />
+                                        <LightModeIcon fontSize="small" className="navbar-theme-icon" />
+                                    </Box>
+                                </Tooltip>
+                            </Box>
                             {currentUser ? (
                                 <>
                                     <Tooltip title={currentUser.displayName}>
