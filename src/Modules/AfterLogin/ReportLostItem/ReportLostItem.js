@@ -36,6 +36,18 @@ const fadeInUp = {
 
 const CATEGORIES = ['Electronics', 'Clothing', 'Documents', 'Jewelry', 'Bags', 'Other'];
 
+const FIELD_SX = {
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': { borderColor: 'rgba(0,0,0,0.23)' },
+        '&:hover fieldset': { borderColor: 'rgba(0,0,0,0.87)' },
+        '& input': { color: '#1a1a2e' },
+        '& textarea': { color: '#1a1a2e' },
+    },
+    '& .MuiInputLabel-root': { color: '#555555' },
+    '& .MuiSelect-select': { color: '#1a1a2e' },
+    '& .MuiSvgIcon-root': { color: '#555555' },
+};
+
 const recentReports = [
     { id: 'LOST-1042', title: 'Blue Laptop Bag', category: 'Bags', location: 'Central Park, NY', date: '2024-06-10', status: 'Active' },
     { id: 'LOST-1039', title: 'Gold Bracelet', category: 'Jewelry', location: 'Downtown Mall', date: '2024-06-08', status: 'Active' },
@@ -91,17 +103,7 @@ function ReportLostItem() {
                                             {...register('title', { required: 'Item title is required' })}
                                             error={!!errors.title}
                                             helperText={errors.title?.message}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    '& fieldset': { borderColor: 'rgba(0,0,0,0.23)' },
-                                                    '&:hover fieldset': { borderColor: 'rgba(0,0,0,0.87)' },
-                                                    '& input': { color: '#1a1a2e' },
-                                                    '& textarea': { color: '#1a1a2e' },
-                                                },
-                                                '& .MuiInputLabel-root': { color: '#555555' },
-                                                '& .MuiSelect-select': { color: '#1a1a2e' },
-                                                '& .MuiSvgIcon-root': { color: '#555555' },
-                                            }}
+                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
@@ -113,6 +115,7 @@ function ReportLostItem() {
                                             {...register('category', { required: 'Category is required' })}
                                             error={!!errors.category}
                                             helperText={errors.category?.message}
+                                            sx={FIELD_SX}
                                         >
                                             {CATEGORIES.map((cat) => (
                                                 <MenuItem key={cat} value={cat}>{cat}</MenuItem>
@@ -128,6 +131,7 @@ function ReportLostItem() {
                                             {...register('description', { required: 'Description is required' })}
                                             error={!!errors.description}
                                             helperText={errors.description?.message}
+                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
@@ -137,6 +141,7 @@ function ReportLostItem() {
                                             {...register('location', { required: 'Location is required' })}
                                             error={!!errors.location}
                                             helperText={errors.location?.message}
+                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
@@ -148,6 +153,7 @@ function ReportLostItem() {
                                             {...register('dateLost', { required: 'Date is required' })}
                                             error={!!errors.dateLost}
                                             helperText={errors.dateLost?.message}
+                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
@@ -159,6 +165,7 @@ function ReportLostItem() {
                                             {...register('contactEmail', { required: 'Email is required' })}
                                             error={!!errors.contactEmail}
                                             helperText={errors.contactEmail?.message}
+                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
@@ -166,6 +173,7 @@ function ReportLostItem() {
                                             label="Contact Phone"
                                             fullWidth
                                             {...register('contactPhone')}
+                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>

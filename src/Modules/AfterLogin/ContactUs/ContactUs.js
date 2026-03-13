@@ -32,6 +32,18 @@ const fadeInUp = {
 
 const SUBJECTS = ['General Inquiry', 'Report Issue', 'Feature Request', 'Account Help', 'Other'];
 
+const FIELD_SX = {
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': { borderColor: 'rgba(0,0,0,0.23)' },
+        '&:hover fieldset': { borderColor: 'rgba(0,0,0,0.87)' },
+        '& input': { color: '#1a1a2e' },
+        '& textarea': { color: '#1a1a2e' },
+    },
+    '& .MuiInputLabel-root': { color: '#555555' },
+    '& .MuiSelect-select': { color: '#1a1a2e' },
+    '& .MuiSvgIcon-root': { color: '#555555' },
+};
+
 function ContactUs() {
     const { currentUser } = useAuth();
     const [successMsg, setSuccessMsg] = React.useState('');
