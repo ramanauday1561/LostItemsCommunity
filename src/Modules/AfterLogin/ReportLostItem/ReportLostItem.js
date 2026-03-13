@@ -91,6 +91,17 @@ function ReportLostItem() {
                                             {...register('title', { required: 'Item title is required' })}
                                             error={!!errors.title}
                                             helperText={errors.title?.message}
+                                            sx={{
+                                                '& .MuiOutlinedInput-root': {
+                                                    '& fieldset': { borderColor: 'rgba(0,0,0,0.23)' },
+                                                    '&:hover fieldset': { borderColor: 'rgba(0,0,0,0.87)' },
+                                                    '& input': { color: '#1a1a2e' },
+                                                    '& textarea': { color: '#1a1a2e' },
+                                                },
+                                                '& .MuiInputLabel-root': { color: '#555555' },
+                                                '& .MuiSelect-select': { color: '#1a1a2e' },
+                                                '& .MuiSvgIcon-root': { color: '#555555' },
+                                            }}
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>

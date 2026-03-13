@@ -19,7 +19,6 @@ import ForumIcon from '@mui/icons-material/Forum';
 import AddIcon from '@mui/icons-material/Add';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../../../context/AuthContext';
 import './Forum.css';
 
 const fadeInUp = {
@@ -127,7 +126,6 @@ const threads = [
 ];
 
 function Forum() {
-    const { currentUser } = useAuth();
     const [selectedThread, setSelectedThread] = React.useState(null);
     const [newPostOpen, setNewPostOpen] = React.useState(false);
     const [postSuccess, setPostSuccess] = React.useState(false);

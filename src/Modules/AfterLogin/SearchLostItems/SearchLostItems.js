@@ -93,6 +93,17 @@ function SearchLostItems() {
                                                 </InputAdornment>
                                             ),
                                         }}
+                                        sx={{
+                                            '& .MuiOutlinedInput-root': {
+                                                '& fieldset': { borderColor: 'rgba(0,0,0,0.23)' },
+                                                '&:hover fieldset': { borderColor: 'rgba(0,0,0,0.87)' },
+                                                '& input': { color: '#1a1a2e' },
+                                                '& textarea': { color: '#1a1a2e' },
+                                            },
+                                            '& .MuiInputLabel-root': { color: '#555555' },
+                                            '& .MuiSelect-select': { color: '#1a1a2e' },
+                                            '& .MuiSvgIcon-root': { color: '#555555' },
+                                        }}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
@@ -102,6 +113,17 @@ function SearchLostItems() {
                                         label="Category"
                                         value={category}
                                         onChange={(e) => setCategory(e.target.value)}
+                                        sx={{
+                                            '& .MuiOutlinedInput-root': {
+                                                '& fieldset': { borderColor: 'rgba(0,0,0,0.23)' },
+                                                '&:hover fieldset': { borderColor: 'rgba(0,0,0,0.87)' },
+                                                '& input': { color: '#1a1a2e' },
+                                                '& textarea': { color: '#1a1a2e' },
+                                            },
+                                            '& .MuiInputLabel-root': { color: '#555555' },
+                                            '& .MuiSelect-select': { color: '#1a1a2e' },
+                                            '& .MuiSvgIcon-root': { color: '#555555' },
+                                        }}
                                     >
                                         {CATEGORIES.map((cat) => (
                                             <MenuItem key={cat} value={cat}>{cat}</MenuItem>
@@ -132,13 +154,13 @@ function SearchLostItems() {
                                         </Typography>
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                                             <LocationOnIcon sx={{ fontSize: 14, color: '#888' }} />
-                                            <Typography variant="caption" color="text.secondary">{item.location}</Typography>
+                                            <Typography variant="caption" sx={{ color: '#555555' }}>{item.location}</Typography>
                                         </Box>
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                                             <CalendarTodayIcon sx={{ fontSize: 14, color: '#888' }} />
-                                            <Typography variant="caption" color="text.secondary">{item.date}</Typography>
+                                            <Typography variant="caption" sx={{ color: '#555555' }}>{item.date}</Typography>
                                         </Box>
-                                        <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.8rem', lineHeight: 1.5, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
+                                        <Typography variant="body2" sx={{ fontSize: '0.8rem', lineHeight: 1.5, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', color: '#555555' }}>
                                             {item.description}
                                         </Typography>
                                         <Button variant="outlined" color="primary" size="small" fullWidth sx={{ mt: 1 }} onClick={() => setSelectedItem(item)}>
@@ -164,23 +186,23 @@ function SearchLostItems() {
                             <Divider sx={{ mb: 2 }} />
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="caption" color="text.secondary">Report ID</Typography>
+                                    <Typography variant="caption" sx={{ color: '#555555' }}>Report ID</Typography>
                                     <Typography variant="body2" fontWeight={600}>{selectedItem.id}</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Typography variant="caption" color="text.secondary">Date Lost</Typography>
+                                    <Typography variant="caption" sx={{ color: '#555555' }}>Date Lost</Typography>
                                     <Typography variant="body2" fontWeight={600}>{selectedItem.date}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography variant="caption" color="text.secondary">Last Seen Location</Typography>
+                                    <Typography variant="caption" sx={{ color: '#555555' }}>Last Seen Location</Typography>
                                     <Typography variant="body2" fontWeight={600}>{selectedItem.location}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography variant="caption" color="text.secondary">Description</Typography>
+                                    <Typography variant="caption" sx={{ color: '#555555' }}>Description</Typography>
                                     <Typography variant="body2">{selectedItem.description}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography variant="caption" color="text.secondary">Contact</Typography>
+                                    <Typography variant="caption" sx={{ color: '#555555' }}>Contact</Typography>
                                     <Typography variant="body2" fontWeight={600}>{selectedItem.contact}</Typography>
                                 </Grid>
                             </Grid>
