@@ -31,20 +31,20 @@ const navItems = [
     {
         label: 'Report Item',
         submenu: [
-            { label: 'Report a Lost Item', routerLink: '/login-needed' },
-            { label: 'Report Found Item', routerLink: '/login-needed' },
+            { label: 'Report a Lost Item', routerLink: '/report-lost' },
+            { label: 'Report Found Item', routerLink: '/report-found' },
         ],
     },
     {
         label: 'Search Items',
         submenu: [
-            { label: 'Search Lost Items', routerLink: '/login-needed' },
-            { label: 'Search Found Items', routerLink: '/login-needed' },
+            { label: 'Search Lost Items', routerLink: '/search-lost' },
+            { label: 'Search Found Items', routerLink: '/search-found' },
         ],
     },
-    { label: 'Community Forum', routerLink: '/login-needed' },
+    { label: 'Community Forum', routerLink: '/forum' },
     { label: 'About Us', routerLink: '/about-us' },
-    { label: 'Contact Us', routerLink: '/login-needed' },
+    { label: 'Contact Us', routerLink: '/contact' },
 ];
 
 const Navbar = () => {

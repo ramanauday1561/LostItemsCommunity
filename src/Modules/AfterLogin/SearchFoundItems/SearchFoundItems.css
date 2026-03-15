@@ -1,0 +1,46 @@
+.search-found-root {
+    min-height: calc(100vh - 64px);
+    background: #f5f7fa;
+}
+
+.search-found-hero {
+    background: linear-gradient(90deg, rgba(255, 152, 0, 0.08) 0%, rgba(255, 152, 0, 0.04) 100%);
+    padding: 2.5rem 0 2rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.search-found-hero-title {
+    font-weight: 700 !important;
+    color: #1a1a2e !important;
+}
+
+.search-found-hero-subtitle {
+    color: #555555 !important;
+    margin-top: 0.5rem !important;
+}
+
+.search-found-filter-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 16px !important;
+    margin-bottom: 2rem;
+}
+
+.search-found-item-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 16px !important;
+    height: 100%;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.search-found-item-card:hover {
+    border-color: rgba(255, 152, 0, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(255, 152, 0, 0.12) !important;
+}
+
+.search-found-section-title {
+    color: #1a1a2e !important;
+    font-weight: 600 !important;
+    margin-bottom: 1.5rem !important;
+}

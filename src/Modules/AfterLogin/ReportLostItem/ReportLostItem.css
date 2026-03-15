@@ -1,0 +1,39 @@
+.report-lost-root {
+    min-height: calc(100vh - 64px);
+    background: #f5f7fa;
+}
+
+.report-lost-hero {
+    background: linear-gradient(90deg, rgba(244, 67, 54, 0.08) 0%, rgba(244, 67, 54, 0.04) 100%);
+    padding: 2.5rem 0 2rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.report-lost-hero-title {
+    font-weight: 700 !important;
+    color: #1a1a2e !important;
+}
+
+.report-lost-hero-subtitle {
+    color: #555555 !important;
+    margin-top: 0.5rem !important;
+}
+
+.report-lost-form-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 16px !important;
+}
+
+.report-lost-section-title {
+    color: #1a1a2e !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+}
+
+.report-lost-table-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 16px !important;
+    margin-top: 2rem;
+}
