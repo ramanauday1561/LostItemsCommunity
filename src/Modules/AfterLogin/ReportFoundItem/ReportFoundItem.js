@@ -36,7 +36,6 @@ const fadeInUp = {
 
 const CATEGORIES = ['Electronics', 'Clothing', 'Documents', 'Jewelry', 'Bags', 'Other'];
 
-const FIELD_SX = {};
 
 const recentReports = [
     { id: 'FOUND-2018', title: 'Black Wallet', category: 'Bags', location: 'Riverside Park', date: '2024-06-11', status: 'Active' },
@@ -93,7 +92,6 @@ function ReportFoundItem() {
                                             {...register('title', { required: 'Item title is required' })}
                                             error={!!errors.title}
                                             helperText={errors.title?.message}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid size={{ xs: 12, sm: 6 }}>
@@ -105,7 +103,6 @@ function ReportFoundItem() {
                                             {...register('category', { required: 'Category is required' })}
                                             error={!!errors.category}
                                             helperText={errors.category?.message}
-                                            sx={FIELD_SX}
                                         >
                                             {CATEGORIES.map((cat) => (
                                                 <MenuItem key={cat} value={cat}>{cat}</MenuItem>
@@ -121,7 +118,6 @@ function ReportFoundItem() {
                                             {...register('description', { required: 'Description is required' })}
                                             error={!!errors.description}
                                             helperText={errors.description?.message}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid size={{ xs: 12, sm: 6 }}>
@@ -131,7 +127,6 @@ function ReportFoundItem() {
                                             {...register('location', { required: 'Location is required' })}
                                             error={!!errors.location}
                                             helperText={errors.location?.message}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid size={{ xs: 12, sm: 6 }}>
@@ -143,7 +138,6 @@ function ReportFoundItem() {
                                             {...register('dateFound', { required: 'Date is required' })}
                                             error={!!errors.dateFound}
                                             helperText={errors.dateFound?.message}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid size={{ xs: 12, sm: 6 }}>
@@ -155,7 +149,6 @@ function ReportFoundItem() {
                                             {...register('contactEmail', { required: 'Email is required' })}
                                             error={!!errors.contactEmail}
                                             helperText={errors.contactEmail?.message}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid size={{ xs: 12, sm: 6 }}>
@@ -163,7 +156,6 @@ function ReportFoundItem() {
                                             label="Contact Phone"
                                             fullWidth
                                             {...register('contactPhone')}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
                                     <Grid size={12}>
