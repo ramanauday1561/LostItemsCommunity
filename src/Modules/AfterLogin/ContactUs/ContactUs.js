@@ -78,7 +78,7 @@ function ContactUs() {
 
             <Container maxWidth="lg" sx={{ py: 5 }}>
                 <Grid container spacing={4}>
-                    <Grid item xs={12} md={8}>
+                    <Grid size={{ xs: 12, md: 8 }}>
                         <motion.div custom={0} initial="hidden" animate="visible" variants={fadeInUp}>
                             <Card className="contact-form-card" elevation={3}>
                                 <CardContent sx={{ p: 4 }}>
@@ -90,7 +90,7 @@ function ContactUs() {
                                     )}
                                     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
                                         <Grid container spacing={3}>
-                                            <Grid item xs={12} sm={6}>
+                                            <Grid size={{ xs: 12, sm: 6 }}>
                                                 <TextField
                                                     label="Your Name"
                                                     fullWidth
@@ -99,7 +99,7 @@ function ContactUs() {
                                                     helperText={errors.name?.message}
                                                 />
                                             </Grid>
-                                            <Grid item xs={12} sm={6}>
+                                            <Grid size={{ xs: 12, sm: 6 }}>
                                                 <TextField
                                                     label="Email Address"
                                                     type="email"
@@ -109,7 +109,7 @@ function ContactUs() {
                                                     helperText={errors.email?.message}
                                                 />
                                             </Grid>
-                                            <Grid item xs={12}>
+                                            <Grid size={12}>
                                                 <TextField
                                                     select
                                                     label="Subject"
@@ -124,7 +124,7 @@ function ContactUs() {
                                                     ))}
                                                 </TextField>
                                             </Grid>
-                                            <Grid item xs={12}>
+                                            <Grid size={12}>
                                                 <TextField
                                                     label="Message"
                                                     fullWidth
@@ -135,7 +135,7 @@ function ContactUs() {
                                                     helperText={errors.message?.message}
                                                 />
                                             </Grid>
-                                            <Grid item xs={12}>
+                                            <Grid size={12}>
                                                 <Button type="submit" variant="contained" size="large" sx={{ fontWeight: 600, bgcolor: '#607d8b', '&:hover': { bgcolor: '#546e7a' } }}>
                                                     Send Message
                                                 </Button>
@@ -147,7 +147,7 @@ function ContactUs() {
                         </motion.div>
                     </Grid>
 
-                    <Grid item xs={12} md={4}>
+                    <Grid size={{ xs: 12, md: 4 }}>
                         <motion.div custom={1} initial="hidden" animate="visible" variants={fadeInUp}>
                             <Card className="contact-sidebar-card" elevation={3}>
                                 <CardContent sx={{ p: 4 }}>

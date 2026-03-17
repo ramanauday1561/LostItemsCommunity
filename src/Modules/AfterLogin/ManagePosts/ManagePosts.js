@@ -82,7 +82,7 @@ function PostsTable({ rows, onEdit, onDelete }) {
                 <TableBody>
                     {rows.map((row) => (
                         <TableRow key={row.id}>
-                            <TableCell sx={{ fontSize: '0.8rem', color: '#666' }}>{row.id}</TableCell>
+                            <TableCell sx={{ fontSize: '0.8rem' }}>{row.id}</TableCell>
                             <TableCell sx={{ maxWidth: 180 }}>{row.title}</TableCell>
                             <TableCell>{row.author}</TableCell>
                             <TableCell>{row.category}</TableCell>
@@ -181,7 +181,7 @@ function ManagePosts() {
                 {/* Stats Cards */}
                 <Grid container spacing={3} sx={{ mb: 4 }}>
                     {statCards.map((stat, i) => (
-                        <Grid item xs={6} md={3} key={stat.label}>
+                        <Grid size={{ xs: 6, md: 3 }} key={stat.label}>
                             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: i * 0.08 }}>
                                 <Card className="manage-posts-stat-card" elevation={2}>
                                     <CardContent sx={{ p: 2.5, display: 'flex', alignItems: 'center', gap: 2 }}>

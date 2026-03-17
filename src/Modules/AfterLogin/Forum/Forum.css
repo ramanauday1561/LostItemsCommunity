@@ -46,3 +46,41 @@
     padding: 1rem;
     margin-bottom: 0.75rem;
 }
+
+/* Dark mode overrides */
+.dark-mode .forum-root {
+    background: #030014;
+    color: #ffffff;
+}
+
+.dark-mode .forum-hero {
+    background: linear-gradient(90deg, rgba(156, 39, 176, 0.12) 0%, rgba(156, 39, 176, 0.06) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .forum-hero-title {
+    color: #ffffff !important;
+}
+
+.dark-mode .forum-hero-subtitle {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.dark-mode .forum-thread-card {
+    background: #0a0a2e !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode .forum-thread-card:hover {
+    border-color: rgba(156, 39, 176, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(156, 39, 176, 0.12) !important;
+}
+
+.dark-mode .forum-section-title {
+    color: #ffffff !important;
+}
+
+.dark-mode .forum-reply-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}

@@ -180,7 +180,7 @@ function Forum() {
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
                                             <Chip label={thread.category} color={CATEGORY_COLORS[thread.category]} size="small" />
                                         </Box>
-                                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a1a2e', mb: 0.5 }}>
+                                        <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5 }}>
                                             {thread.title}
                                         </Typography>
                                         <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>

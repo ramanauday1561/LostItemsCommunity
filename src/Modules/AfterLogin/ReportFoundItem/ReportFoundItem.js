@@ -36,17 +36,6 @@ const fadeInUp = {
 
 const CATEGORIES = ['Electronics', 'Clothing', 'Documents', 'Jewelry', 'Bags', 'Other'];
 
-const FIELD_SX = {
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': { borderColor: 'rgba(0,0,0,0.23)' },
-        '&:hover fieldset': { borderColor: 'rgba(0,0,0,0.87)' },
-        '& input': { color: '#1a1a2e' },
-        '& textarea': { color: '#1a1a2e' },
-    },
-    '& .MuiInputLabel-root': { color: '#555555' },
-    '& .MuiSelect-select': { color: '#1a1a2e' },
-    '& .MuiSvgIcon-root': { color: '#555555' },
-};
 
 const recentReports = [
     { id: 'FOUND-2018', title: 'Black Wallet', category: 'Bags', location: 'Riverside Park', date: '2024-06-11', status: 'Active' },
@@ -96,17 +85,16 @@ function ReportFoundItem() {
                             )}
                             <Box component="form" onSubmit={handleSubmit(onSubmit)}>
                                 <Grid container spacing={3}>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             label="Item Title"
                                             fullWidth
                                             {...register('title', { required: 'Item title is required' })}
                                             error={!!errors.title}
                                             helperText={errors.title?.message}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             select
                                             label="Category"
@@ -115,14 +103,13 @@ function ReportFoundItem() {
                                             {...register('category', { required: 'Category is required' })}
                                             error={!!errors.category}
                                             helperText={errors.category?.message}
-                                            sx={FIELD_SX}
                                         >
                                             {CATEGORIES.map((cat) => (
                                                 <MenuItem key={cat} value={cat}>{cat}</MenuItem>
                                             ))}
                                         </TextField>
                                     </Grid>
-                                    <Grid item xs={12}>
+                                    <Grid size={12}>
                                         <TextField
                                             label="Description"
                                             fullWidth
@@ -131,20 +118,18 @@ function ReportFoundItem() {
                                             {...register('description', { required: 'Description is required' })}
                                             error={!!errors.description}
                                             helperText={errors.description?.message}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             label="Found Location"
                                             fullWidth
                                             {...register('location', { required: 'Location is required' })}
                                             error={!!errors.location}
                                             helperText={errors.location?.message}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             label="Date Found"
                                             type="date"
@@ -153,10 +138,9 @@ function ReportFoundItem() {
                                             {...register('dateFound', { required: 'Date is required' })}
                                             error={!!errors.dateFound}
                                             helperText={errors.dateFound?.message}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             label="Contact Email"
                                             type="email"
@@ -165,18 +149,16 @@ function ReportFoundItem() {
                                             {...register('contactEmail', { required: 'Email is required' })}
                                             error={!!errors.contactEmail}
                                             helperText={errors.contactEmail?.message}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             label="Contact Phone"
                                             fullWidth
                                             {...register('contactPhone')}
-                                            sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12}>
+                                    <Grid size={12}>
                                         <Button type="submit" variant="contained" color="success" size="large" sx={{ fontWeight: 600 }}>
                                             Submit Report
                                         </Button>

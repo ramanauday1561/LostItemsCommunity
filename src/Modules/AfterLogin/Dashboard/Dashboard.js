@@ -164,7 +164,7 @@ function Dashboard() {
                 </motion.div>
                 <Grid container spacing={3}>
                     {dashboardCards.map((card, i) => (
-                        <Grid item xs={12} sm={6} md={4} key={card.title}>
+                        <Grid size={{ xs: 12, sm: 6, md: 3 }} key={card.title}>
                             <motion.div
                                 custom={i}
                                 initial="hidden"

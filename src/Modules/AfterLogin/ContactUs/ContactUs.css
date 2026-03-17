@@ -43,3 +43,36 @@
     gap: 0.75rem;
     margin-bottom: 1.25rem;
 }
+
+/* Dark mode overrides */
+.dark-mode .contact-root {
+    background: #030014;
+    color: #ffffff;
+}
+
+.dark-mode .contact-hero {
+    background: linear-gradient(90deg, rgba(96, 125, 139, 0.12) 0%, rgba(96, 125, 139, 0.06) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .contact-hero-title {
+    color: #ffffff !important;
+}
+
+.dark-mode .contact-hero-subtitle {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.dark-mode .contact-form-card {
+    background: #0a0a2e !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode .contact-sidebar-card {
+    background: #0a0a2e !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode .contact-section-title {
+    color: #ffffff !important;
+}
