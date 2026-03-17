@@ -44,3 +44,41 @@
     font-weight: 600 !important;
     margin-bottom: 1.5rem !important;
 }
+
+/* Dark mode overrides */
+.dark-mode .search-found-root {
+    background: #030014;
+    color: #ffffff;
+}
+
+.dark-mode .search-found-hero {
+    background: linear-gradient(90deg, rgba(255, 152, 0, 0.12) 0%, rgba(255, 152, 0, 0.06) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .search-found-hero-title {
+    color: #ffffff !important;
+}
+
+.dark-mode .search-found-hero-subtitle {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.dark-mode .search-found-filter-card {
+    background: #0a0a2e !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode .search-found-item-card {
+    background: #0a0a2e !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode .search-found-item-card:hover {
+    border-color: rgba(255, 152, 0, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(255, 152, 0, 0.12) !important;
+}
+
+.dark-mode .search-found-section-title {
+    color: #ffffff !important;
+}

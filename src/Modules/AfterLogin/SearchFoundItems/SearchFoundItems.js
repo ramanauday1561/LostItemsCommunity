@@ -80,7 +80,7 @@ function SearchFoundItems() {
                     <Card className="search-found-filter-card" elevation={2}>
                         <CardContent sx={{ p: 3 }}>
                             <Grid container spacing={2} alignItems="center">
-                                <Grid item xs={12} sm={8}>
+                                <Grid size={{ xs: 12, sm: 8 }}>
                                     <TextField
                                         fullWidth
                                         placeholder="Search by title or location..."
@@ -93,37 +93,15 @@ function SearchFoundItems() {
                                                 </InputAdornment>
                                             ),
                                         }}
-                                        sx={{
-                                            '& .MuiOutlinedInput-root': {
-                                                '& fieldset': { borderColor: 'rgba(0,0,0,0.23)' },
-                                                '&:hover fieldset': { borderColor: 'rgba(0,0,0,0.87)' },
-                                                '& input': { color: '#1a1a2e' },
-                                                '& textarea': { color: '#1a1a2e' },
-                                            },
-                                            '& .MuiInputLabel-root': { color: '#555555' },
-                                            '& .MuiSelect-select': { color: '#1a1a2e' },
-                                            '& .MuiSvgIcon-root': { color: '#555555' },
-                                        }}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={4}>
+                                <Grid size={{ xs: 12, sm: 4 }}>
                                     <TextField
                                         select
                                         fullWidth
                                         label="Category"
                                         value={category}
                                         onChange={(e) => setCategory(e.target.value)}
-                                        sx={{
-                                            '& .MuiOutlinedInput-root': {
-                                                '& fieldset': { borderColor: 'rgba(0,0,0,0.23)' },
-                                                '&:hover fieldset': { borderColor: 'rgba(0,0,0,0.87)' },
-                                                '& input': { color: '#1a1a2e' },
-                                                '& textarea': { color: '#1a1a2e' },
-                                            },
-                                            '& .MuiInputLabel-root': { color: '#555555' },
-                                            '& .MuiSelect-select': { color: '#1a1a2e' },
-                                            '& .MuiSvgIcon-root': { color: '#555555' },
-                                        }}
                                     >
                                         {CATEGORIES.map((cat) => (
                                             <MenuItem key={cat} value={cat}>{cat}</MenuItem>
@@ -141,7 +119,7 @@ function SearchFoundItems() {
 
                 <Grid container spacing={3}>
                     {filtered.map((item, i) => (
-                        <Grid item xs={12} sm={6} md={4} lg={3} key={item.id}>
+                        <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={item.id}>
                             <motion.div custom={i} initial="hidden" animate="visible" variants={fadeInUp} whileHover={{ scale: 1.02 }}>
                                 <Card className="search-found-item-card" elevation={3}>
                                     <CardContent sx={{ p: 2.5, display: 'flex', flexDirection: 'column', gap: 1 }}>
@@ -149,18 +127,18 @@ function SearchFoundItems() {
                                             <Chip label={item.category} color="warning" size="small" variant="outlined" />
                                             <Chip label={item.status} color={item.status === 'Active' ? 'success' : 'default'} size="small" />
                                         </Box>
-                                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a1a2e', fontSize: '1rem' }}>
+                                        <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '1rem' }}>
                                             {item.title}
                                         </Typography>
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                                             <LocationOnIcon sx={{ fontSize: 14, color: '#888' }} />
-                                            <Typography variant="caption" sx={{ color: '#555555' }}>{item.location}</Typography>
+                                            <Typography variant="caption" color="text.secondary">{item.location}</Typography>
                                         </Box>
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                                             <CalendarTodayIcon sx={{ fontSize: 14, color: '#888' }} />
-                                            <Typography variant="caption" sx={{ color: '#555555' }}>{item.date}</Typography>
+                                            <Typography variant="caption" color="text.secondary">{item.date}</Typography>
                                         </Box>
-                                        <Typography variant="body2" sx={{ fontSize: '0.8rem', lineHeight: 1.5, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', color: '#555555' }}>
+                                        <Typography variant="body2" sx={{ fontSize: '0.8rem', lineHeight: 1.5, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }} color="text.secondary">
                                             {item.description}
                                         </Typography>
                                         <Button variant="outlined" color="warning" size="small" fullWidth sx={{ mt: 1 }} onClick={() => setSelectedItem(item)}>
@@ -185,24 +163,24 @@ function SearchFoundItems() {
                             </Box>
                             <Divider sx={{ mb: 2 }} />
                             <Grid container spacing={2}>
-                                <Grid item xs={6}>
-                                    <Typography variant="caption" sx={{ color: '#555555' }}>Report ID</Typography>
+                                <Grid size={6}>
+                                    <Typography variant="caption" color="text.secondary">Report ID</Typography>
                                     <Typography variant="body2" fontWeight={600}>{selectedItem.id}</Typography>
                                 </Grid>
-                                <Grid item xs={6}>
-                                    <Typography variant="caption" sx={{ color: '#555555' }}>Date Found</Typography>
+                                <Grid size={6}>
+                                    <Typography variant="caption" color="text.secondary">Date Found</Typography>
                                     <Typography variant="body2" fontWeight={600}>{selectedItem.date}</Typography>
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <Typography variant="caption" sx={{ color: '#555555' }}>Found Location</Typography>
+                                <Grid size={12}>
+                                    <Typography variant="caption" color="text.secondary">Found Location</Typography>
                                     <Typography variant="body2" fontWeight={600}>{selectedItem.location}</Typography>
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <Typography variant="caption" sx={{ color: '#555555' }}>Description</Typography>
+                                <Grid size={12}>
+                                    <Typography variant="caption" color="text.secondary">Description</Typography>
                                     <Typography variant="body2">{selectedItem.description}</Typography>
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <Typography variant="caption" sx={{ color: '#555555' }}>Finder Contact</Typography>
+                                <Grid size={12}>
+                                    <Typography variant="caption" color="text.secondary">Finder Contact</Typography>
                                     <Typography variant="body2" fontWeight={600}>{selectedItem.contact}</Typography>
                                 </Grid>
                             </Grid>

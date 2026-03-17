@@ -36,17 +36,7 @@ const fadeInUp = {
 
 const CATEGORIES = ['Electronics', 'Clothing', 'Documents', 'Jewelry', 'Bags', 'Other'];
 
-const FIELD_SX = {
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': { borderColor: 'rgba(0,0,0,0.23)' },
-        '&:hover fieldset': { borderColor: 'rgba(0,0,0,0.87)' },
-        '& input': { color: '#1a1a2e' },
-        '& textarea': { color: '#1a1a2e' },
-    },
-    '& .MuiInputLabel-root': { color: '#555555' },
-    '& .MuiSelect-select': { color: '#1a1a2e' },
-    '& .MuiSvgIcon-root': { color: '#555555' },
-};
+const FIELD_SX = {};
 
 const recentReports = [
     { id: 'LOST-1042', title: 'Blue Laptop Bag', category: 'Bags', location: 'Central Park, NY', date: '2024-06-10', status: 'Active' },
@@ -96,7 +86,7 @@ function ReportLostItem() {
                             )}
                             <Box component="form" onSubmit={handleSubmit(onSubmit)}>
                                 <Grid container spacing={3}>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             label="Item Title"
                                             fullWidth
@@ -106,7 +96,7 @@ function ReportLostItem() {
                                             sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             select
                                             label="Category"
@@ -122,7 +112,7 @@ function ReportLostItem() {
                                             ))}
                                         </TextField>
                                     </Grid>
-                                    <Grid item xs={12}>
+                                    <Grid size={12}>
                                         <TextField
                                             label="Description"
                                             fullWidth
@@ -134,7 +124,7 @@ function ReportLostItem() {
                                             sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             label="Last Seen Location"
                                             fullWidth
@@ -144,7 +134,7 @@ function ReportLostItem() {
                                             sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             label="Date Lost"
                                             type="date"
@@ -156,7 +146,7 @@ function ReportLostItem() {
                                             sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             label="Contact Email"
                                             type="email"
@@ -168,7 +158,7 @@ function ReportLostItem() {
                                             sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, sm: 6 }}>
                                         <TextField
                                             label="Contact Phone"
                                             fullWidth
@@ -176,7 +166,7 @@ function ReportLostItem() {
                                             sx={FIELD_SX}
                                         />
                                     </Grid>
-                                    <Grid item xs={12}>
+                                    <Grid size={12}>
                                         <Button type="submit" variant="contained" color="error" size="large" sx={{ fontWeight: 600 }}>
                                             Submit Report
                                         </Button>
