@@ -1,4 +1,5 @@
 import React from 'react';
+import AfterLoginLayout from '../../../AfterLoginComponents/AfterLoginLayout';
 import {
     Box,
     Container,
@@ -67,7 +68,8 @@ function ReportLostItem() {
     };
 
     return (
-        <Box className="report-lost-root">
+        <AfterLoginLayout pageTitle="Report Lost Item">
+            <Box className="report-lost-root">
             <Box className="report-lost-hero">
                 <Container maxWidth="lg">
                     <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -225,6 +227,7 @@ function ReportLostItem() {
                 </motion.div>
             </Container>
         </Box>
+        </AfterLoginLayout>
     );
 }
 

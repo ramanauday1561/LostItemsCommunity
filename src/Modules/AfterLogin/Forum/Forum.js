@@ -1,4 +1,5 @@
 import React from 'react';
+import AfterLoginLayout from '../../../AfterLoginComponents/AfterLoginLayout';
 import {
     Box,
     Container,
@@ -141,7 +142,8 @@ function Forum() {
     };
 
     return (
-        <Box className="forum-root">
+        <AfterLoginLayout pageTitle="Community Forum">
+            <Box className="forum-root">
             <Box className="forum-hero">
                 <Container maxWidth="lg">
                     <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -281,6 +283,7 @@ function Forum() {
                 )}
             </Dialog>
         </Box>
+        </AfterLoginLayout>
     );
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import AfterLoginLayout from '../../../AfterLoginComponents/AfterLoginLayout';
 import {
     Box,
     Container,
@@ -160,7 +161,8 @@ function ManagePosts() {
     ];
 
     return (
-        <Box className="manage-posts-root">
+        <AfterLoginLayout pageTitle="Manage All Posts">
+            <Box className="manage-posts-root">
             <Box className="manage-posts-hero">
                 <Container maxWidth="lg">
                     <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -274,6 +276,7 @@ function ManagePosts() {
                 </DialogActions>
             </Dialog>
         </Box>
+        </AfterLoginLayout>
     );
 }
 

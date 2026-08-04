@@ -1,4 +1,5 @@
 import React from 'react';
+import AfterLoginLayout from '../../../AfterLoginComponents/AfterLoginLayout';
 import {
     Box,
     Container,
@@ -67,7 +68,8 @@ function ReportFoundItem() {
     };
 
     return (
-        <Box className="report-found-root">
+        <AfterLoginLayout pageTitle="Report Found Item">
+            <Box className="report-found-root">
             <Box className="report-found-hero">
                 <Container maxWidth="lg">
                     <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -225,6 +227,7 @@ function ReportFoundItem() {
                 </motion.div>
             </Container>
         </Box>
+        </AfterLoginLayout>
     );
 }
 

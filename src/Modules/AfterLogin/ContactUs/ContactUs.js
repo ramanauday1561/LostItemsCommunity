@@ -1,4 +1,5 @@
 import React from 'react';
+import AfterLoginLayout from '../../../AfterLoginComponents/AfterLoginLayout';
 import {
     Box,
     Container,
@@ -32,18 +33,6 @@ const fadeInUp = {
 
 const SUBJECTS = ['General Inquiry', 'Report Issue', 'Feature Request', 'Account Help', 'Other'];
 
-const FIELD_SX = {
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': { borderColor: 'rgba(0,0,0,0.23)' },
-        '&:hover fieldset': { borderColor: 'rgba(0,0,0,0.87)' },
-        '& input': { color: '#1a1a2e' },
-        '& textarea': { color: '#1a1a2e' },
-    },
-    '& .MuiInputLabel-root': { color: '#555555' },
-    '& .MuiSelect-select': { color: '#1a1a2e' },
-    '& .MuiSvgIcon-root': { color: '#555555' },
-};
-
 function ContactUs() {
     const { currentUser } = useAuth();
     const [successMsg, setSuccessMsg] = React.useState('');
@@ -59,7 +48,8 @@ function ContactUs() {
     };
 
     return (
-        <Box className="contact-root">
+        <AfterLoginLayout pageTitle="Contact Support">
+            <Box className="contact-root">
             <Box className="contact-hero">
                 <Container maxWidth="lg">
                     <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -181,6 +171,7 @@ function ContactUs() {
                 </Grid>
             </Container>
         </Box>
+        </AfterLoginLayout>
     );
 }
 
