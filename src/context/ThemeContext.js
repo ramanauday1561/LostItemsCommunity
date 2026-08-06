@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 const ThemeContext = createContext();
 
-export const ThemeContextProvider = ({ children, defaultMode = 'dark' }) => {
+export const ThemeContextProvider = ({ children, defaultMode = 'light' }) => {
     const [mode, setMode] = useState(() => {
         const saved = localStorage.getItem('themeMode');
         return saved || defaultMode;

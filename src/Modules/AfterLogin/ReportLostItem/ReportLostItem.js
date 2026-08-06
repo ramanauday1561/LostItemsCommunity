@@ -100,7 +100,7 @@ function ReportLostItem() {
                                 <Grid container spacing={3}>
                                     <Grid item xs={12} sm={6}>
                                         <TextField
-                                            label="Item Title"
+                                            label="Item Title *"
                                             fullWidth
                                             {...register('title', { required: 'Item title is required' })}
                                             error={!!errors.title}
@@ -111,7 +111,7 @@ function ReportLostItem() {
                                     <Grid item xs={12} sm={6}>
                                         <TextField
                                             select
-                                            label="Category"
+                                            label="Category *"
                                             fullWidth
                                             defaultValue=""
                                             {...register('category', { required: 'Category is required' })}
@@ -138,9 +138,10 @@ function ReportLostItem() {
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
                                         <TextField
-                                            label="Last Seen Location"
+                                            label="Last Seen Map Location *"
                                             fullWidth
-                                            {...register('location', { required: 'Location is required' })}
+                                            placeholder="e.g. Central Park West & 72nd St"
+                                            {...register('location', { required: 'Map location is required' })}
                                             error={!!errors.location}
                                             helperText={errors.location?.message}
                                             sx={FIELD_SX}
@@ -148,7 +149,7 @@ function ReportLostItem() {
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
                                         <TextField
-                                            label="Date Lost"
+                                            label="Date Lost *"
                                             type="date"
                                             fullWidth
                                             InputLabelProps={{ shrink: true }}
@@ -158,9 +159,25 @@ function ReportLostItem() {
                                             sx={FIELD_SX}
                                         />
                                     </Grid>
+                                    <Grid item xs={12}>
+                                        <Box sx={{ p: 2, border: '2 border-dashed rgba(0,0,0,0.15)', borderRadius: 3, textAlign: 'center', bgcolor: 'background.paper' }}>
+                                            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 1 }}>Attach Product Photo (Required) *</Typography>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                {...register('productPhoto', { required: 'Product picture is required' })}
+                                                style={{ display: 'block', margin: '0 auto' }}
+                                            />
+                                            {errors.productPhoto && (
+                                                <Typography variant="caption" color="error" sx={{ display: 'block', mt: 1 }}>
+                                                    {errors.productPhoto.message}
+                                                </Typography>
+                                            )}
+                                        </Box>
+                                    </Grid>
                                     <Grid item xs={12} sm={6}>
                                         <TextField
-                                            label="Contact Email"
+                                            label="Contact Email *"
                                             type="email"
                                             fullWidth
                                             defaultValue={currentUser?.email || ''}

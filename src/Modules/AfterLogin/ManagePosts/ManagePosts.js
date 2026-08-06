@@ -24,7 +24,6 @@ import {
     TextField,
     MenuItem,
 } from '@mui/material';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ArticleIcon from '@mui/icons-material/Article';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import FlagIcon from '@mui/icons-material/Flag';
@@ -65,36 +64,36 @@ const initialForumPosts = [
 
 const statusColors = { Active: 'primary', Resolved: 'success', Flagged: 'error' };
 
-function PostsTable({ rows, onEdit, onDelete }) {
+function PostsTable({ rows, onEdit, onDelete, textColor, subTextColor, cardBorder }) {
     return (
         <TableContainer>
             <Table>
                 <TableHead>
-                    <TableRow>
-                        <TableCell><strong>ID</strong></TableCell>
-                        <TableCell><strong>Title</strong></TableCell>
-                        <TableCell><strong>Author</strong></TableCell>
-                        <TableCell><strong>Category</strong></TableCell>
-                        <TableCell><strong>Date</strong></TableCell>
-                        <TableCell><strong>Status</strong></TableCell>
-                        <TableCell><strong>Actions</strong></TableCell>
+                    <TableRow sx={{ borderBottom: `2px solid ${cardBorder}` }}>
+                        <TableCell sx={{ color: textColor, fontWeight: 700 }}>ID</TableCell>
+                        <TableCell sx={{ color: textColor, fontWeight: 700 }}>Title</TableCell>
+                        <TableCell sx={{ color: textColor, fontWeight: 700 }}>Author</TableCell>
+                        <TableCell sx={{ color: textColor, fontWeight: 700 }}>Category</TableCell>
+                        <TableCell sx={{ color: textColor, fontWeight: 700 }}>Date</TableCell>
+                        <TableCell sx={{ color: textColor, fontWeight: 700 }}>Status</TableCell>
+                        <TableCell sx={{ color: textColor, fontWeight: 700 }}>Actions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell sx={{ fontSize: '0.8rem', color: '#666' }}>{row.id}</TableCell>
-                            <TableCell sx={{ maxWidth: 180 }}>{row.title}</TableCell>
-                            <TableCell>{row.author}</TableCell>
-                            <TableCell>{row.category}</TableCell>
-                            <TableCell>{row.date}</TableCell>
+                        <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 }, borderBottom: `1px solid ${cardBorder}` }}>
+                            <TableCell sx={{ fontSize: '0.8rem', color: subTextColor, fontWeight: 600 }}>{row.id}</TableCell>
+                            <TableCell sx={{ maxWidth: 200, color: textColor, fontWeight: 600 }}>{row.title}</TableCell>
+                            <TableCell sx={{ color: textColor }}>{row.author}</TableCell>
+                            <TableCell sx={{ color: textColor }}>{row.category}</TableCell>
+                            <TableCell sx={{ color: subTextColor }}>{row.date}</TableCell>
                             <TableCell>
-                                <Chip label={row.status} color={statusColors[row.status]} size="small" />
+                                <Chip label={row.status} color={statusColors[row.status]} size="small" sx={{ fontWeight: 700 }} />
                             </TableCell>
                             <TableCell>
                                 <Box sx={{ display: 'flex', gap: 1 }}>
-                                    <Button size="small" variant="outlined" color="primary" onClick={() => onEdit(row)}>Edit</Button>
-                                    <Button size="small" variant="outlined" color="error" onClick={() => onDelete(row)}>Delete</Button>
+                                    <Button size="small" variant="outlined" color="primary" sx={{ borderRadius: '10px', textTransform: 'none', fontWeight: 600 }} onClick={() => onEdit(row)}>Edit</Button>
+                                    <Button size="small" variant="outlined" color="error" sx={{ borderRadius: '10px', textTransform: 'none', fontWeight: 600 }} onClick={() => onDelete(row)}>Delete</Button>
                                 </Box>
                             </TableCell>
                         </TableRow>
@@ -108,6 +107,7 @@ function PostsTable({ rows, onEdit, onDelete }) {
 function ManagePosts() {
     const navigate = useNavigate();
     const { currentUser } = useAuth();
+
     const [tab, setTab] = React.useState(0);
     const [lostPosts, setLostPosts] = React.useState(initialLostPosts);
     const [foundPosts, setFoundPosts] = React.useState(initialFoundPosts);
@@ -122,6 +122,11 @@ function ManagePosts() {
             navigate('/dashboard', { replace: true });
         }
     }, [currentUser, navigate]);
+
+    const textColor = '#1A1D1F';
+    const subTextColor = '#6F767E';
+    const cardBg = '#ffffff';
+    const cardBorder = 'rgba(0, 0, 0, 0.08)';
 
     const allRows = [...lostPosts, ...foundPosts, ...forumPosts];
     const stats = {
@@ -154,43 +159,26 @@ function ManagePosts() {
     };
 
     const statCards = [
-        { label: 'Total Posts', value: stats.total, icon: <ArticleIcon sx={{ color: '#1976d2' }} />, color: '#1976d2' },
-        { label: 'Active Posts', value: stats.active, icon: <CheckCircleIcon sx={{ color: '#4caf50' }} />, color: '#4caf50' },
-        { label: 'Resolved Posts', value: stats.resolved, icon: <CheckCircleIcon sx={{ color: '#9c27b0' }} />, color: '#9c27b0' },
-        { label: 'Flagged Posts', value: stats.flagged, icon: <FlagIcon sx={{ color: '#f44336' }} />, color: '#f44336' },
+        { label: 'Total Posts', value: stats.total, icon: <ArticleIcon sx={{ color: '#1976d2', fontSize: 32 }} />, color: '#1976d2' },
+        { label: 'Active Posts', value: stats.active, icon: <CheckCircleIcon sx={{ color: '#4caf50', fontSize: 32 }} />, color: '#4caf50' },
+        { label: 'Resolved Posts', value: stats.resolved, icon: <CheckCircleIcon sx={{ color: '#9c27b0', fontSize: 32 }} />, color: '#9c27b0' },
+        { label: 'Flagged Posts', value: stats.flagged, icon: <FlagIcon sx={{ color: '#f44336', fontSize: 32 }} />, color: '#f44336' },
     ];
 
     return (
         <AfterLoginLayout pageTitle="Manage All Posts">
-            <Box className="manage-posts-root">
-            <Box className="manage-posts-hero">
-                <Container maxWidth="lg">
-                    <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                            <AdminPanelSettingsIcon sx={{ fontSize: 40, color: '#7c3aed' }} />
-                            <Box>
-                                <Typography variant="h4" className="manage-posts-hero-title">Manage All Posts</Typography>
-                                <Typography variant="body1" className="manage-posts-hero-subtitle">
-                                    Review, edit, and moderate all community posts.
-                                </Typography>
-                            </Box>
-                        </Box>
-                    </motion.div>
-                </Container>
-            </Box>
-
-            <Container maxWidth="lg" sx={{ py: 5 }}>
+            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 1, sm: 2 } }}>
                 {/* Stats Cards */}
                 <Grid container spacing={3} sx={{ mb: 4 }}>
                     {statCards.map((stat, i) => (
                         <Grid item xs={6} md={3} key={stat.label}>
-                            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: i * 0.08 }}>
-                                <Card className="manage-posts-stat-card" elevation={2}>
+                            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: i * 0.06 }}>
+                                <Card sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '20px' }} elevation={0}>
                                     <CardContent sx={{ p: 2.5, display: 'flex', alignItems: 'center', gap: 2 }}>
                                         {stat.icon}
                                         <Box>
-                                            <Typography variant="h5" fontWeight={700} sx={{ color: stat.color }}>{stat.value}</Typography>
-                                            <Typography variant="caption" color="text.secondary">{stat.label}</Typography>
+                                            <Typography variant="h4" fontWeight={800} sx={{ color: stat.color }}>{stat.value}</Typography>
+                                            <Typography variant="caption" sx={{ color: subTextColor, fontWeight: 600 }}>{stat.label}</Typography>
                                         </Box>
                                     </CardContent>
                                 </Card>
@@ -199,35 +187,74 @@ function ManagePosts() {
                     ))}
                 </Grid>
 
-                {/* Table Card */}
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.3 }}>
-                    <Card className="manage-posts-table-card" elevation={3}>
+                {/* Table Card with Explicit Dark/Light Text Styling */}
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2 }}>
+                    <Card sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px' }} elevation={0}>
                         <CardContent sx={{ p: 3 }}>
-                            <Tabs value={tab} onChange={(_, v) => setTab(v)} sx={{ mb: 3, borderBottom: 1, borderColor: 'divider' }}>
-                                <Tab label="Lost Items" />
-                                <Tab label="Found Items" />
-                                <Tab label="Forum Posts" />
+                            <Tabs
+                                value={tab}
+                                onChange={(_, v) => setTab(v)}
+                                sx={{
+                                    mb: 3,
+                                    borderBottom: 1,
+                                    borderColor: cardBorder,
+                                    '& .MuiTab-root': {
+                                        color: subTextColor,
+                                        fontWeight: 700,
+                                        textTransform: 'none',
+                                        fontSize: '0.95rem',
+                                        '&.Mui-selected': { color: textColor },
+                                    },
+                                }}
+                            >
+                                <Tab label="Lost Items Reports" />
+                                <Tab label="Found Items Reports" />
+                                <Tab label="Community Forum Posts" />
                             </Tabs>
-                            <PostsTable rows={currentRows} onEdit={handleEdit} onDelete={handleDelete} />
+                            <PostsTable
+                                rows={currentRows}
+                                onEdit={handleEdit}
+                                onDelete={handleDelete}
+                                textColor={textColor}
+                                subTextColor={subTextColor}
+                                cardBorder={cardBorder}
+                            />
                         </CardContent>
                     </Card>
                 </motion.div>
             </Container>
 
             {/* Edit Dialog */}
-            <Dialog open={!!editTarget} onClose={() => setEditTarget(null)} maxWidth="sm" fullWidth>
-                <DialogTitle sx={{ fontWeight: 700 }}>Edit Post</DialogTitle>
+            <Dialog
+                open={!!editTarget}
+                onClose={() => setEditTarget(null)}
+                maxWidth="sm"
+                fullWidth
+                PaperProps={{
+                    sx: {
+                        borderRadius: '24px',
+                        backgroundColor: cardBg,
+                        color: textColor,
+                        border: `1px solid ${cardBorder}`,
+                    },
+                }}
+            >
+                <DialogTitle sx={{ fontWeight: 700, color: textColor }}>Edit Post Moderation</DialogTitle>
                 <DialogContent>
                     {editSuccess ? (
-                        <Box sx={{ py: 3, textAlign: 'center' }}>
-                            <Typography variant="h6" color="success.main">✅ Post updated successfully!</Typography>
+                        <Box sx={{ py: 4, textAlign: 'center' }}>
+                            <Typography variant="h6" color="success.main" fontWeight={700}>✅ Post updated successfully!</Typography>
                         </Box>
                     ) : (
-                        <Box component="form" id="edit-post-form" onSubmit={handleSubmit(handleEditSubmit)} sx={{ pt: 1 }}>
+                        <Box component="form" id="edit-post-form" onSubmit={handleSubmit(handleEditSubmit)} sx={{ pt: 1, spaceY: 2 }}>
                             <TextField
                                 label="Title"
                                 fullWidth
-                                sx={{ mb: 2 }}
+                                sx={{
+                                    mb: 2,
+                                    '& .MuiOutlinedInput-root': { '& input': { color: textColor } },
+                                    '& .MuiInputLabel-root': { color: subTextColor },
+                                }}
                                 {...register('title', { required: 'Title is required' })}
                                 error={!!errors.title}
                                 helperText={errors.title?.message}
@@ -236,7 +263,11 @@ function ManagePosts() {
                                 select
                                 label="Category"
                                 fullWidth
-                                sx={{ mb: 2 }}
+                                sx={{
+                                    mb: 2,
+                                    '& .MuiSelect-select': { color: textColor },
+                                    '& .MuiInputLabel-root': { color: subTextColor },
+                                }}
                                 defaultValue={editTarget?.category || ''}
                                 {...register('category', { required: 'Category is required' })}
                                 error={!!errors.category}
@@ -249,6 +280,10 @@ function ManagePosts() {
                                 label="Status"
                                 fullWidth
                                 defaultValue={editTarget?.status || 'Active'}
+                                sx={{
+                                    '& .MuiSelect-select': { color: textColor },
+                                    '& .MuiInputLabel-root': { color: subTextColor },
+                                }}
                                 {...register('status')}
                             >
                                 {['Active', 'Resolved', 'Flagged'].map((s) => <MenuItem key={s} value={s}>{s}</MenuItem>)}
@@ -257,27 +292,42 @@ function ManagePosts() {
                     )}
                 </DialogContent>
                 {!editSuccess && (
-                    <DialogActions sx={{ p: 2, gap: 1 }}>
-                        <Button onClick={() => setEditTarget(null)} variant="outlined">Cancel</Button>
-                        <Button type="submit" form="edit-post-form" variant="contained" sx={{ fontWeight: 600 }}>Save Changes</Button>
+                    <DialogActions sx={{ p: 2.5, gap: 1 }}>
+                        <Button onClick={() => setEditTarget(null)} variant="outlined" sx={{ borderRadius: '12px' }}>Cancel</Button>
+                        <Button type="submit" form="edit-post-form" variant="contained" color="primary" sx={{ fontWeight: 700, borderRadius: '12px' }}>Save Changes</Button>
                     </DialogActions>
                 )}
             </Dialog>
 
             {/* Delete Confirmation Dialog */}
-            <Dialog open={!!deleteTarget} onClose={() => setDeleteTarget(null)} maxWidth="xs" fullWidth>
-                <DialogTitle sx={{ fontWeight: 700 }}>Confirm Delete</DialogTitle>
+            <Dialog
+                open={!!deleteTarget}
+                onClose={() => setDeleteTarget(null)}
+                maxWidth="xs"
+                fullWidth
+                PaperProps={{
+                    sx: {
+                        borderRadius: '24px',
+                        backgroundColor: cardBg,
+                        color: textColor,
+                        border: `1px solid ${cardBorder}`,
+                    },
+                }}
+            >
+                <DialogTitle sx={{ fontWeight: 700, color: textColor }}>Confirm Post Deletion</DialogTitle>
                 <DialogContent>
-                    <Typography>Are you sure you want to delete <strong>"{deleteTarget?.title}"</strong>? This action cannot be undone.</Typography>
+                    <Typography sx={{ color: textColor }}>
+                        Are you sure you want to delete post <strong>"{deleteTarget?.title}"</strong>? This action cannot be undone.
+                    </Typography>
                 </DialogContent>
-                <DialogActions sx={{ p: 2, gap: 1 }}>
-                    <Button onClick={() => setDeleteTarget(null)} variant="outlined">Cancel</Button>
-                    <Button onClick={confirmDelete} variant="contained" color="error" sx={{ fontWeight: 600 }}>Delete</Button>
+                <DialogActions sx={{ p: 2.5, gap: 1 }}>
+                    <Button onClick={() => setDeleteTarget(null)} variant="outlined" sx={{ borderRadius: '12px' }}>Cancel</Button>
+                    <Button onClick={confirmDelete} variant="contained" color="error" sx={{ fontWeight: 700, borderRadius: '12px' }}>Delete</Button>
                 </DialogActions>
             </Dialog>
-        </Box>
         </AfterLoginLayout>
     );
 }
 
 export default ManagePosts;
+

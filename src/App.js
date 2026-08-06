@@ -15,15 +15,24 @@ function MainLayout() {
 	const { mode } = useThemeContext();
 	const { currentUser } = useAuth();
 	const location = useLocation();
-	const theme = mode === 'light' ? lightTheme : darkTheme;
-	const modeClass = mode === 'light' ? 'light-mode' : 'dark-mode';
 
-	// Check if we are in AfterLogin / Dashboard view to render Stitch full UI layout
+	// Check if we are in AfterLogin / Dashboard view
 	const isAfterLoginView = Boolean(
 		currentUser ||
 		location.pathname.startsWith('/dashboard') ||
+		location.pathname.startsWith('/search-lost') ||
+		location.pathname.startsWith('/search-found') ||
+		location.pathname.startsWith('/forum') ||
+		location.pathname.startsWith('/contact') ||
+		location.pathname.startsWith('/report-lost') ||
+		location.pathname.startsWith('/report-found') ||
 		location.pathname.startsWith('/admin')
 	);
+
+	// AfterLogin screens take light theme as default; BeforeLogin screens retain ThemeContext mode
+	const activeMode = isAfterLoginView ? 'light' : mode;
+	const theme = activeMode === 'light' ? lightTheme : darkTheme;
+	const modeClass = activeMode === 'light' ? 'light-mode' : 'dark-mode';
 
 	return (
 		<ThemeProvider theme={theme}>

@@ -26,15 +26,24 @@ export const darkTheme = createTheme({
             main: '#FF9900',
         },
         background: {
-            default: '#030014',
-            paper: '#0a0a2e',
+            default: '#121316',
+            paper: '#1F2128',
         },
         text: {
-            primary: '#ffffff',
-            secondary: 'rgba(255,255,255,0.7)',
+            primary: '#F4F5F6',
+            secondary: '#9A9FA5',
         },
     },
     typography: sharedTypography,
+    components: {
+        MuiTableCell: {
+            styleOverrides: {
+                root: {
+                    color: '#F4F5F6',
+                },
+            },
+        },
+    },
 });
 
 export const lightTheme = createTheme({
@@ -51,11 +60,20 @@ export const lightTheme = createTheme({
             paper: '#ffffff',
         },
         text: {
-            primary: '#1a1a2e',
-            secondary: '#555555',
+            primary: '#1A1D1F',
+            secondary: '#6F767E',
         },
     },
     typography: sharedTypography,
+    components: {
+        MuiTableCell: {
+            styleOverrides: {
+                root: {
+                    color: '#1A1D1F',
+                },
+            },
+        },
+    },
 });
 
 // Default export kept for backward compatibility

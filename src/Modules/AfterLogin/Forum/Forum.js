@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AfterLoginLayout from '../../../AfterLoginComponents/AfterLoginLayout';
 import {
     Box,
@@ -13,13 +13,16 @@ import {
     DialogContent,
     DialogActions,
     TextField,
+    MenuItem,
     Avatar,
     Divider,
 } from '@mui/material';
-import ForumIcon from '@mui/icons-material/Forum';
 import AddIcon from '@mui/icons-material/Add';
+import SendIcon from '@mui/icons-material/Send';
+import CommentIcon from '@mui/icons-material/Comment';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
+import { useAuth } from '../../../context/AuthContext';
 import './Forum.css';
 
 const fadeInUp = {
@@ -27,7 +30,7 @@ const fadeInUp = {
     visible: (i) => ({
         opacity: 1,
         y: 0,
-        transition: { duration: 0.4, delay: i * 0.08, ease: 'easeOut' },
+        transition: { duration: 0.4, delay: i * 0.06, ease: 'easeOut' },
     }),
 };
 
@@ -39,7 +42,7 @@ const CATEGORY_COLORS = {
     'Found': 'warning',
 };
 
-const threads = [
+const initialThreads = [
     {
         id: 1,
         title: 'Tips for Finding Lost Items in Public Places',
@@ -127,147 +130,296 @@ const threads = [
 ];
 
 function Forum() {
-    const [selectedThread, setSelectedThread] = React.useState(null);
-    const [newPostOpen, setNewPostOpen] = React.useState(false);
-    const [postSuccess, setPostSuccess] = React.useState(false);
+    const { currentUser } = useAuth();
+
+    const [threads, setThreads] = useState(initialThreads);
+    const [selectedThread, setSelectedThread] = useState(null);
+    const [newPostOpen, setNewPostOpen] = useState(false);
+    const [postSuccess, setPostSuccess] = useState(false);
+    const [replyText, setReplyText] = useState('');
+
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const onSubmitPost = () => {
+    const textColor = '#1A1D1F';
+    const subTextColor = '#6F767E';
+    const cardBg = '#ffffff';
+    const cardBorder = 'rgba(0, 0, 0, 0.08)';
+
+    const onSubmitPost = (data) => {
+        const newThread = {
+            id: Date.now(),
+            title: data.postTitle,
+            category: data.postCategory || 'General',
+            author: currentUser?.displayName || 'Community Scout',
+            date: new Date().toISOString().split('T')[0],
+            replies: 0,
+            content: data.postContent,
+            replyList: [],
+        };
+        setThreads([newThread, ...threads]);
         setPostSuccess(true);
         reset();
         setTimeout(() => {
             setNewPostOpen(false);
             setPostSuccess(false);
-        }, 2000);
+        }, 1500);
+    };
+
+    const handleAddReply = () => {
+        if (!replyText.trim() || !selectedThread) return;
+        const newReply = {
+            author: currentUser?.displayName || 'Community Scout',
+            date: 'Just now',
+            text: replyText.trim(),
+        };
+
+        const updatedThread = {
+            ...selectedThread,
+            replies: selectedThread.replies + 1,
+            replyList: [...selectedThread.replyList, newReply],
+        };
+
+        setSelectedThread(updatedThread);
+        setThreads(threads.map(t => t.id === updatedThread.id ? updatedThread : t));
+        setReplyText('');
     };
 
     return (
         <AfterLoginLayout pageTitle="Community Forum">
-            <Box className="forum-root">
-            <Box className="forum-hero">
-                <Container maxWidth="lg">
-                    <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 2 }}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                                <ForumIcon sx={{ fontSize: 40, color: '#9c27b0' }} />
-                                <Box>
-                                    <Typography variant="h4" className="forum-hero-title">Community Forum</Typography>
-                                    <Typography variant="body1" className="forum-hero-subtitle">
-                                        Connect, share tips, and celebrate reunions with the community.
-                                    </Typography>
-                                </Box>
-                            </Box>
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                startIcon={<AddIcon />}
-                                onClick={() => setNewPostOpen(true)}
-                                sx={{ fontWeight: 600 }}
-                            >
-                                New Post
-                            </Button>
-                        </Box>
-                    </motion.div>
-                </Container>
-            </Box>
+            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 1, sm: 2 } }}>
+                {/* Header Action Bar */}
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3, flexWrap: 'wrap', gap: 2 }}>
+                    <Typography variant="h6" fontWeight={700} sx={{ color: textColor }}>
+                        Recent Community Discussions
+                    </Typography>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        startIcon={<AddIcon />}
+                        onClick={() => setNewPostOpen(true)}
+                        sx={{ fontWeight: 700, borderRadius: '14px', textTransform: 'none', px: 3, py: 1 }}
+                    >
+                        Create New Post
+                    </Button>
+                </Box>
 
-            <Container maxWidth="lg" sx={{ py: 5 }}>
-                <Typography variant="h6" className="forum-section-title">Recent Discussions</Typography>
-                {threads.map((thread, i) => (
-                    <motion.div key={thread.id} custom={i} initial="hidden" animate="visible" variants={fadeInUp}>
-                        <Card className="forum-thread-card" elevation={2} onClick={() => setSelectedThread(thread)}>
-                            <CardContent sx={{ p: 3 }}>
-                                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 1 }}>
-                                    <Box sx={{ flex: 1 }}>
-                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                                            <Chip label={thread.category} color={CATEGORY_COLORS[thread.category]} size="small" />
-                                        </Box>
-                                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a1a2e', mb: 0.5 }}>
-                                            {thread.title}
-                                        </Typography>
-                                        <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-                                            <Typography variant="caption" color="text.secondary">
-                                                By <strong>{thread.author}</strong>
+                {/* Thread Cards List */}
+                <Box sx={{ spaceY: 2 }}>
+                    {threads.map((thread, i) => (
+                        <motion.div key={thread.id} custom={i} initial="hidden" animate="visible" variants={fadeInUp}>
+                            <Card
+                                elevation={0}
+                                sx={{
+                                    mb: 2,
+                                    borderRadius: '20px',
+                                    backgroundColor: cardBg,
+                                    border: `1px solid ${cardBorder}`,
+                                    cursor: 'pointer',
+                                    transition: 'all 0.25 ease',
+                                    '&:hover': {
+                                        borderColor: '#9c27b0',
+                                        transform: 'translateY(-2px)',
+                                        boxShadow: '0 8px 24px rgba(156,39,176,0.1)',
+                                    },
+                                }}
+                                onClick={() => setSelectedThread(thread)}
+                            >
+                                <CardContent sx={{ p: 3 }}>
+                                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 1 }}>
+                                        <Box sx={{ flex: 1 }}>
+                                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                                                <Chip label={thread.category} color={CATEGORY_COLORS[thread.category] || 'default'} size="small" sx={{ fontWeight: 700, borderRadius: '8px' }} />
+                                            </Box>
+                                            <Typography variant="h6" sx={{ fontWeight: 700, color: textColor, mb: 1, fontSize: '1.1rem' }}>
+                                                {thread.title}
                                             </Typography>
-                                            <Typography variant="caption" color="text.secondary">{thread.date}</Typography>
-                                            <Typography variant="caption" color="text.secondary">💬 {thread.replies} replies</Typography>
+                                            <Box sx={{ display: 'flex', gap: 2.5, flexWrap: 'wrap', alignItems: 'center' }}>
+                                                <Typography variant="caption" sx={{ color: subTextColor }}>
+                                                    Posted by <strong style={{ color: textColor }}>{thread.author}</strong>
+                                                </Typography>
+                                                <Typography variant="caption" sx={{ color: subTextColor }}>{thread.date}</Typography>
+                                                <Typography variant="caption" sx={{ color: '#9c27b0', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                                                    <CommentIcon sx={{ fontSize: 14 }} /> {thread.replies} replies
+                                                </Typography>
+                                            </Box>
                                         </Box>
                                     </Box>
-                                </Box>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
-                ))}
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    ))}
+                </Box>
             </Container>
 
-            {/* Thread Detail Dialog */}
-            <Dialog open={!!selectedThread} onClose={() => setSelectedThread(null)} maxWidth="md" fullWidth>
+            {/* Thread Detail Modal Dialog (Fixed Text Contrast) */}
+            <Dialog
+                open={!!selectedThread}
+                onClose={() => setSelectedThread(null)}
+                maxWidth="md"
+                fullWidth
+                PaperProps={{
+                    sx: {
+                        borderRadius: '24px',
+                        backgroundColor: cardBg,
+                        color: textColor,
+                        border: `1px solid ${cardBorder}`,
+                        p: 1,
+                    },
+                }}
+            >
                 {selectedThread && (
                     <>
                         <DialogTitle>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
-                                <Chip label={selectedThread.category} color={CATEGORY_COLORS[selectedThread.category]} size="small" />
-                                <Typography variant="h6" fontWeight={700}>{selectedThread.title}</Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
+                                <Chip label={selectedThread.category} color={CATEGORY_COLORS[selectedThread.category] || 'default'} size="small" sx={{ fontWeight: 700 }} />
+                                <Typography variant="h6" fontWeight={700} sx={{ color: textColor }}>{selectedThread.title}</Typography>
                             </Box>
                         </DialogTitle>
-                        <DialogContent>
+                        <DialogContent dividers sx={{ borderColor: cardBorder }}>
+                            {/* Author Info & Main Content */}
                             <Box sx={{ mb: 3 }}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                                    <Avatar sx={{ width: 32, height: 32, bgcolor: 'secondary.main', fontSize: '0.9rem' }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
+                                    <Avatar sx={{ width: 36, height: 36, bgcolor: '#9c27b0', fontWeight: 700, fontSize: '1rem' }}>
                                         {selectedThread.author[0].toUpperCase()}
                                     </Avatar>
-                                    <Typography variant="body2" fontWeight={600}>{selectedThread.author}</Typography>
-                                    <Typography variant="caption" color="text.secondary">{selectedThread.date}</Typography>
-                                </Box>
-                                <Typography variant="body1" sx={{ lineHeight: 1.7 }}>{selectedThread.content}</Typography>
-                            </Box>
-                            <Divider sx={{ mb: 2 }} />
-                            <Typography variant="subtitle2" fontWeight={600} sx={{ mb: 1.5 }}>
-                                Replies ({selectedThread.replyList.length})
-                            </Typography>
-                            {selectedThread.replyList.map((reply, idx) => (
-                                <Box key={idx} className="forum-reply-card">
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-                                        <Avatar sx={{ width: 28, height: 28, bgcolor: 'primary.main', fontSize: '0.8rem' }}>
-                                            {reply.author[0].toUpperCase()}
-                                        </Avatar>
-                                        <Typography variant="body2" fontWeight={600}>{reply.author}</Typography>
-                                        <Typography variant="caption" color="text.secondary">{reply.date}</Typography>
+                                    <Box>
+                                        <Typography variant="body2" fontWeight={700} sx={{ color: textColor }}>{selectedThread.author}</Typography>
+                                        <Typography variant="caption" sx={{ color: subTextColor }}>{selectedThread.date}</Typography>
                                     </Box>
-                                    <Typography variant="body2" sx={{ pl: 4.5 }}>{reply.text}</Typography>
                                 </Box>
-                            ))}
+                                <Typography variant="body1" sx={{ color: textColor, lineHeight: 1.8, fontSize: '0.95rem' }}>
+                                    {selectedThread.content}
+                                </Typography>
+                            </Box>
+
+                            <Divider sx={{ my: 2.5, borderColor: cardBorder }} />
+
+                            {/* Replies List */}
+                            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: textColor }}>
+                                Discussion Replies ({selectedThread.replyList.length})
+                            </Typography>
+
+                            <Box sx={{ spaceY: 2, mb: 3 }}>
+                                {selectedThread.replyList.map((reply, idx) => (
+                                    <Box
+                                        key={idx}
+                                        sx={{
+                                            p: 2,
+                                            mb: 1.5,
+                                            borderRadius: '16px',
+                                            backgroundColor: '#F4F5F6',
+                                            border: `1px solid ${cardBorder}`,
+                                        }}
+                                    >
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                            <Avatar sx={{ width: 26, height: 26, bgcolor: '#1976d2', fontSize: '0.75rem', fontWeight: 700 }}>
+                                                {reply.author[0].toUpperCase()}
+                                            </Avatar>
+                                            <Typography variant="body2" fontWeight={700} sx={{ color: textColor }}>{reply.author}</Typography>
+                                            <Typography variant="caption" sx={{ color: subTextColor }}>• {reply.date}</Typography>
+                                        </Box>
+                                        <Typography variant="body2" sx={{ pl: 4.5, color: textColor, lineHeight: 1.5 }}>
+                                            {reply.text}
+                                        </Typography>
+                                    </Box>
+                                ))}
+                            </Box>
+
+                            {/* Reply Input Field */}
+                            <Box sx={{ display: 'flex', gap: 1.5, mt: 2 }}>
+                                <TextField
+                                    fullWidth
+                                    size="small"
+                                    placeholder="Write a comment..."
+                                    value={replyText}
+                                    onChange={(e) => setReplyText(e.target.value)}
+                                    onKeyDown={(e) => e.key === 'Enter' && handleAddReply()}
+                                    sx={{
+                                        '& .MuiOutlinedInput-root': {
+                                            borderRadius: '16px',
+                                            backgroundColor: '#ffffff',
+                                            '& input': { color: textColor, fontSize: '0.85rem' },
+                                        },
+                                    }}
+                                />
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    onClick={handleAddReply}
+                                    disabled={!replyText.trim()}
+                                    sx={{ borderRadius: '16px', px: 2.5, minWidth: 'auto' }}
+                                >
+                                    <SendIcon fontSize="small" />
+                                </Button>
+                            </Box>
                         </DialogContent>
                         <DialogActions sx={{ p: 2 }}>
-                            <Button onClick={() => setSelectedThread(null)} variant="outlined">Close</Button>
+                            <Button onClick={() => setSelectedThread(null)} variant="outlined" sx={{ borderRadius: '12px' }}>Close</Button>
                         </DialogActions>
                     </>
                 )}
             </Dialog>
 
             {/* New Post Dialog */}
-            <Dialog open={newPostOpen} onClose={() => { setNewPostOpen(false); setPostSuccess(false); reset(); }} maxWidth="sm" fullWidth>
-                <DialogTitle sx={{ fontWeight: 700 }}>Create New Post</DialogTitle>
+            <Dialog
+                open={newPostOpen}
+                onClose={() => { setNewPostOpen(false); setPostSuccess(false); reset(); }}
+                maxWidth="sm"
+                fullWidth
+                PaperProps={{
+                    sx: {
+                        borderRadius: '24px',
+                        backgroundColor: cardBg,
+                        color: textColor,
+                        border: `1px solid ${cardBorder}`,
+                    },
+                }}
+            >
+                <DialogTitle sx={{ fontWeight: 700, color: textColor }}>Create Community Post</DialogTitle>
                 <DialogContent>
                     {postSuccess ? (
-                        <Box sx={{ py: 3, textAlign: 'center' }}>
-                            <Typography variant="h6" color="success.main">✅ Post published successfully!</Typography>
+                        <Box sx={{ py: 4, textAlign: 'center' }}>
+                            <Typography variant="h6" color="success.main" fontWeight={700}>✅ Post published successfully!</Typography>
                         </Box>
                     ) : (
-                        <Box component="form" id="new-post-form" onSubmit={handleSubmit(onSubmitPost)} sx={{ pt: 1 }}>
+                        <Box component="form" id="new-post-form" onSubmit={handleSubmit(onSubmitPost)} sx={{ pt: 1, spaceY: 2 }}>
                             <TextField
                                 label="Post Title"
                                 fullWidth
-                                sx={{ mb: 2 }}
+                                sx={{
+                                    mb: 2,
+                                    '& .MuiOutlinedInput-root': { '& input': { color: textColor } },
+                                    '& .MuiInputLabel-root': { color: subTextColor },
+                                }}
                                 {...register('postTitle', { required: 'Title is required' })}
                                 error={!!errors.postTitle}
                                 helperText={errors.postTitle?.message}
                             />
                             <TextField
+                                select
+                                label="Category"
+                                fullWidth
+                                defaultValue="General"
+                                sx={{
+                                    mb: 2,
+                                    '& .MuiSelect-select': { color: textColor },
+                                    '& .MuiInputLabel-root': { color: subTextColor },
+                                }}
+                                {...register('postCategory')}
+                            >
+                                {Object.keys(CATEGORY_COLORS).map((c) => (
+                                    <MenuItem key={c} value={c}>{c}</MenuItem>
+                                ))}
+                            </TextField>
+                            <TextField
                                 label="Content"
                                 fullWidth
                                 multiline
-                                rows={5}
+                                rows={4}
+                                sx={{
+                                    '& .MuiOutlinedInput-root': { '& textarea': { color: textColor } },
+                                    '& .MuiInputLabel-root': { color: subTextColor },
+                                }}
                                 {...register('postContent', { required: 'Content is required' })}
                                 error={!!errors.postContent}
                                 helperText={errors.postContent?.message}
@@ -276,15 +428,15 @@ function Forum() {
                     )}
                 </DialogContent>
                 {!postSuccess && (
-                    <DialogActions sx={{ p: 2, gap: 1 }}>
-                        <Button onClick={() => { setNewPostOpen(false); reset(); }} variant="outlined">Cancel</Button>
-                        <Button type="submit" form="new-post-form" variant="contained" color="secondary" sx={{ fontWeight: 600 }}>Publish</Button>
+                    <DialogActions sx={{ p: 2.5, gap: 1 }}>
+                        <Button onClick={() => { setNewPostOpen(false); reset(); }} variant="outlined" sx={{ borderRadius: '12px' }}>Cancel</Button>
+                        <Button type="submit" form="new-post-form" variant="contained" color="secondary" sx={{ fontWeight: 700, borderRadius: '12px' }}>Publish Post</Button>
                     </DialogActions>
                 )}
             </Dialog>
-        </Box>
         </AfterLoginLayout>
     );
 }
 
 export default Forum;
+

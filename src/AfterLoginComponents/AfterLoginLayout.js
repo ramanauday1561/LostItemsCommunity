@@ -26,8 +26,8 @@ function AfterLoginLayout({ children, pageTitle = "Dashboard" }) {
     };
 
     return (
-        <div className="bg-[#EFEFEF] min-h-screen text-[#1A1D1F] font-sans antialiased selection:bg-black selection:text-white p-2 sm:p-4 md:p-6">
-            <div className="max-w-[1536px] mx-auto bg-[#F4F5F6] rounded-3xl sm:rounded-[36px] border border-black/5 shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[92vh]">
+        <div className="min-h-screen font-sans antialiased selection:bg-black selection:text-white p-2 sm:p-4 md:p-6 bg-[#EFEFEF] text-[#1A1D1F]">
+            <div className="max-w-[1536px] mx-auto rounded-3xl sm:rounded-[36px] shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[92vh] border bg-[#F4F5F6] border-black/5">
                 
                 {/* Reusable Sidebar */}
                 <AfterLoginSidebar
@@ -36,7 +36,7 @@ function AfterLoginLayout({ children, pageTitle = "Dashboard" }) {
                 />
 
                 {/* Main Content Area */}
-                <div className="flex-1 flex flex-col p-4 sm:p-6 md:p-8 bg-[#FCFCFC] rounded-2xl md:rounded-l-[32px] md:rounded-r-none border-l border-black/5">
+                <div className="flex-1 flex flex-col p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-l-[32px] md:rounded-r-none border-l bg-[#FCFCFC] border-black/5">
                     {/* Reusable Header */}
                     <AfterLoginHeader
                         toggleSidebar={toggleSidebar}
@@ -73,3 +73,4 @@ function AfterLoginLayout({ children, pageTitle = "Dashboard" }) {
 }
 
 export default AfterLoginLayout;
+

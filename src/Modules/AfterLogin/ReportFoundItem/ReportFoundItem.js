@@ -98,93 +98,110 @@ function ReportFoundItem() {
                             )}
                             <Box component="form" onSubmit={handleSubmit(onSubmit)}>
                                 <Grid container spacing={3}>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            label="Item Title"
-                                            fullWidth
-                                            {...register('title', { required: 'Item title is required' })}
-                                            error={!!errors.title}
-                                            helperText={errors.title?.message}
-                                            sx={FIELD_SX}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            select
-                                            label="Category"
-                                            fullWidth
-                                            defaultValue=""
-                                            {...register('category', { required: 'Category is required' })}
-                                            error={!!errors.category}
-                                            helperText={errors.category?.message}
-                                            sx={FIELD_SX}
-                                        >
-                                            {CATEGORIES.map((cat) => (
-                                                <MenuItem key={cat} value={cat}>{cat}</MenuItem>
-                                            ))}
-                                        </TextField>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            label="Description"
-                                            fullWidth
-                                            multiline
-                                            rows={3}
-                                            {...register('description', { required: 'Description is required' })}
-                                            error={!!errors.description}
-                                            helperText={errors.description?.message}
-                                            sx={FIELD_SX}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            label="Found Location"
-                                            fullWidth
-                                            {...register('location', { required: 'Location is required' })}
-                                            error={!!errors.location}
-                                            helperText={errors.location?.message}
-                                            sx={FIELD_SX}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            label="Date Found"
-                                            type="date"
-                                            fullWidth
-                                            InputLabelProps={{ shrink: true }}
-                                            {...register('dateFound', { required: 'Date is required' })}
-                                            error={!!errors.dateFound}
-                                            helperText={errors.dateFound?.message}
-                                            sx={FIELD_SX}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            label="Contact Email"
-                                            type="email"
-                                            fullWidth
-                                            defaultValue={currentUser?.email || ''}
-                                            {...register('contactEmail', { required: 'Email is required' })}
-                                            error={!!errors.contactEmail}
-                                            helperText={errors.contactEmail?.message}
-                                            sx={FIELD_SX}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            label="Contact Phone"
-                                            fullWidth
-                                            {...register('contactPhone')}
-                                            sx={FIELD_SX}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <Button type="submit" variant="contained" color="success" size="large" sx={{ fontWeight: 600 }}>
-                                            Submit Report
-                                        </Button>
-                                    </Grid>
-                                </Grid>
-                            </Box>
+                                     <Grid item xs={12} sm={6}>
+                                         <TextField
+                                             label="Item Title *"
+                                             fullWidth
+                                             {...register('title', { required: 'Item title is required' })}
+                                             error={!!errors.title}
+                                             helperText={errors.title?.message}
+                                             sx={FIELD_SX}
+                                         />
+                                     </Grid>
+                                     <Grid item xs={12} sm={6}>
+                                         <TextField
+                                             select
+                                             label="Category *"
+                                             fullWidth
+                                             defaultValue=""
+                                             {...register('category', { required: 'Category is required' })}
+                                             error={!!errors.category}
+                                             helperText={errors.category?.message}
+                                             sx={FIELD_SX}
+                                         >
+                                             {CATEGORIES.map((cat) => (
+                                                 <MenuItem key={cat} value={cat}>{cat}</MenuItem>
+                                             ))}
+                                         </TextField>
+                                     </Grid>
+                                     <Grid item xs={12}>
+                                         <TextField
+                                             label="Description"
+                                             fullWidth
+                                             multiline
+                                             rows={3}
+                                             {...register('description', { required: 'Description is required' })}
+                                             error={!!errors.description}
+                                             helperText={errors.description?.message}
+                                             sx={FIELD_SX}
+                                         />
+                                     </Grid>
+                                     <Grid item xs={12} sm={6}>
+                                         <TextField
+                                             label="Found Map Location *"
+                                             fullWidth
+                                             placeholder="e.g. 5th Ave & 42nd St"
+                                             {...register('location', { required: 'Map location is required' })}
+                                             error={!!errors.location}
+                                             helperText={errors.location?.message}
+                                             sx={FIELD_SX}
+                                         />
+                                     </Grid>
+                                     <Grid item xs={12} sm={6}>
+                                         <TextField
+                                             label="Date Found *"
+                                             type="date"
+                                             fullWidth
+                                             InputLabelProps={{ shrink: true }}
+                                             {...register('dateFound', { required: 'Date is required' })}
+                                             error={!!errors.dateFound}
+                                             helperText={errors.dateFound?.message}
+                                             sx={FIELD_SX}
+                                         />
+                                     </Grid>
+                                     <Grid item xs={12}>
+                                         <Box sx={{ p: 2, border: '2 border-dashed rgba(0,0,0,0.15)', borderRadius: 3, textAlign: 'center', bgcolor: 'background.paper' }}>
+                                             <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 1 }}>Attach Product Photo (Required) *</Typography>
+                                             <input
+                                                 type="file"
+                                                 accept="image/*"
+                                                 {...register('productPhoto', { required: 'Product picture of found item is required' })}
+                                                 style={{ display: 'block', margin: '0 auto' }}
+                                             />
+                                             {errors.productPhoto && (
+                                                 <Typography variant="caption" color="error" sx={{ display: 'block', mt: 1 }}>
+                                                     {errors.productPhoto.message}
+                                                 </Typography>
+                                             )}
+                                         </Box>
+                                     </Grid>
+                                     <Grid item xs={12} sm={6}>
+                                         <TextField
+                                             label="Contact Email *"
+                                             type="email"
+                                             fullWidth
+                                             defaultValue={currentUser?.email || ''}
+                                             {...register('contactEmail', { required: 'Email is required' })}
+                                             error={!!errors.contactEmail}
+                                             helperText={errors.contactEmail?.message}
+                                             sx={FIELD_SX}
+                                         />
+                                     </Grid>
+                                     <Grid item xs={12} sm={6}>
+                                         <TextField
+                                             label="Contact Phone"
+                                             fullWidth
+                                             {...register('contactPhone')}
+                                             sx={FIELD_SX}
+                                         />
+                                     </Grid>
+                                     <Grid item xs={12}>
+                                         <Button type="submit" variant="contained" color="success" size="large" sx={{ fontWeight: 600 }}>
+                                             Submit Report
+                                         </Button>
+                                     </Grid>
+                                 </Grid>
+                             </Box>
                         </CardContent>
                     </Card>
                 </motion.div>
