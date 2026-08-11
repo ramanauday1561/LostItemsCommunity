@@ -21,21 +21,21 @@ const communityComments = [
 
 function CommunityComments() {
     return (
-        <div className="bg-[#F4F5F6] rounded-3xl p-6 space-y-5">
-            <h2 className="text-xl font-bold text-[#1A1D1F]">Comments</h2>
+        <div className="bg-[#1E212B] border border-[#262A36] rounded-3xl p-6 space-y-5">
+            <h2 className="text-xl font-extrabold text-[#F4F5F6]">Comments</h2>
 
             <div className="space-y-4">
                 {communityComments.map((comment) => (
-                    <div key={comment.id} className="flex gap-3 p-3 bg-white rounded-2xl border border-black/5">
-                        <img className="w-9 h-9 rounded-full object-cover flex-shrink-0" src={comment.avatar} alt={comment.user} />
+                    <div key={comment.id} className="flex gap-3 p-3 bg-[#14161D] rounded-2xl border border-[#262A36]">
+                        <img className="w-9 h-9 rounded-full object-cover flex-shrink-0 border border-[#38DFFF]/40" src={comment.avatar} alt={comment.user} />
                         <div className="flex-1 space-y-1">
                             <div className="flex justify-between items-baseline">
-                                <p className="text-xs font-bold text-[#1A1D1F]">
-                                    {comment.user} <span className="font-normal text-[#6F767E]">on {comment.onItem}</span>
+                                <p className="text-xs font-bold text-[#F4F5F6]">
+                                    {comment.user} <span className="font-normal text-[#38DFFF]">on {comment.onItem}</span>
                                 </p>
                                 <span className="text-[10px] text-[#9A9FA5]">{comment.time}</span>
                             </div>
-                            <p className="text-xs text-[#6F767E] leading-relaxed">{comment.text}</p>
+                            <p className="text-xs text-[#9A9FA5] leading-relaxed">{comment.text}</p>
                         </div>
                     </div>
                 ))}

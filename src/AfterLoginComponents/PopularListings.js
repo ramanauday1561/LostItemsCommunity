@@ -48,22 +48,22 @@ function PopularListings() {
     const navigate = useNavigate();
 
     return (
-        <div className="bg-[#F4F5F6] rounded-3xl p-6 space-y-5">
-            <h2 className="text-xl font-bold text-[#1A1D1F]">Popular listings</h2>
+        <div className="bg-[#1E212B] border border-[#262A36] rounded-3xl p-6 space-y-5">
+            <h2 className="text-xl font-extrabold text-[#F4F5F6]">Popular listings</h2>
 
             <div className="space-y-3.5">
                 {popularListings.map((item) => (
-                    <div key={item.id} className="flex items-center justify-between gap-3 p-2 bg-white rounded-2xl border border-black/5 hover:border-black/10 transition-all cursor-pointer">
-                        <div className="flex items-center gap-3">
+                    <div key={item.id} className="flex items-center justify-between gap-3 p-2 bg-[#14161D] rounded-2xl border border-[#262A36] hover:border-[#38DFFF]/40 transition-all cursor-pointer">
+                        <div className="flex items-center gap-3 min-w-0">
                             <img className="w-12 h-12 rounded-xl object-cover flex-shrink-0" src={item.image} alt={item.title} />
                             <div className="min-w-0">
-                                <h4 className="text-xs font-bold text-[#1A1D1F] truncate">{item.title}</h4>
-                                <span className="text-[10px] text-[#6F767E] block truncate">{item.category}</span>
+                                <h4 className="text-xs font-bold text-[#F4F5F6] truncate">{item.title}</h4>
+                                <span className="text-[10px] text-[#9A9FA5] block truncate">{item.category}</span>
                             </div>
                         </div>
                         <div className="text-right flex-shrink-0">
-                            <span className="text-xs font-bold text-[#1A1D1F] block">{item.value}</span>
-                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full inline-block mt-0.5 ${item.status === 'Active' ? 'bg-[#EAF8F0] text-[#83BF6E]' : 'bg-[#FFEBEB] text-[#FF6A55]'}`}>
+                            <span className="text-xs font-extrabold text-[#38DFFF] block">{item.value}</span>
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full inline-block mt-0.5 ${item.status === 'Active' ? 'bg-[#00FF9D]/15 text-[#00FF9D]' : 'bg-[#FF5376]/15 text-[#FF5376]'}`}>
                                 {item.status}
                             </span>
                         </div>
@@ -72,7 +72,7 @@ function PopularListings() {
             </div>
 
             <button
-                className="w-full border border-black/10 bg-white hover:bg-[#F4F5F6] text-[#1A1D1F] py-2.5 rounded-full text-xs font-bold transition-all text-center"
+                className="w-full border border-[#262A36] bg-[#14161D] hover:border-[#38DFFF]/50 text-[#F4F5F6] hover:text-[#38DFFF] py-2.5 rounded-full text-xs font-bold transition-all text-center cursor-pointer"
                 onClick={() => navigate('/search-lost')}
             >
                 All listings

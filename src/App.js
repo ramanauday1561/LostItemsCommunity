@@ -29,8 +29,8 @@ function MainLayout() {
 		location.pathname.startsWith('/admin')
 	);
 
-	// AfterLogin screens take light theme as default; BeforeLogin screens retain ThemeContext mode
-	const activeMode = isAfterLoginView ? 'light' : mode;
+	// AfterLogin screens take dark theme as default per DESIGN.md; BeforeLogin screens retain ThemeContext mode
+	const activeMode = isAfterLoginView ? 'dark' : mode;
 	const theme = activeMode === 'light' ? lightTheme : darkTheme;
 	const modeClass = activeMode === 'light' ? 'light-mode' : 'dark-mode';
 

@@ -64,7 +64,7 @@ const fadeInUp = {
 function Login() {
     const navigate = useNavigate();
     const { login } = useAuth();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const [authError, setAuthError] = React.useState('');
 
     const onSubmit = (data) => {
@@ -77,6 +77,18 @@ function Login() {
             setAuthError(result.error);
         }
     };
+
+    const handleQuickLogin = (username, password) => {
+        setValue('username', username);
+        setValue('password', password);
+        setAuthError('');
+        const result = validateCredentials(username, password);
+        if (result.success) {
+            login(result.user);
+            navigate('/dashboard');
+        }
+    };
+
 
     return (
         <Box className="LoginSignupMainContainer" sx={{ position: 'relative', overflow: 'hidden' }}>
@@ -252,6 +264,49 @@ function Login() {
                                         <Button type="submit" variant="contained" color="primary" fullWidth className="animated-button">
                                             Sign In & Continue
                                         </Button>
+                                    </motion.div>
+                                    <motion.div variants={fadeInUp}>
+                                        <Box sx={{ mt: 1.5, pt: 1.5, borderTop: '1px border-white/20', textAlign: 'center' }}>
+                                            <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)', display: 'block', mb: 1, fontWeight: 600 }}>
+                                                Quick Test Logins:
+                                            </Typography>
+                                            <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center' }}>
+                                                <Button
+                                                    size="small"
+                                                    variant="outlined"
+                                                    onClick={() => handleQuickLogin('superadmin', 'Password1!')}
+                                                    sx={{
+                                                        color: '#38DFFF',
+                                                        borderColor: 'rgba(56, 223, 255, 0.4)',
+                                                        borderRadius: '20px',
+                                                        fontSize: '0.75rem',
+                                                        textTransform: 'none',
+                                                        fontWeight: 700,
+                                                        px: 1.5,
+                                                        '&:hover': { borderColor: '#38DFFF', bgcolor: 'rgba(56, 223, 255, 0.1)' }
+                                                    }}
+                                                >
+                                                    Super Admin
+                                                </Button>
+                                                <Button
+                                                    size="small"
+                                                    variant="outlined"
+                                                    onClick={() => handleQuickLogin('user', 'Password1!')}
+                                                    sx={{
+                                                        color: '#00FF9D',
+                                                        borderColor: 'rgba(0, 255, 157, 0.4)',
+                                                        borderRadius: '20px',
+                                                        fontSize: '0.75rem',
+                                                        textTransform: 'none',
+                                                        fontWeight: 700,
+                                                        px: 1.5,
+                                                        '&:hover': { borderColor: '#00FF9D', bgcolor: 'rgba(0, 255, 157, 0.1)' }
+                                                    }}
+                                                >
+                                                    Simple User
+                                                </Button>
+                                            </Box>
+                                        </Box>
                                     </motion.div>
                                     <motion.div variants={fadeInUp}>
                                         <div className='OrSignIn'>
