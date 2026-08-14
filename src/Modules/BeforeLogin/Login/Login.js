@@ -16,6 +16,9 @@ import { motion } from 'framer-motion';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import { Link } from 'react-router-dom';
 import { validateCredentials } from '../../../utils/auth';
 import { useAuth } from '../../../context/AuthContext';
@@ -89,6 +92,26 @@ function Login() {
         }
     };
 
+    const quickLoginRoles = [
+        {
+            title: 'Super Admin',
+            subtitle: 'Manage posts, users, and moderation tools',
+            username: 'superadmin',
+            password: 'Password1!',
+            icon: <AdminPanelSettingsOutlinedIcon fontSize="small" />,
+            accent: '#38DFFF',
+            background: 'rgba(56, 223, 255, 0.12)'
+        },
+        {
+            title: 'Simple User',
+            subtitle: 'Report items, search listings, and join forums',
+            username: 'user',
+            password: 'Password1!',
+            icon: <PersonOutlineOutlinedIcon fontSize="small" />,
+            accent: '#00FF9D',
+            background: 'rgba(0, 255, 157, 0.12)'
+        }
+    ];
 
     return (
         <Box className="LoginSignupMainContainer" sx={{ position: 'relative', overflow: 'hidden' }}>
@@ -266,45 +289,45 @@ function Login() {
                                         </Button>
                                     </motion.div>
                                     <motion.div variants={fadeInUp}>
-                                        <Box sx={{ mt: 1.5, pt: 1.5, borderTop: '1px border-white/20', textAlign: 'center' }}>
-                                            <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)', display: 'block', mb: 1, fontWeight: 600 }}>
-                                                Quick Test Logins:
+                                        <Box className="QuickLoginSection">
+                                            <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)', display: 'block', fontWeight: 700 }}>
+                                                Choose a demo role
                                             </Typography>
-                                            <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center' }}>
-                                                <Button
-                                                    size="small"
-                                                    variant="outlined"
-                                                    onClick={() => handleQuickLogin('superadmin', 'Password1!')}
-                                                    sx={{
-                                                        color: '#38DFFF',
-                                                        borderColor: 'rgba(56, 223, 255, 0.4)',
-                                                        borderRadius: '20px',
-                                                        fontSize: '0.75rem',
-                                                        textTransform: 'none',
-                                                        fontWeight: 700,
-                                                        px: 1.5,
-                                                        '&:hover': { borderColor: '#38DFFF', bgcolor: 'rgba(56, 223, 255, 0.1)' }
-                                                    }}
-                                                >
-                                                    Super Admin
-                                                </Button>
-                                                <Button
-                                                    size="small"
-                                                    variant="outlined"
-                                                    onClick={() => handleQuickLogin('user', 'Password1!')}
-                                                    sx={{
-                                                        color: '#00FF9D',
-                                                        borderColor: 'rgba(0, 255, 157, 0.4)',
-                                                        borderRadius: '20px',
-                                                        fontSize: '0.75rem',
-                                                        textTransform: 'none',
-                                                        fontWeight: 700,
-                                                        px: 1.5,
-                                                        '&:hover': { borderColor: '#00FF9D', bgcolor: 'rgba(0, 255, 157, 0.1)' }
-                                                    }}
-                                                >
-                                                    Simple User
-                                                </Button>
+                                            <Box className="QuickLoginGrid">
+                                                {quickLoginRoles.map((role) => (
+                                                    <Button
+                                                        key={role.username}
+                                                        fullWidth
+                                                        onClick={() => handleQuickLogin(role.username, role.password)}
+                                                        startIcon={role.icon}
+                                                        endIcon={<ArrowForwardRoundedIcon fontSize="small" />}
+                                                        sx={{
+                                                            justifyContent: 'space-between',
+                                                            alignItems: 'stretch',
+                                                            textTransform: 'none',
+                                                            borderRadius: '12px',
+                                                            p: 1.25,
+                                                            border: `1px solid ${role.accent}66`,
+                                                            color: '#fff',
+                                                            bgcolor: role.background,
+                                                            '& .MuiButton-startIcon': { color: role.accent, mr: 1 },
+                                                            '& .MuiButton-endIcon': { color: 'rgba(255,255,255,0.7)', ml: 1 },
+                                                            '&:hover': {
+                                                                borderColor: role.accent,
+                                                                bgcolor: `${role.background}`
+                                                            }
+                                                        }}
+                                                    >
+                                                        <Box sx={{ textAlign: 'left', flexGrow: 1 }}>
+                                                            <Typography sx={{ fontSize: '0.8rem', fontWeight: 700, color: role.accent, lineHeight: 1.2 }}>
+                                                                {role.title}
+                                                            </Typography>
+                                                            <Typography sx={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.78)', mt: 0.25, lineHeight: 1.3 }}>
+                                                                {role.subtitle}
+                                                            </Typography>
+                                                        </Box>
+                                                    </Button>
+                                                ))}
                                             </Box>
                                         </Box>
                                     </motion.div>
