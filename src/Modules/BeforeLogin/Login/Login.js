@@ -64,6 +64,27 @@ const fadeInUp = {
     }
 };
 
+const DEMO_PASSWORD = 'Password1!';
+
+const QUICK_LOGIN_ROLES = [
+    {
+        title: 'Super Admin',
+        subtitle: 'Manage posts, users, and moderation tools',
+        username: 'superadmin',
+        Icon: AdminPanelSettingsOutlinedIcon,
+        accent: '#38DFFF',
+        background: 'rgba(56, 223, 255, 0.12)'
+    },
+    {
+        title: 'Simple User',
+        subtitle: 'Report items, search listings, and join forums',
+        username: 'user',
+        Icon: PersonOutlineOutlinedIcon,
+        accent: '#00FF9D',
+        background: 'rgba(0, 255, 157, 0.12)'
+    }
+];
+
 function Login() {
     const navigate = useNavigate();
     const { login } = useAuth();
@@ -81,37 +102,16 @@ function Login() {
         }
     };
 
-    const handleQuickLogin = (username, password) => {
+    const handleQuickLogin = (username) => {
         setValue('username', username);
-        setValue('password', password);
+        setValue('password', DEMO_PASSWORD);
         setAuthError('');
-        const result = validateCredentials(username, password);
+        const result = validateCredentials(username, DEMO_PASSWORD);
         if (result.success) {
             login(result.user);
             navigate('/dashboard');
         }
     };
-
-    const quickLoginRoles = [
-        {
-            title: 'Super Admin',
-            subtitle: 'Manage posts, users, and moderation tools',
-            username: 'superadmin',
-            password: 'Password1!',
-            icon: <AdminPanelSettingsOutlinedIcon fontSize="small" />,
-            accent: '#38DFFF',
-            background: 'rgba(56, 223, 255, 0.12)'
-        },
-        {
-            title: 'Simple User',
-            subtitle: 'Report items, search listings, and join forums',
-            username: 'user',
-            password: 'Password1!',
-            icon: <PersonOutlineOutlinedIcon fontSize="small" />,
-            accent: '#00FF9D',
-            background: 'rgba(0, 255, 157, 0.12)'
-        }
-    ];
 
     return (
         <Box className="LoginSignupMainContainer" sx={{ position: 'relative', overflow: 'hidden' }}>
@@ -294,12 +294,12 @@ function Login() {
                                                 Choose a demo role
                                             </Typography>
                                             <Box className="QuickLoginGrid">
-                                                {quickLoginRoles.map((role) => (
+                                                {QUICK_LOGIN_ROLES.map((role) => (
                                                     <Button
                                                         key={role.username}
                                                         fullWidth
-                                                        onClick={() => handleQuickLogin(role.username, role.password)}
-                                                        startIcon={role.icon}
+                                                        onClick={() => handleQuickLogin(role.username)}
+                                                        startIcon={<role.Icon fontSize="small" />}
                                                         endIcon={<ArrowForwardRoundedIcon fontSize="small" />}
                                                         sx={{
                                                             justifyContent: 'space-between',
@@ -314,7 +314,9 @@ function Login() {
                                                             '& .MuiButton-endIcon': { color: 'rgba(255,255,255,0.7)', ml: 1 },
                                                             '&:hover': {
                                                                 borderColor: role.accent,
-                                                                bgcolor: role.background
+                                                                bgcolor: `${role.accent}26`,
+                                                                boxShadow: `0 6px 16px ${role.accent}33`,
+                                                                transform: 'translateY(-1px)'
                                                             }
                                                         }}
                                                     >
