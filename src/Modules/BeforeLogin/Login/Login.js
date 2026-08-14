@@ -303,7 +303,7 @@ function Login() {
                                                         endIcon={<ArrowForwardRoundedIcon fontSize="small" />}
                                                         sx={{
                                                             justifyContent: 'space-between',
-                                                            alignItems: 'stretch',
+                                                            alignItems: 'center',
                                                             textTransform: 'none',
                                                             borderRadius: '12px',
                                                             p: 1.25,
@@ -314,7 +314,7 @@ function Login() {
                                                             '& .MuiButton-endIcon': { color: 'rgba(255,255,255,0.7)', ml: 1 },
                                                             '&:hover': {
                                                                 borderColor: role.accent,
-                                                                bgcolor: `${role.background}`
+                                                                bgcolor: role.background
                                                             }
                                                         }}
                                                     >
