@@ -26,8 +26,8 @@ function AfterLoginLayout({ children, pageTitle = "Dashboard" }) {
     };
 
     return (
-        <div className="min-h-screen font-sans antialiased selection:bg-[#38DFFF] selection:text-[#0D0E12] p-2 sm:p-4 md:p-6 bg-[#0D0E12] text-[#F4F5F6]">
-            <div className="max-w-[1536px] mx-auto rounded-3xl sm:rounded-[36px] shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[92vh] border bg-[#14161D] border-[#262A36]">
+        <div className="afterlogin-root min-h-screen antialiased selection:bg-[#0B6BCB] selection:text-white p-0 sm:p-4 md:p-6 bg-[#FAFAF9] text-[#16181F]">
+            <div className="max-w-[1536px] mx-auto rounded-none sm:rounded-[36px] overflow-hidden flex flex-col md:flex-row min-h-[92vh] border bg-[#FFFFFF] border-[#E6E5E1]">
                 
                 {/* Reusable Sidebar */}
                 <AfterLoginSidebar
@@ -36,7 +36,7 @@ function AfterLoginLayout({ children, pageTitle = "Dashboard" }) {
                 />
 
                 {/* Main Content Area */}
-                <div className="flex-1 flex flex-col p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-l-[32px] md:rounded-r-none border-l bg-[#14161D] border-[#262A36]">
+                <div className="flex-1 flex flex-col p-3 sm:p-6 md:p-8 md:rounded-l-[32px] md:rounded-r-none md:border-l bg-[#FAFAF9] border-[#E6E5E1]">
                     {/* Reusable Header */}
                     <AfterLoginHeader
                         toggleSidebar={toggleSidebar}
@@ -63,9 +63,9 @@ function AfterLoginLayout({ children, pageTitle = "Dashboard" }) {
 
             {/* Feedback Toast */}
             <div
-                className={`fixed bottom-4 left-4 bg-[#1E212B] border border-[#262A36] text-[#F4F5F6] px-4 py-2.5 rounded-full shadow-2xl transition-all duration-300 z-[100] flex items-center gap-2 ${showToast ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0 pointer-events-none'}`}
+                className={`fixed bottom-4 left-4 bg-[#FFFFFF] border border-[#E6E5E1] text-[#16181F] px-4 py-2.5 rounded-full transition-all duration-300 z-[100] flex items-center gap-2 ${showToast ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0 pointer-events-none'}`}
             >
-                <span className="material-symbols-outlined text-[#38DFFF] text-sm">check_circle</span>
+                <span aria-hidden="true" className="material-symbols-outlined text-[#0B6BCB] text-sm">check_circle</span>
                 <span className="text-xs font-semibold">{toastMessage}</span>
             </div>
         </div>

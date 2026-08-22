@@ -76,6 +76,63 @@ export const lightTheme = createTheme({
     },
 });
 
+// AfterLogin runs its own minimalist light theme: one accent, hairline borders,
+// no elevation, and phone touch-target minimums. Kept separate from the shared
+// light/dark themes so the BeforeLogin pages are untouched.
+const PHONE = '@media (max-width:599.95px)';
+
+export const afterLoginTheme = createTheme({
+    palette: {
+        mode: 'light',
+        primary: { main: '#0B6BCB' },
+        success: { main: '#157F3D' },
+        error: { main: '#B42318' },
+        divider: '#E6E5E1',
+        background: { default: '#FAFAF9', paper: '#FFFFFF' },
+        text: { primary: '#16181F', secondary: '#6B7280' },
+    },
+    typography: {
+        ...sharedTypography,
+        fontFamily: '"IBM Plex Sans", ui-sans-serif, system-ui, "Helvetica Neue", sans-serif',
+    },
+    shape: { borderRadius: 8 },
+    components: {
+        MuiPaper: { styleOverrides: { root: { backgroundImage: 'none' } } },
+        MuiCard: {
+            styleOverrides: {
+                root: { border: '1px solid #E6E5E1', boxShadow: 'none', backgroundColor: '#FFFFFF' },
+            },
+        },
+        MuiButton: {
+            defaultProps: { disableElevation: true },
+            styleOverrides: {
+                root: { textTransform: 'none', fontWeight: 500, boxShadow: 'none', [PHONE]: { minHeight: 44 } },
+            },
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: { backgroundColor: '#FFFFFF', [PHONE]: { minHeight: 44 } },
+                notchedOutline: { borderColor: '#E6E5E1' },
+            },
+        },
+        MuiChip: {
+            styleOverrides: {
+                root: { [PHONE]: { '&.MuiChip-clickable': { height: 44, borderRadius: 22 } } },
+                label: { [PHONE]: { fontSize: '0.75rem' } },
+            },
+        },
+        MuiIconButton: { styleOverrides: { root: { [PHONE]: { minWidth: 44, minHeight: 44 } } } },
+        MuiTableCell: {
+            styleOverrides: {
+                root: { color: '#16181F', borderColor: '#F1F0EE' },
+                head: { color: '#6B7280', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.07em', textTransform: 'uppercase' },
+            },
+        },
+        MuiDialog: { styleOverrides: { paper: { border: '1px solid #E6E5E1', boxShadow: 'none' } } },
+        MuiTab: { styleOverrides: { root: { textTransform: 'none', [PHONE]: { minHeight: 44 } } } },
+    },
+});
+
 // Default export kept for backward compatibility
 const customTheme = darkTheme;
 export default customTheme;

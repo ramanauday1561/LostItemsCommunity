@@ -1,3 +1,12 @@
+/* AfterLogin minimalist light system */
+.afterlogin-root {
+  font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, 'Helvetica Neue', sans-serif;
+}
+.afterlogin-root .mono,
+.afterlogin-root .record-id {
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
 /* Custom Styles and Fallbacks for AfterLogin Components */
 
 .material-symbols-outlined {

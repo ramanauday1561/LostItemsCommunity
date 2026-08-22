@@ -20,10 +20,10 @@ const ResponsiveContainer = ({ leftContent, rightContent, className = "" }) => {
             />
             <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
                 <Grid container spacing={4} alignItems="center" justifyContent="space-evenly">
-                    <Grid item xs={12} md={6} sx={{ maxWidth: 490 }}>
+                    <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 490 }}>
                         {leftContent}
                     </Grid>
-                    <Grid item xs={12} md={6} sx={{ maxWidth: 600 }}>
+                    <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 600 }}>
                         {rightContent}
                     </Grid>
                 </Grid>

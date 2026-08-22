@@ -6,7 +6,7 @@ import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
-import { darkTheme, lightTheme } from './theme/customTheme';
+import { darkTheme, lightTheme, afterLoginTheme } from './theme/customTheme';
 import AnimatedRoutes from './Components/AnimatedRoutes/AnimatedRoutes';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeContextProvider, useThemeContext } from './context/ThemeContext';
@@ -29,9 +29,10 @@ function MainLayout() {
 		location.pathname.startsWith('/admin')
 	);
 
-	// AfterLogin screens take dark theme as default per DESIGN.md; BeforeLogin screens retain ThemeContext mode
-	const activeMode = isAfterLoginView ? 'dark' : mode;
-	const theme = activeMode === 'light' ? lightTheme : darkTheme;
+	// AfterLogin runs its own minimalist light system; BeforeLogin keeps the ThemeContext mode
+	const activeMode = isAfterLoginView ? 'light' : mode;
+	// AfterLogin gets the same dark palette plus phone touch-target minimums.
+	const theme = isAfterLoginView ? afterLoginTheme : (activeMode === 'light' ? lightTheme : darkTheme);
 	const modeClass = activeMode === 'light' ? 'light-mode' : 'dark-mode';
 
 	return (

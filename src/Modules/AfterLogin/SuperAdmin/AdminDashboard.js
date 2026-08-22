@@ -27,6 +27,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FlagIcon from '@mui/icons-material/Flag';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useNavigate } from 'react-router-dom';
+import { textColor, subTextColor, cardBg, cardBorder } from '../../../utils/afterLoginTokens';
 
 const initialFlaggedItems = [
     { id: 'LOST-1031', title: 'Samsung Galaxy S24', author: 'alex.j', category: 'Electronics', reason: 'Unverified ownership claim', date: '2024-06-05' },
@@ -51,26 +52,21 @@ function AdminDashboard() {
         setTimeout(() => setActionMessage(''), 3500);
     };
 
-    const textColor = '#F4F5F6';
-    const subTextColor = '#9A9FA5';
-    const cardBg = '#1E212B';
-    const cardBorder = '#262A36';
-
     return (
-        <AfterLoginLayout pageTitle="Super Admin Management Dashboard">
-            <Container maxWidth="xl" sx={{ py: 1, px: { xs: 1, sm: 2 } }}>
+        <AfterLoginLayout pageTitle="Admin Dashboard">
+            <Container maxWidth="xl" sx={{ py: 1, px: { xs: 0, sm: 2 } }}>
                 {/* Super Admin Control Header */}
                 <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        <Box sx={{ p: 1.5, borderRadius: '20px', bgcolor: 'rgba(56, 223, 255, 0.15)', color: '#38DFFF' }}>
+                        <Box sx={{ p: 1.5, flexShrink: 0, borderRadius: '20px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
                             <ShieldIcon sx={{ fontSize: 36 }} />
                         </Box>
-                        <Box>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                        <Box sx={{ minWidth: 0 }}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
                                 <Typography variant="h5" fontWeight={800} sx={{ color: textColor }}>
                                     System Control & Moderation Hub
                                 </Typography>
-                                <Chip label="Super Admin Authority" size="small" sx={{ bgcolor: 'rgba(56, 223, 255, 0.2)', color: '#38DFFF', fontWeight: 800, borderRadius: '8px' }} />
+                                <Chip label="Super Admin Authority" size="small" sx={{ bgcolor: 'rgba(11, 107, 203, 0.2)', color: '#0B6BCB', fontWeight: 800, borderRadius: '8px' }} />
                             </Box>
                             <Typography variant="body2" sx={{ color: subTextColor, mt: 0.5 }}>
                                 Full platform management: conversation analysis, moderation, and content deletion.
@@ -88,8 +84,8 @@ function AdminDashboard() {
                                 px: 3,
                                 py: 1.2,
                                 textTransform: 'none',
-                                background: 'linear-gradient(135deg, #38DFFF 0%, #00B2FE 100%)',
-                                color: '#0D0E12',
+                                background: '#0B6BCB',
+                                color: '#FFFFFF',
                             }}
                         >
                             Conversation Analysis
@@ -105,7 +101,7 @@ function AdminDashboard() {
                                 textTransform: 'none',
                                 borderColor: cardBorder,
                                 color: textColor,
-                                '&:hover': { borderColor: '#38DFFF', bgcolor: 'rgba(56, 223, 255, 0.1)' },
+                                '&:hover': { borderColor: '#0B6BCB', bgcolor: 'rgba(11, 107, 203, 0.1)' },
                             }}
                         >
                             Moderation Center
@@ -115,7 +111,7 @@ function AdminDashboard() {
 
                 {actionMessage && (
                     <Box sx={{ mb: 3 }}>
-                        <Alert severity="success" sx={{ borderRadius: '16px', fontWeight: 600, bgcolor: 'rgba(0, 255, 157, 0.15)', color: textColor, border: '1px solid rgba(0, 255, 157, 0.3)' }} onClose={() => setActionMessage('')}>
+                        <Alert severity="success" sx={{ borderRadius: '16px', fontWeight: 600, bgcolor: 'rgba(21, 127, 61, 0.15)', color: textColor, border: '1px solid rgba(21, 127, 61, 0.3)' }} onClose={() => setActionMessage('')}>
                             {actionMessage}
                         </Alert>
                     </Box>
@@ -123,32 +119,32 @@ function AdminDashboard() {
 
                 {/* Conversation Analysis & Sentiment Banner Card */}
                 <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', mb: 4, p: 1 }}>
-                    <CardContent sx={{ p: 3 }}>
+                    <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
                         <Grid container spacing={3} alignItems="center">
-                            <Grid item xs={12} lg={8}>
+                            <Grid size={{ xs: 12, lg: 8 }}>
                                 <Typography variant="h6" fontWeight={800} sx={{ color: textColor, mb: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
-                                    <AnalyticsIcon sx={{ color: '#38DFFF' }} /> Community Conversation & Sentiment Analysis
+                                    <AnalyticsIcon sx={{ color: '#0B6BCB' }} /> Community Conversation & Sentiment Analysis
                                 </Typography>
                                 <Typography variant="body2" sx={{ color: subTextColor, lineHeight: 1.6 }}>
                                     Real-time tracking of community forum messages, response velocity, and flagged safety keywords.
-                                    Total active discussions: <strong style={{ color: '#F4F5F6' }}>142 threads</strong> | Positive sentiment rate: <strong style={{ color: '#00FF9D' }}>94.2%</strong>
+                                    Total active discussions: <strong style={{ color: '#16181F' }}>142 threads</strong> | Positive sentiment rate: <strong style={{ color: '#157F3D' }}>94.2%</strong>
                                 </Typography>
                                 <Box sx={{ display: 'flex', gap: 2, mt: 2, flexWrap: 'wrap' }}>
-                                    <Box sx={{ bgcolor: '#14161D', px: 2, py: 1, borderRadius: '12px', border: `1px solid ${cardBorder}` }}>
+                                    <Box sx={{ bgcolor: '#FFFFFF', px: 2, py: 1, borderRadius: '12px', border: `1px solid ${cardBorder}` }}>
                                         <Typography variant="caption" sx={{ color: subTextColor }}>Avg Response Velocity</Typography>
-                                        <Typography variant="body2" fontWeight={800} sx={{ color: '#38DFFF' }}>12.4 minutes</Typography>
+                                        <Typography variant="body2" fontWeight={800} sx={{ color: '#0B6BCB' }}>12.4 minutes</Typography>
                                     </Box>
-                                    <Box sx={{ bgcolor: '#14161D', px: 2, py: 1, borderRadius: '12px', border: `1px solid ${cardBorder}` }}>
+                                    <Box sx={{ bgcolor: '#FFFFFF', px: 2, py: 1, borderRadius: '12px', border: `1px solid ${cardBorder}` }}>
                                         <Typography variant="caption" sx={{ color: subTextColor }}>Flagged Keyword Alerts</Typography>
-                                        <Typography variant="body2" fontWeight={800} sx={{ color: '#FF5376' }}>3 pending review</Typography>
+                                        <Typography variant="body2" fontWeight={800} sx={{ color: '#B42318' }}>3 pending review</Typography>
                                     </Box>
-                                    <Box sx={{ bgcolor: '#14161D', px: 2, py: 1, borderRadius: '12px', border: `1px solid ${cardBorder}` }}>
+                                    <Box sx={{ bgcolor: '#FFFFFF', px: 2, py: 1, borderRadius: '12px', border: `1px solid ${cardBorder}` }}>
                                         <Typography variant="caption" sx={{ color: subTextColor }}>Active Scouts</Typography>
-                                        <Typography variant="body2" fontWeight={800} sx={{ color: '#00FF9D' }}>857 online</Typography>
+                                        <Typography variant="body2" fontWeight={800} sx={{ color: '#157F3D' }}>857 online</Typography>
                                     </Box>
                                 </Box>
                             </Grid>
-                            <Grid item xs={12} lg={4} sx={{ textAlign: { lg: 'right' } }}>
+                            <Grid size={{ xs: 12, lg: 4 }} sx={{ textAlign: { lg: 'right' } }}>
                                 <Button
                                     variant="contained"
                                     onClick={() => navigate('/admin/conversation-analysis')}
@@ -157,7 +153,7 @@ function AdminDashboard() {
                                         fontWeight: 800,
                                         px: 3,
                                         py: 1.2,
-                                        background: 'linear-gradient(135deg, #A855F7 0%, #9c27b0 100%)',
+                                        background: '#0B6BCB',
                                         color: '#FFFFFF',
                                     }}
                                 >
@@ -170,21 +166,62 @@ function AdminDashboard() {
 
                 {/* Flagged Content Quick Action Table */}
                 <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', mb: 4 }}>
-                    <Box sx={{ px: 3, py: 2.5, borderBottom: `1px solid ${cardBorder}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Box sx={{ px: { xs: 2, sm: 3 }, py: 2.5, borderBottom: `1px solid ${cardBorder}`, display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'center' } }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <FlagIcon sx={{ color: '#FF5376' }} />
+                            <FlagIcon sx={{ color: '#B42318' }} />
                             <Typography variant="h6" fontWeight={800} sx={{ color: textColor }}>
                                 Flagged Content Pending Moderation ({flaggedItems.length})
                             </Typography>
                         </Box>
-                        <Button size="small" onClick={() => navigate('/admin/manage-posts')} sx={{ color: '#38DFFF', fontWeight: 700 }}>
+                        <Button size="small" onClick={() => navigate('/admin/manage-posts')} sx={{ color: '#0B6BCB', fontWeight: 700 }}>
                             View All Moderation Records →
                         </Button>
                     </Box>
 
-                    <TableContainer>
+                    {/* Phones: a 6-column table can't work at 375px, so each row becomes a card. */}
+                    <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', gap: 1.5, p: 2 }}>
+                        {flaggedItems.length === 0 ? (
+                            <Typography sx={{ py: 3, textAlign: 'center', color: subTextColor, fontSize: '0.875rem' }}>
+                                No flagged content pending review.
+                            </Typography>
+                        ) : (
+                            flaggedItems.map((row) => (
+                                <Box
+                                    key={row.id}
+                                    sx={{ border: `1px solid ${cardBorder}`, borderRadius: '12px', bgcolor: '#FFFFFF', p: 2, display: 'flex', flexDirection: 'column', gap: 1 }}
+                                >
+                                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1 }}>
+                                        <Typography sx={{ color: subTextColor, fontWeight: 600, fontSize: '0.75rem' }}>{row.id}</Typography>
+                                        <Chip label={row.reason} size="small" sx={{ fontWeight: 600, bgcolor: 'rgba(180, 35, 24, 0.1)', color: '#B42318' }} />
+                                    </Box>
+                                    <Typography sx={{ color: textColor, fontWeight: 600, fontSize: '0.95rem', lineHeight: 1.35 }}>{row.title}</Typography>
+                                    <Typography sx={{ color: subTextColor, fontSize: '0.75rem' }}>{row.author} &middot; {row.date}</Typography>
+                                    <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
+                                        <Button
+                                            fullWidth
+                                            variant="outlined"
+                                            onClick={() => handleApproveItem(row.id)}
+                                            sx={{ fontWeight: 600, textTransform: 'none', color: '#157F3D', borderColor: 'rgba(21, 127, 61, 0.4)', borderRadius: '8px' }}
+                                        >
+                                            Approve
+                                        </Button>
+                                        <Button
+                                            fullWidth
+                                            variant="outlined"
+                                            onClick={() => handleDeleteItem(row.id)}
+                                            sx={{ fontWeight: 600, textTransform: 'none', color: '#B42318', borderColor: 'rgba(180, 35, 24, 0.4)', borderRadius: '8px' }}
+                                        >
+                                            Remove
+                                        </Button>
+                                    </Box>
+                                </Box>
+                            ))
+                        )}
+                    </Box>
+
+                    <TableContainer sx={{ display: { xs: 'none', md: 'block' } }}>
                         <Table>
-                            <TableHead sx={{ bgcolor: '#14161D' }}>
+                            <TableHead sx={{ bgcolor: '#FFFFFF' }}>
                                 <TableRow>
                                     <TableCell sx={{ color: subTextColor, fontWeight: 700, borderColor: cardBorder }}>ID</TableCell>
                                     <TableCell sx={{ color: subTextColor, fontWeight: 700, borderColor: cardBorder }}>Title</TableCell>
@@ -203,12 +240,12 @@ function AdminDashboard() {
                                     </TableRow>
                                 ) : (
                                     flaggedItems.map((row) => (
-                                        <TableRow key={row.id} hover sx={{ '&:hover': { bgcolor: '#1B1E27' } }}>
+                                        <TableRow key={row.id} hover sx={{ '&:hover': { bgcolor: '#F4F3F1' } }}>
                                             <TableCell sx={{ color: textColor, fontWeight: 700, borderColor: cardBorder }}>{row.id}</TableCell>
                                             <TableCell sx={{ color: textColor, fontWeight: 600, borderColor: cardBorder }}>{row.title}</TableCell>
                                             <TableCell sx={{ color: subTextColor, borderColor: cardBorder }}>{row.author}</TableCell>
                                             <TableCell sx={{ borderColor: cardBorder }}>
-                                                <Chip label={row.reason} size="small" sx={{ fontWeight: 700, bgcolor: 'rgba(255, 83, 118, 0.15)', color: '#FF5376' }} />
+                                                <Chip label={row.reason} size="small" sx={{ fontWeight: 700, bgcolor: 'rgba(180, 35, 24, 0.15)', color: '#B42318' }} />
                                             </TableCell>
                                             <TableCell sx={{ color: subTextColor, borderColor: cardBorder }}>{row.date}</TableCell>
                                             <TableCell align="right" sx={{ borderColor: cardBorder }}>
@@ -216,7 +253,7 @@ function AdminDashboard() {
                                                     size="small"
                                                     startIcon={<CheckCircleIcon />}
                                                     onClick={() => handleApproveItem(row.id)}
-                                                    sx={{ mr: 1, fontWeight: 700, textTransform: 'none', color: '#00FF9D' }}
+                                                    sx={{ mr: 1, fontWeight: 700, textTransform: 'none', color: '#157F3D' }}
                                                 >
                                                     Approve
                                                 </Button>
@@ -224,7 +261,7 @@ function AdminDashboard() {
                                                     size="small"
                                                     startIcon={<DeleteIcon />}
                                                     onClick={() => handleDeleteItem(row.id)}
-                                                    sx={{ fontWeight: 700, textTransform: 'none', color: '#FF5376' }}
+                                                    sx={{ fontWeight: 700, textTransform: 'none', color: '#B42318' }}
                                                 >
                                                     Delete Post
                                                 </Button>

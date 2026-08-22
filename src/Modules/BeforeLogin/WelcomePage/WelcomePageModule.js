@@ -75,7 +75,7 @@ const WelcomePageModule = () => {
             <Box id="hero" sx={{ position: 'relative', py: { xs: 4, md: 8 }, overflow: 'hidden' }}>
                 <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
                     <Grid container spacing={4} alignItems="center" justifyContent="space-evenly">
-                        <Grid item xs={12} md={6} sx={{ maxWidth: 490 }}>
+                        <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 490 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -110,7 +110,7 @@ const WelcomePageModule = () => {
                                 </Box>
                             </motion.div>
                         </Grid>
-                        <Grid item xs={12} md={6} sx={{ maxWidth: 600 }}>
+                        <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 600 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -143,7 +143,7 @@ const WelcomePageModule = () => {
                 
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center">
-                        <Grid item xs={12} md={6} sx={{ maxWidth: 600 }}>
+                        <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 600 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -164,7 +164,7 @@ const WelcomePageModule = () => {
                                 </Box>
                             </motion.div>
                         </Grid>
-                        <Grid item xs={12} md={6} sx={{ maxWidth: 490 }}>
+                        <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 490 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -247,7 +247,7 @@ const WelcomePageModule = () => {
                     >
                         <Grid container className="features-grid">
                             <motion.div variants={scaleIn}>
-                                <Grid item xs={12} md={4} className="feature-card">
+                                <Grid size={{ xs: 12, md: 4 }} className="feature-card">
                                     <Box sx={{ textAlign: 'center' }}>
                                         <img src="images/feature-report-found.webp" alt="Report Found Items" width={260} loading="lazy" />
                                         <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Report Found Items</Typography>
@@ -258,7 +258,7 @@ const WelcomePageModule = () => {
                                 </Grid>
                             </motion.div>
                             <motion.div variants={scaleIn}>
-                                <Grid item xs={12} md={4} className="feature-card">
+                                <Grid size={{ xs: 12, md: 4 }} className="feature-card">
                                     <Box sx={{ textAlign: 'center' }}>
                                         <img src="images/feature-search-system.webp" alt="Search for Lost Belongings" width={260} loading="lazy" />
                                         <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Smart Search System</Typography>
@@ -269,7 +269,7 @@ const WelcomePageModule = () => {
                                 </Grid>
                             </motion.div>
                             <motion.div variants={scaleIn}>
-                                <Grid item xs={12} md={4} className="feature-card">
+                                <Grid size={{ xs: 12, md: 4 }} className="feature-card">
                                     <Box sx={{ textAlign: 'center' }}>
                                         <img src="images/feature-success-stories.webp" alt="Success Stories" width={260} loading="lazy" />
                                         <Typography variant="h6" fontWeight={600} sx={{ mt: 2 }}>Success Stories</Typography>
@@ -289,7 +289,7 @@ const WelcomePageModule = () => {
                 
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center" justifyContent="center">
-                        <Grid item xs={12} md={6} sx={{ maxWidth: 500 }}>
+                        <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 500 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -343,7 +343,7 @@ const WelcomePageModule = () => {
                                 </List>
                             </motion.div>
                         </Grid>
-                        <Grid item xs={12} md={6} sx={{ maxWidth: 600 }}>
+                        <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 600 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -364,7 +364,7 @@ const WelcomePageModule = () => {
                 
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center">
-                        <Grid item xs={12} md={6}>
+                        <Grid size={{ xs: 12, md: 6 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -376,7 +376,7 @@ const WelcomePageModule = () => {
                                 </Box>
                             </motion.div>
                         </Grid>
-                        <Grid item xs={12} md={6} sx={{ maxWidth: 680 }}>
+                        <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 680 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -497,7 +497,7 @@ const WelcomePageModule = () => {
                         </Typography>
                     </motion.div>
                     <Grid className="faq-grid">
-                        <Grid item xs={12} md={7} sx={{ maxWidth: 580 }}>
+                        <Grid size={{ xs: 12, md: 7 }} sx={{ maxWidth: 580 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -623,7 +623,7 @@ const WelcomePageModule = () => {
                             </Box>
                             </motion.div>
                         </Grid>
-                        <Grid item xs={12} md={5} sx={{ maxWidth: 540 }}>
+                        <Grid size={{ xs: 12, md: 5 }} sx={{ maxWidth: 540 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -657,7 +657,7 @@ const WelcomePageModule = () => {
             <Box id="join" sx={{ py: { xs: 4, md: 8 } }}>
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center" justifyContent="center">
-                        <Grid item xs={12} md={6}>
+                        <Grid size={{ xs: 12, md: 6 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -669,7 +669,7 @@ const WelcomePageModule = () => {
                                 </Box>
                             </motion.div>
                         </Grid>
-                        <Grid item xs={12} md={6}>
+                        <Grid size={{ xs: 12, md: 6 }}>
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"

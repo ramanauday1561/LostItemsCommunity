@@ -19,6 +19,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../../context/AuthContext';
+import { textColor, subTextColor, cardBg, cardBorder } from '../../../utils/afterLoginTokens';
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -32,15 +33,15 @@ const fadeInUp = {
 const FIELD_SX = {
     '& .MuiOutlinedInput-root': {
         borderRadius: '16px',
-        backgroundColor: '#14161D',
-        '& fieldset': { borderColor: '#262A36' },
-        '&:hover fieldset': { borderColor: '#38DFFF' },
-        '&.Mui-focused fieldset': { borderColor: '#38DFFF' },
-        '& input': { color: '#F4F5F6', fontSize: '0.95rem' },
-        '& textarea': { color: '#F4F5F6', fontSize: '0.95rem' },
+        backgroundColor: '#FFFFFF',
+        '& fieldset': { borderColor: '#E6E5E1' },
+        '&:hover fieldset': { borderColor: '#0B6BCB' },
+        '&.Mui-focused fieldset': { borderColor: '#0B6BCB' },
+        '& input': { color: '#16181F', fontSize: '0.95rem' },
+        '& textarea': { color: '#16181F', fontSize: '0.95rem' },
     },
-    '& .MuiInputLabel-root': { color: '#9A9FA5' },
-    '& .MuiSvgIcon-root': { color: '#9A9FA5' },
+    '& .MuiInputLabel-root': { color: '#6B7280' },
+    '& .MuiSvgIcon-root': { color: '#6B7280' },
 };
 
 function ContactSupport() {
@@ -54,11 +55,6 @@ function ContactSupport() {
         },
     });
 
-    const textColor = '#F4F5F6';
-    const subTextColor = '#9A9FA5';
-    const cardBg = '#1E212B';
-    const cardBorder = '#262A36';
-
     const onSubmit = () => {
         setSubmitted(true);
         reset({ name: currentUser?.displayName || '', email: currentUser?.email || '' });
@@ -66,16 +62,16 @@ function ContactSupport() {
 
     return (
         <AfterLoginLayout pageTitle="Contact Support">
-            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 1, sm: 2 } }}>
+            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 0, sm: 2 } }}>
                 <Grid container spacing={4}>
                     
                     {/* Contact Form */}
-                    <Grid item xs={12} lg={7}>
+                    <Grid size={{ xs: 12, lg: 7 }}>
                         <motion.div custom={0} initial="hidden" animate="visible" variants={fadeInUp}>
                             <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '28px' }}>
                                 <CardContent sx={{ p: { xs: 3, sm: 4 } }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
-                                        <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: 'rgba(56, 223, 255, 0.15)', color: '#38DFFF' }}>
+                                        <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
                                             <SupportAgentIcon sx={{ fontSize: 32 }} />
                                         </Box>
                                         <Box>
@@ -89,14 +85,14 @@ function ContactSupport() {
                                     </Box>
 
                                     {submitted && (
-                                        <Alert severity="success" sx={{ my: 3, borderRadius: '16px', fontWeight: 600, bgcolor: 'rgba(0, 255, 157, 0.15)', color: textColor, border: '1px solid rgba(0, 255, 157, 0.3)' }} onClose={() => setSubmitted(false)}>
+                                        <Alert severity="success" sx={{ my: 3, borderRadius: '16px', fontWeight: 600, bgcolor: 'rgba(21, 127, 61, 0.15)', color: textColor, border: '1px solid rgba(21, 127, 61, 0.3)' }} onClose={() => setSubmitted(false)}>
                                             Support ticket submitted successfully! A support agent will respond within 24 hours.
                                         </Alert>
                                     )}
 
                                     <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
                                         <Grid container spacing={2.5}>
-                                            <Grid item xs={12} sm={6}>
+                                            <Grid size={{ xs: 12, sm: 6 }}>
                                                 <TextField
                                                     label="Your Name *"
                                                     fullWidth
@@ -107,7 +103,7 @@ function ContactSupport() {
                                                 />
                                             </Grid>
 
-                                            <Grid item xs={12} sm={6}>
+                                            <Grid size={{ xs: 12, sm: 6 }}>
                                                 <TextField
                                                     label="Your Email *"
                                                     type="email"
@@ -119,7 +115,7 @@ function ContactSupport() {
                                                 />
                                             </Grid>
 
-                                            <Grid item xs={12}>
+                                            <Grid size={12}>
                                                 <TextField
                                                     label="Subject *"
                                                     placeholder="e.g. Inquiry regarding claim #LOST-1042, Account settings"
@@ -131,7 +127,7 @@ function ContactSupport() {
                                                 />
                                             </Grid>
 
-                                            <Grid item xs={12}>
+                                            <Grid size={12}>
                                                 <TextField
                                                     label="Message Details *"
                                                     placeholder="Explain your inquiry in detail..."
@@ -145,7 +141,7 @@ function ContactSupport() {
                                                 />
                                             </Grid>
 
-                                            <Grid item xs={12}>
+                                            <Grid size={12}>
                                                 <Button
                                                     type="submit"
                                                     variant="contained"
@@ -155,11 +151,10 @@ function ContactSupport() {
                                                         borderRadius: '16px',
                                                         px: 4,
                                                         py: 1.5,
-                                                        background: 'linear-gradient(135deg, #38DFFF 0%, #00B2FE 100%)',
-                                                        color: '#0D0E12',
+                                                        background: '#0B6BCB',
+                                                        color: '#FFFFFF',
                                                         textTransform: 'none',
                                                         fontSize: '1rem',
-                                                        boxShadow: '0 0 15px rgba(56, 223, 255, 0.35)',
                                                     }}
                                                 >
                                                     Submit Support Ticket
@@ -173,7 +168,7 @@ function ContactSupport() {
                     </Grid>
 
                     {/* Support Info Sidebar */}
-                    <Grid item xs={12} lg={5}>
+                    <Grid size={{ xs: 12, lg: 5 }}>
                         <motion.div custom={1} initial="hidden" animate="visible" variants={fadeInUp}>
                             <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '28px' }}>
                                 <CardContent sx={{ p: { xs: 3, sm: 4 } }}>
@@ -188,7 +183,7 @@ function ContactSupport() {
 
                                     <Box sx={{ spaceY: 3 }}>
                                         <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                                            <Box sx={{ p: 1.5, borderRadius: '14px', bgcolor: 'rgba(56, 223, 255, 0.15)', color: '#38DFFF' }}>
+                                            <Box sx={{ p: 1.5, borderRadius: '14px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
                                                 <EmailIcon />
                                             </Box>
                                             <Box>
@@ -198,7 +193,7 @@ function ContactSupport() {
                                         </Box>
 
                                         <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', mt: 2.5 }}>
-                                            <Box sx={{ p: 1.5, borderRadius: '14px', bgcolor: 'rgba(0, 255, 157, 0.15)', color: '#00FF9D' }}>
+                                            <Box sx={{ p: 1.5, borderRadius: '14px', bgcolor: 'rgba(21, 127, 61, 0.15)', color: '#157F3D' }}>
                                                 <PhoneIcon />
                                             </Box>
                                             <Box>
@@ -208,7 +203,7 @@ function ContactSupport() {
                                         </Box>
 
                                         <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', mt: 2.5 }}>
-                                            <Box sx={{ p: 1.5, borderRadius: '14px', bgcolor: 'rgba(255, 184, 0, 0.15)', color: '#FFB800' }}>
+                                            <Box sx={{ p: 1.5, borderRadius: '14px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
                                                 <LocationOnIcon />
                                             </Box>
                                             <Box>

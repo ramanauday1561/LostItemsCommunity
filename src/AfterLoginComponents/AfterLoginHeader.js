@@ -46,73 +46,73 @@ function AfterLoginHeader({ toggleSidebar, searchQuery, setSearchQuery, onOpenRe
     return (
         <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 relative" ref={popoverRef}>
             <div className="flex items-center gap-3">
-                <button className="md:hidden p-2 rounded-xl bg-[#1E212B] text-[#F4F5F6] border border-[#262A36]" onClick={toggleSidebar}>
-                    <span className="material-symbols-outlined text-xl">menu</span>
+                <button aria-label="Open navigation menu" className="md:hidden w-11 h-11 shrink-0 flex items-center justify-center rounded-xl bg-[#FFFFFF] text-[#16181F] border border-[#E6E5E1]" onClick={toggleSidebar}>
+                    <span aria-hidden="true" className="material-symbols-outlined text-xl">menu</span>
                 </button>
-                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#F4F5F6]">{title}</h1>
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-[#16181F]">{title}</h1>
             </div>
 
-            <div className="flex items-center gap-3 w-full sm:w-auto justify-end relative">
-                {/* Pill Search Field */}
-                <div className="relative flex-1 sm:w-72">
-                    <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9A9FA5] text-lg">search</span>
+            <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto justify-end relative">
+                {/* Pill Search Field — drops to its own row below the actions on mobile */}
+                <div className="relative order-last w-full sm:order-none sm:w-72">
+                    <span aria-hidden="true" className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[#6B7280] text-lg">search</span>
                     <input
                         type="text"
                         placeholder="Search anything..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full border border-[#262A36] rounded-full pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-[#38DFFF]/50 outline-none placeholder:text-[#9A9FA5] bg-[#1E212B] text-[#F4F5F6]"
+                        className="w-full min-h-[44px] border border-[#E6E5E1] rounded-full pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-[#0B6BCB]/50 outline-none placeholder:text-[#6B7280] bg-[#FFFFFF] text-[#16181F]"
                     />
                 </div>
 
                 {/* Electric Cyan Pill CTA Button */}
                 <button
-                    className="bg-gradient-to-r from-[#38DFFF] to-[#00B2FE] text-[#0D0E12] px-5 py-2.5 rounded-full text-sm font-extrabold transition-all active:scale-95 shadow-[0_0_15px_rgba(56,223,255,0.35)] flex items-center gap-1.5 cursor-pointer hover:opacity-90"
+                    className="shrink-0 min-h-[44px] bg-[#0B6BCB] text-white px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer hover:opacity-90"
                     onClick={() => onOpenReportModal && onOpenReportModal('lost')}
                 >
-                    <span className="material-symbols-outlined text-base">add</span>
+                    <span aria-hidden="true" className="material-symbols-outlined text-base">add</span>
                     <span>Create</span>
                 </button>
 
                 {/* Header Action Icons */}
 
                 {/* Notification Icon */}
-                <div className="relative">
+                <div className="shrink-0">
                     <button
-                        className="w-10 h-10 rounded-full border border-[#262A36] flex items-center justify-center transition-all relative cursor-pointer bg-[#1E212B] text-[#F4F5F6] hover:border-[#38DFFF]/40"
+                        className="w-11 h-11 shrink-0 rounded-full border border-[#E6E5E1] flex items-center justify-center transition-all relative cursor-pointer bg-[#FFFFFF] text-[#16181F] hover:border-[#0B6BCB]/40"
                         onClick={() => togglePopover('notifications')}
                         title="Notifications"
                     >
-                        <span className="material-symbols-outlined text-lg">notifications</span>
+                        <span aria-hidden="true" className="material-symbols-outlined text-lg">notifications</span>
                         {unreadCount > 0 && (
-                            <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-[#FF5376] rounded-full ring-2 ring-[#1E212B]"></span>
+                            <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-[#B42318] rounded-full ring-2 ring-[#FFFFFF]"></span>
                         )}
                     </button>
 
                     {/* Notifications Popover */}
                     {activePopover === 'notifications' && (
-                        <div className="absolute right-0 mt-3 w-80 sm:w-96 rounded-2xl shadow-2xl border p-4 z-50 transition-all bg-[#1E212B] border-[#262A36] text-[#F4F5F6]">
-                            <div className="flex items-center justify-between pb-3 border-b border-[#262A36]">
+                        <div className="absolute right-0 mt-3 w-[min(20rem,calc(100vw-2.5rem))] sm:w-96 rounded-2xl border p-4 z-50 transition-all bg-[#FFFFFF] border-[#E6E5E1] text-[#16181F]">
+                            <div className="flex items-center justify-between pb-3 border-b border-[#E6E5E1]">
                                 <div className="flex items-center gap-2">
-                                    <h3 className="font-bold text-sm text-[#F4F5F6]">Notifications</h3>
+                                    <h3 className="font-bold text-sm text-[#16181F]">Notifications</h3>
                                     {unreadCount > 0 && (
-                                        <span className="bg-[#FF5376]/15 text-[#FF5376] text-xs px-2 py-0.5 rounded-full font-bold">{unreadCount} new</span>
+                                        <span className="bg-[#B42318]/15 text-[#B42318] text-xs px-2 py-0.5 rounded-full font-bold">{unreadCount} new</span>
                                     )}
                                 </div>
                                 {unreadCount > 0 && (
-                                    <button onClick={handleMarkAllRead} className="text-xs text-[#38DFFF] hover:underline font-semibold cursor-pointer">
+                                    <button onClick={handleMarkAllRead} className="text-xs text-[#0B6BCB] hover:underline font-semibold cursor-pointer">
                                         Mark all read
                                     </button>
                                 )}
                             </div>
                             <div className="max-h-72 overflow-y-auto space-y-3 pt-3">
                                 {notifications.map((n) => (
-                                    <div key={n.id} className={`p-2.5 rounded-xl border text-xs space-y-1 transition-colors ${n.unread ? 'bg-[#38DFFF]/10 border-[#38DFFF]/30' : 'bg-[#14161D] border-[#262A36]'}`}>
-                                        <div className="flex justify-between items-center font-bold text-[#F4F5F6]">
+                                    <div key={n.id} className={`p-2.5 rounded-xl border text-xs space-y-1 transition-colors ${n.unread ? 'bg-[#0B6BCB]/10 border-[#0B6BCB]/30' : 'bg-[#FFFFFF] border-[#E6E5E1]'}`}>
+                                        <div className="flex justify-between items-center font-bold text-[#16181F]">
                                             <span>{n.title}</span>
-                                            <span className="text-[10px] text-[#9A9FA5]">{n.time}</span>
+                                            <span className="text-xs sm:text-[10px] text-[#6B7280]">{n.time}</span>
                                         </div>
-                                        <p className="text-[#9A9FA5] text-[11px] leading-relaxed">{n.desc}</p>
+                                        <p className="text-[#6B7280] text-xs sm:text-[11px] leading-relaxed">{n.desc}</p>
                                     </div>
                                 ))}
                             </div>
@@ -121,34 +121,34 @@ function AfterLoginHeader({ toggleSidebar, searchQuery, setSearchQuery, onOpenRe
                 </div>
 
                 {/* Message Icon */}
-                <div className="relative">
+                <div className="shrink-0">
                     <button
-                        className="w-10 h-10 rounded-full border border-[#262A36] flex items-center justify-center transition-all cursor-pointer bg-[#1E212B] text-[#F4F5F6] hover:border-[#38DFFF]/40"
+                        className="w-11 h-11 shrink-0 rounded-full border border-[#E6E5E1] flex items-center justify-center transition-all cursor-pointer bg-[#FFFFFF] text-[#16181F] hover:border-[#0B6BCB]/40"
                         onClick={() => togglePopover('messages')}
                         title="Messages"
                     >
-                        <span className="material-symbols-outlined text-lg">chat_bubble_outline</span>
+                        <span aria-hidden="true" className="material-symbols-outlined text-lg">chat_bubble_outline</span>
                     </button>
 
                     {/* Messages Popover */}
                     {activePopover === 'messages' && (
-                        <div className="absolute right-0 mt-3 w-80 sm:w-90 rounded-2xl shadow-2xl border p-4 z-50 transition-all bg-[#1E212B] border-[#262A36] text-[#F4F5F6]">
-                            <div className="flex items-center justify-between pb-3 border-b border-[#262A36]">
-                                <h3 className="font-bold text-sm text-[#F4F5F6]">Community Messages</h3>
-                                <button onClick={() => navigate('/forum')} className="text-xs text-[#38DFFF] hover:underline font-semibold cursor-pointer">
+                        <div className="absolute right-0 mt-3 w-[min(20rem,calc(100vw-2.5rem))] sm:w-96 rounded-2xl border p-4 z-50 transition-all bg-[#FFFFFF] border-[#E6E5E1] text-[#16181F]">
+                            <div className="flex items-center justify-between pb-3 border-b border-[#E6E5E1]">
+                                <h3 className="font-bold text-sm text-[#16181F]">Community Messages</h3>
+                                <button onClick={() => navigate('/forum')} className="text-xs text-[#0B6BCB] hover:underline font-semibold cursor-pointer">
                                     Open Forum
                                 </button>
                             </div>
                             <div className="max-h-72 overflow-y-auto space-y-3 pt-3">
                                 {messages.map((m) => (
-                                    <div key={m.id} className="p-2.5 rounded-xl border flex gap-3 items-center cursor-pointer hover:opacity-90 bg-[#14161D] border-[#262A36]">
+                                    <div key={m.id} className="p-2.5 rounded-xl border flex gap-3 items-center cursor-pointer hover:opacity-90 bg-[#FFFFFF] border-[#E6E5E1]">
                                         <img src={m.avatar} alt={m.sender} className="w-9 h-9 rounded-full object-cover" />
                                         <div className="flex-1 overflow-hidden">
-                                            <div className="flex justify-between items-center text-xs font-bold text-[#F4F5F6]">
+                                            <div className="flex justify-between items-center text-xs font-bold text-[#16181F]">
                                                 <span>{m.sender}</span>
-                                                <span className="text-[10px] text-[#9A9FA5]">{m.time}</span>
+                                                <span className="text-xs sm:text-[10px] text-[#6B7280]">{m.time}</span>
                                             </div>
-                                            <p className="text-[#9A9FA5] text-[11px] truncate">{m.message}</p>
+                                            <p className="text-[#6B7280] text-xs sm:text-[11px] truncate">{m.message}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -158,9 +158,12 @@ function AfterLoginHeader({ toggleSidebar, searchQuery, setSearchQuery, onOpenRe
                 </div>
 
                 {/* User Profile Avatar */}
-                <div className="relative">
-                    <div
-                        className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#38DFFF]/40 flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-[#38DFFF] transition-all"
+                <div className="shrink-0">
+                    <button
+                        type="button"
+                        className="w-11 h-11 rounded-full overflow-hidden border-2 border-[#0B6BCB]/40 flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-[#0B6BCB] transition-all"
+                        aria-label={`Account menu for ${currentUser?.displayName || 'User'}`}
+                        aria-expanded={activePopover === 'profile'}
                         title={currentUser?.displayName || 'User Profile'}
                         onClick={() => togglePopover('profile')}
                     >
@@ -169,21 +172,21 @@ function AfterLoginHeader({ toggleSidebar, searchQuery, setSearchQuery, onOpenRe
                             src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
                             alt="Profile"
                         />
-                    </div>
+                    </button>
 
                     {/* Profile Popover */}
                     {activePopover === 'profile' && (
-                        <div className="absolute right-0 mt-3 w-64 rounded-2xl shadow-2xl border p-4 z-50 transition-all bg-[#1E212B] border-[#262A36] text-[#F4F5F6]">
-                            <div className="flex items-center gap-3 pb-3 border-b border-[#262A36]">
+                        <div className="absolute right-0 mt-3 w-[min(16rem,calc(100vw-2.5rem))] rounded-2xl border p-4 z-50 transition-all bg-[#FFFFFF] border-[#E6E5E1] text-[#16181F]">
+                            <div className="flex items-center gap-3 pb-3 border-b border-[#E6E5E1]">
                                 <img
-                                    className="w-11 h-11 rounded-full object-cover border border-[#262A36]"
+                                    className="w-11 h-11 rounded-full object-cover border border-[#E6E5E1]"
                                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
                                     alt="Profile"
                                 />
                                 <div className="overflow-hidden">
-                                    <h4 className="font-bold text-sm truncate text-[#F4F5F6]">{currentUser?.displayName || 'Community User'}</h4>
-                                    <p className="text-xs text-[#9A9FA5] truncate">{currentUser?.email || 'user@example.com'}</p>
-                                    <span className={`inline-block mt-1 text-[10px] font-bold px-2 py-0.5 rounded-full capitalize ${currentUser?.role === 'superadmin' ? 'bg-[#38DFFF]/15 text-[#38DFFF]' : 'bg-[#00FF9D]/15 text-[#00FF9D]'}`}>
+                                    <h4 className="font-bold text-sm truncate text-[#16181F]">{currentUser?.displayName || 'Community User'}</h4>
+                                    <p className="text-xs text-[#6B7280] truncate">{currentUser?.email || 'user@example.com'}</p>
+                                    <span className={`inline-block mt-1 text-xs sm:text-[10px] font-bold px-2 py-0.5 rounded-full capitalize ${currentUser?.role === 'superadmin' ? 'bg-[#0B6BCB]/15 text-[#0B6BCB]' : 'bg-[#157F3D]/15 text-[#157F3D]'}`}>
                                         {currentUser?.role === 'superadmin' ? 'Super Admin' : 'Simple User'}
                                     </span>
                                 </div>
@@ -191,25 +194,25 @@ function AfterLoginHeader({ toggleSidebar, searchQuery, setSearchQuery, onOpenRe
                             <div className="pt-3 space-y-2">
                                 <button
                                     onClick={() => { setActivePopover(null); navigate('/dashboard'); }}
-                                    className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#14161D] text-[#F4F5F6]"
+                                    className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#FFFFFF] text-[#16181F]"
                                 >
-                                    <span className="material-symbols-outlined text-base">dashboard</span>
+                                    <span aria-hidden="true" className="material-symbols-outlined text-base">dashboard</span>
                                     <span>Dashboard</span>
                                 </button>
                                 {currentUser?.role === 'superadmin' && (
                                     <>
                                         <button
                                             onClick={() => { setActivePopover(null); navigate('/admin/conversation-analysis'); }}
-                                            className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#14161D] text-[#A855F7]"
+                                            className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#FFFFFF] text-[#0B6BCB]"
                                         >
-                                            <span className="material-symbols-outlined text-base">analytics</span>
+                                            <span aria-hidden="true" className="material-symbols-outlined text-base">analytics</span>
                                             <span>Conversation Analysis</span>
                                         </button>
                                         <button
                                             onClick={() => { setActivePopover(null); navigate('/admin/manage-posts'); }}
-                                            className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#14161D] text-[#38DFFF]"
+                                            className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#FFFFFF] text-[#0B6BCB]"
                                         >
-                                            <span className="material-symbols-outlined text-base">admin_panel_settings</span>
+                                            <span aria-hidden="true" className="material-symbols-outlined text-base">admin_panel_settings</span>
                                             <span>System Moderation</span>
                                         </button>
                                     </>
@@ -217,17 +220,17 @@ function AfterLoginHeader({ toggleSidebar, searchQuery, setSearchQuery, onOpenRe
                                 {currentUser?.role !== 'superadmin' && (
                                     <button
                                         onClick={() => { setActivePopover(null); navigate('/contact'); }}
-                                        className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#14161D] text-[#F4F5F6]"
+                                        className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#FFFFFF] text-[#16181F]"
                                     >
-                                        <span className="material-symbols-outlined text-base">help_outline</span>
+                                        <span aria-hidden="true" className="material-symbols-outlined text-base">help_outline</span>
                                         <span>Help & Support</span>
                                     </button>
                                 )}
                                 <button
                                     onClick={() => { setActivePopover(null); logout(); navigate('/login'); }}
-                                    className="w-full text-left px-3 py-2 rounded-xl text-xs font-bold text-[#FF5376] hover:bg-[#FF5376]/10 flex items-center gap-2 cursor-pointer"
+                                    className="w-full text-left px-3 py-2 rounded-xl text-xs font-bold text-[#B42318] hover:bg-[#B42318]/10 flex items-center gap-2 cursor-pointer"
                                 >
-                                    <span className="material-symbols-outlined text-base">logout</span>
+                                    <span aria-hidden="true" className="material-symbols-outlined text-base">logout</span>
                                     <span>Log Out</span>
                                 </button>
                             </div>

@@ -32,6 +32,8 @@ import AnalyticsIcon from '@mui/icons-material/Analytics';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../../context/AuthContext';
+import { statusColor, statusBg } from '../../../utils/statusColors';
+import { textColor, subTextColor, cardBg, cardBorder } from '../../../utils/afterLoginTokens';
 
 const CATEGORIES = ['Electronics', 'Clothing', 'Documents', 'Jewelry', 'Bags', 'Other'];
 
@@ -62,14 +64,14 @@ const initialForumPosts = [
 
 function StatCard({ title, value, icon, color }) {
     return (
-        <Card elevation={0} sx={{ backgroundColor: '#1E212B', border: '1px solid #262A36', borderRadius: '24px', p: 1 }}>
+        <Card elevation={0} sx={{ backgroundColor: '#FFFFFF', border: '1px solid #E6E5E1', borderRadius: '24px', p: 1 }}>
             <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2, p: 3 }}>
                 <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: `${color}15`, color }}>
                     {icon}
                 </Box>
                 <Box>
-                    <Typography variant="body2" sx={{ color: '#9A9FA5', fontWeight: 600 }}>{title}</Typography>
-                    <Typography variant="h5" fontWeight={800} sx={{ color: '#F4F5F6' }}>{value}</Typography>
+                    <Typography variant="body2" sx={{ color: '#6B7280', fontWeight: 600 }}>{title}</Typography>
+                    <Typography variant="h5" fontWeight={800} sx={{ color: '#16181F' }}>{value}</Typography>
                 </Box>
             </CardContent>
         </Card>
@@ -94,11 +96,6 @@ function ManagePosts() {
             navigate('/dashboard', { replace: true });
         }
     }, [currentUser, navigate]);
-
-    const textColor = '#F4F5F6';
-    const subTextColor = '#9A9FA5';
-    const cardBg = '#1E212B';
-    const cardBorder = '#262A36';
 
     const allRows = [...lostPosts, ...foundPosts, ...forumPosts];
     const stats = {
@@ -137,7 +134,7 @@ function ManagePosts() {
 
     return (
         <AfterLoginLayout pageTitle="Moderation Dashboard">
-            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 1, sm: 2 } }}>
+            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 0, sm: 2 } }}>
                 <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
                     <Box>
                         <Typography variant="h5" fontWeight={800} sx={{ color: textColor }}>
@@ -157,7 +154,7 @@ function ManagePosts() {
                             px: 3,
                             py: 1.2,
                             textTransform: 'none',
-                            background: 'linear-gradient(135deg, #A855F7 0%, #9c27b0 100%)',
+                            background: '#0B6BCB',
                             color: '#FFFFFF',
                         }}
                     >
@@ -167,7 +164,7 @@ function ManagePosts() {
 
                 {editSuccess && (
                     <Box sx={{ mb: 3 }}>
-                        <Alert severity="success" sx={{ borderRadius: '16px', fontWeight: 600, bgcolor: 'rgba(0, 255, 157, 0.15)', color: textColor, border: '1px solid rgba(0, 255, 157, 0.3)' }} onClose={() => setEditSuccess(false)}>
+                        <Alert severity="success" sx={{ borderRadius: '16px', fontWeight: 600, bgcolor: 'rgba(21, 127, 61, 0.15)', color: textColor, border: '1px solid rgba(21, 127, 61, 0.3)' }} onClose={() => setEditSuccess(false)}>
                             Post updated successfully!
                         </Alert>
                     </Box>
@@ -175,14 +172,14 @@ function ManagePosts() {
 
                 {/* Metric Summary Cards */}
                 <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid item xs={12} sm={4}>
-                        <StatCard title="Total Posts" value={stats.total} icon={<ArticleIcon />} color="#38DFFF" />
+                    <Grid size={{ xs: 12, sm: 4 }}>
+                        <StatCard title="Total Posts" value={stats.total} icon={<ArticleIcon />} color="#0B6BCB" />
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <StatCard title="Resolved Claims" value={stats.resolved} icon={<CheckCircleIcon />} color="#00FF9D" />
+                    <Grid size={{ xs: 12, sm: 4 }}>
+                        <StatCard title="Resolved Claims" value={stats.resolved} icon={<CheckCircleIcon />} color="#157F3D" />
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <StatCard title="Flagged for Review" value={stats.flagged} icon={<FlagIcon />} color="#FF5376" />
+                    <Grid size={{ xs: 12, sm: 4 }}>
+                        <StatCard title="Flagged for Review" value={stats.flagged} icon={<FlagIcon />} color="#B42318" />
                     </Grid>
                 </Grid>
 
@@ -198,9 +195,9 @@ function ManagePosts() {
                                     fontWeight: 700,
                                     textTransform: 'none',
                                     fontSize: '0.95rem',
-                                    '&.Mui-selected': { color: '#38DFFF' },
+                                    '&.Mui-selected': { color: '#0B6BCB' },
                                 },
-                                '& .MuiTabs-indicator': { backgroundColor: '#38DFFF', height: 3 },
+                                '& .MuiTabs-indicator': { backgroundColor: '#0B6BCB', height: 3 },
                             }}
                         >
                             <Tab label={`Lost Items (${lostPosts.length})`} />
@@ -209,10 +206,66 @@ function ManagePosts() {
                         </Tabs>
                     </Box>
 
-                    {/* Data Table */}
-                    <TableContainer>
+                    {/* Phones: a 7-column table can't work at 375px, so each row becomes a card. */}
+                    <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', gap: 1.5, p: 2 }}>
+                        {currentList.map((row) => (
+                            <Box
+                                key={row.id}
+                                sx={{
+                                    border: `1px solid ${cardBorder}`,
+                                    borderRadius: '16px',
+                                    bgcolor: '#FFFFFF',
+                                    p: 2,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: 1,
+                                }}
+                            >
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1 }}>
+                                    <Typography sx={{ color: subTextColor, fontWeight: 700, fontSize: '0.75rem' }}>{row.id}</Typography>
+                                    <Chip
+                                        label={row.status}
+                                        size="small"
+                                        sx={{ fontWeight: 700, borderRadius: '8px', bgcolor: statusBg(row.status), color: statusColor(row.status) }}
+                                    />
+                                </Box>
+                                <Typography sx={{ color: textColor, fontWeight: 700, fontSize: '0.95rem', lineHeight: 1.35 }}>{row.title}</Typography>
+                                <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 1 }}>
+                                    <Chip
+                                        label={row.category}
+                                        size="small"
+                                        sx={{ fontWeight: 700, borderRadius: '8px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}
+                                    />
+                                    <Typography sx={{ color: subTextColor, fontSize: '0.75rem' }}>
+                                        {row.author} &middot; {row.date}
+                                    </Typography>
+                                </Box>
+                                <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
+                                    <Button
+                                        fullWidth
+                                        variant="outlined"
+                                        onClick={() => handleEditOpen(row)}
+                                        sx={{ fontWeight: 700, textTransform: 'none', color: '#0B6BCB', borderColor: 'rgba(11, 107, 203, 0.4)', borderRadius: '12px' }}
+                                    >
+                                        Edit
+                                    </Button>
+                                    <Button
+                                        fullWidth
+                                        variant="outlined"
+                                        onClick={() => setDeleteTarget(row)}
+                                        sx={{ fontWeight: 700, textTransform: 'none', color: '#B42318', borderColor: 'rgba(180, 35, 24, 0.4)', borderRadius: '12px' }}
+                                    >
+                                        Delete
+                                    </Button>
+                                </Box>
+                            </Box>
+                        ))}
+                    </Box>
+
+                    {/* Data Table (tablet and up) */}
+                    <TableContainer sx={{ display: { xs: 'none', md: 'block' } }}>
                         <Table>
-                            <TableHead sx={{ bgcolor: '#14161D' }}>
+                            <TableHead sx={{ bgcolor: '#FFFFFF' }}>
                                 <TableRow>
                                     <TableCell sx={{ color: subTextColor, fontWeight: 700, borderColor: cardBorder }}>ID</TableCell>
                                     <TableCell sx={{ color: subTextColor, fontWeight: 700, borderColor: cardBorder }}>Title</TableCell>
@@ -225,12 +278,12 @@ function ManagePosts() {
                             </TableHead>
                             <TableBody>
                                 {currentList.map((row) => (
-                                    <TableRow key={row.id} hover sx={{ '&:hover': { bgcolor: '#1B1E27' } }}>
+                                    <TableRow key={row.id} hover sx={{ '&:hover': { bgcolor: '#F4F3F1' } }}>
                                         <TableCell sx={{ color: textColor, fontWeight: 700, borderColor: cardBorder }}>{row.id}</TableCell>
                                         <TableCell sx={{ color: textColor, fontWeight: 600, borderColor: cardBorder }}>{row.title}</TableCell>
                                         <TableCell sx={{ color: subTextColor, borderColor: cardBorder }}>{row.author}</TableCell>
                                         <TableCell sx={{ borderColor: cardBorder }}>
-                                            <Chip label={row.category} size="small" sx={{ fontWeight: 700, borderRadius: '8px', bgcolor: 'rgba(56, 223, 255, 0.15)', color: '#38DFFF' }} />
+                                            <Chip label={row.category} size="small" sx={{ fontWeight: 700, borderRadius: '8px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }} />
                                         </TableCell>
                                         <TableCell sx={{ color: subTextColor, borderColor: cardBorder }}>{row.date}</TableCell>
                                         <TableCell sx={{ borderColor: cardBorder }}>
@@ -240,8 +293,8 @@ function ManagePosts() {
                                                 sx={{
                                                     fontWeight: 700,
                                                     borderRadius: '8px',
-                                                    bgcolor: row.status === 'Active' ? 'rgba(0, 255, 157, 0.15)' : row.status === 'Flagged' ? 'rgba(255, 83, 118, 0.15)' : 'rgba(56, 223, 255, 0.15)',
-                                                    color: row.status === 'Active' ? '#00FF9D' : row.status === 'Flagged' ? '#FF5376' : '#38DFFF',
+                                                    bgcolor: statusBg(row.status),
+                                                    color: statusColor(row.status),
                                                 }}
                                             />
                                         </TableCell>
@@ -249,14 +302,14 @@ function ManagePosts() {
                                             <Button
                                                 size="small"
                                                 onClick={() => handleEditOpen(row)}
-                                                sx={{ mr: 1, fontWeight: 700, textTransform: 'none', color: '#38DFFF' }}
+                                                sx={{ mr: 1, fontWeight: 700, textTransform: 'none', color: '#0B6BCB' }}
                                             >
                                                 Edit
                                             </Button>
                                             <Button
                                                 size="small"
                                                 onClick={() => setDeleteTarget(row)}
-                                                sx={{ fontWeight: 700, textTransform: 'none', color: '#FF5376' }}
+                                                sx={{ fontWeight: 700, textTransform: 'none', color: '#B42318' }}
                                             >
                                                 Delete
                                             </Button>
@@ -296,7 +349,7 @@ function ManagePosts() {
                                     sx={{
                                         '& .MuiOutlinedInput-root': {
                                             borderRadius: '16px',
-                                            backgroundColor: '#14161D',
+                                            backgroundColor: '#FFFFFF',
                                             '& fieldset': { borderColor: cardBorder },
                                             '& input': { color: textColor },
                                         },
@@ -313,7 +366,7 @@ function ManagePosts() {
                                     sx={{
                                         '& .MuiOutlinedInput-root': {
                                             borderRadius: '16px',
-                                            backgroundColor: '#14161D',
+                                            backgroundColor: '#FFFFFF',
                                             '& fieldset': { borderColor: cardBorder },
                                             '& .MuiSelect-select': { color: textColor },
                                         },
@@ -321,7 +374,7 @@ function ManagePosts() {
                                     }}
                                 >
                                     {CATEGORIES.map((c) => (
-                                        <MenuItem key={c} value={c} sx={{ bgcolor: '#1E212B', color: textColor }}>{c}</MenuItem>
+                                        <MenuItem key={c} value={c} sx={{ bgcolor: '#FFFFFF', color: textColor }}>{c}</MenuItem>
                                     ))}
                                 </TextField>
                                 <TextField
@@ -334,7 +387,7 @@ function ManagePosts() {
                                     sx={{
                                         '& .MuiOutlinedInput-root': {
                                             borderRadius: '16px',
-                                            backgroundColor: '#14161D',
+                                            backgroundColor: '#FFFFFF',
                                             '& fieldset': { borderColor: cardBorder },
                                             '& .MuiSelect-select': { color: textColor },
                                         },
@@ -342,7 +395,7 @@ function ManagePosts() {
                                     }}
                                 >
                                     {['Active', 'Resolved', 'Flagged'].map((s) => (
-                                        <MenuItem key={s} value={s} sx={{ bgcolor: '#1E212B', color: textColor }}>{s}</MenuItem>
+                                        <MenuItem key={s} value={s} sx={{ bgcolor: '#FFFFFF', color: textColor }}>{s}</MenuItem>
                                     ))}
                                 </TextField>
                             </DialogContent>
@@ -355,8 +408,8 @@ function ManagePosts() {
                                         borderRadius: '14px',
                                         fontWeight: 800,
                                         px: 3,
-                                        background: 'linear-gradient(135deg, #38DFFF 0%, #00B2FE 100%)',
-                                        color: '#0D0E12',
+                                        background: '#0B6BCB',
+                                        color: '#FFFFFF',
                                     }}
                                 >
                                     Save Changes
@@ -396,9 +449,9 @@ function ManagePosts() {
                                     sx={{
                                         borderRadius: '14px',
                                         fontWeight: 800,
-                                        bgcolor: '#FF5376',
+                                        bgcolor: '#B42318',
                                         color: '#FFFFFF',
-                                        '&:hover': { bgcolor: '#e53935' },
+                                        '&:hover': { bgcolor: '#B42318' },
                                     }}
                                 >
                                     Delete Post

@@ -1,4 +1,3 @@
-import React from 'react';
 
 const communityComments = [
     {
@@ -21,21 +20,21 @@ const communityComments = [
 
 function CommunityComments() {
     return (
-        <div className="bg-[#1E212B] border border-[#262A36] rounded-3xl p-6 space-y-5">
-            <h2 className="text-xl font-extrabold text-[#F4F5F6]">Comments</h2>
+        <div className="bg-[#FFFFFF] border border-[#E6E5E1] rounded-3xl p-6 space-y-5">
+            <h2 className="text-xl font-extrabold text-[#16181F]">Comments</h2>
 
             <div className="space-y-4">
                 {communityComments.map((comment) => (
-                    <div key={comment.id} className="flex gap-3 p-3 bg-[#14161D] rounded-2xl border border-[#262A36]">
-                        <img className="w-9 h-9 rounded-full object-cover flex-shrink-0 border border-[#38DFFF]/40" src={comment.avatar} alt={comment.user} />
+                    <div key={comment.id} className="flex gap-3 p-3 bg-[#FFFFFF] rounded-2xl border border-[#E6E5E1]">
+                        <img className="w-9 h-9 rounded-full object-cover flex-shrink-0 border border-[#0B6BCB]/40" src={comment.avatar} alt={comment.user} />
                         <div className="flex-1 space-y-1">
                             <div className="flex justify-between items-baseline">
-                                <p className="text-xs font-bold text-[#F4F5F6]">
-                                    {comment.user} <span className="font-normal text-[#38DFFF]">on {comment.onItem}</span>
+                                <p className="text-xs font-bold text-[#16181F]">
+                                    {comment.user} <span className="font-normal text-[#0B6BCB]">on {comment.onItem}</span>
                                 </p>
-                                <span className="text-[10px] text-[#9A9FA5]">{comment.time}</span>
+                                <span className="text-xs sm:text-[10px] text-[#6B7280]">{comment.time}</span>
                             </div>
-                            <p className="text-xs text-[#9A9FA5] leading-relaxed">{comment.text}</p>
+                            <p className="text-xs text-[#6B7280] leading-relaxed">{comment.text}</p>
                         </div>
                     </div>
                 ))}

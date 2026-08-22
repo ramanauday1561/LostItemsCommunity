@@ -1,4 +1,3 @@
-import React from 'react';
 import AfterLoginLayout from '../../../AfterLoginComponents/AfterLoginLayout';
 import PopularListings from '../../../AfterLoginComponents/PopularListings';
 import CommunityComments from '../../../AfterLoginComponents/CommunityComments';
@@ -19,29 +18,25 @@ import ForumIcon from '@mui/icons-material/Forum';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
+import { textColor, subTextColor, cardBg, cardBorder } from '../../../utils/afterLoginTokens';
 
 function UserDashboard() {
     const navigate = useNavigate();
     const { currentUser } = useAuth();
 
-    const textColor = '#F4F5F6';
-    const subTextColor = '#9A9FA5';
-    const cardBg = '#1E212B';
-    const cardBorder = '#262A36';
-
     const userName = currentUser?.displayName || 'Community Member';
 
     return (
         <AfterLoginLayout pageTitle="My Dashboard">
-            <Container maxWidth="xl" sx={{ py: 1, px: { xs: 1, sm: 2 } }}>
+            <Container maxWidth="xl" sx={{ py: 1, px: { xs: 0, sm: 2 } }}>
                 
                 {/* Personalized Welcome Banner */}
                 <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '28px', mb: 4, p: 1 }}>
                     <CardContent sx={{ p: { xs: 3, sm: 4 } }}>
                         <Grid container spacing={3} alignItems="center">
-                            <Grid item xs={12} md={8}>
+                            <Grid size={{ xs: 12, md: 8 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1 }}>
-                                    <Chip label="Community Member" size="small" sx={{ bgcolor: 'rgba(0, 255, 157, 0.15)', color: '#00FF9D', fontWeight: 800, borderRadius: '8px' }} />
+                                    <Chip label="Community Member" size="small" sx={{ bgcolor: 'rgba(21, 127, 61, 0.15)', color: '#157F3D', fontWeight: 800, borderRadius: '8px' }} />
                                     <Typography variant="caption" sx={{ color: subTextColor }}>TrustFound Network</Typography>
                                 </Box>
                                 <Typography variant="h4" fontWeight={800} sx={{ color: textColor, mb: 1 }}>
@@ -51,7 +46,7 @@ function UserDashboard() {
                                     Search our community registry to find lost belongings, report items you've found, or connect with members in the forum.
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12} md={4} sx={{ display: 'flex', gap: 1.5, flexDirection: { xs: 'column', sm: 'row' }, justifyContent: { md: 'flex-end' } }}>
+                            <Grid size={{ xs: 12, md: 4 }} sx={{ display: 'flex', gap: 1.5, flexDirection: { xs: 'column', sm: 'row' }, justifyContent: { md: 'flex-end' } }}>
                                 <Button
                                     variant="contained"
                                     startIcon={<ReportProblemIcon />}
@@ -62,8 +57,8 @@ function UserDashboard() {
                                         px: 3,
                                         py: 1.3,
                                         textTransform: 'none',
-                                        background: 'linear-gradient(135deg, #38DFFF 0%, #00B2FE 100%)',
-                                        color: '#0D0E12',
+                                        background: '#0B6BCB',
+                                        color: '#FFFFFF',
                                     }}
                                 >
                                     Report Lost
@@ -78,8 +73,9 @@ function UserDashboard() {
                                         px: 3,
                                         py: 1.3,
                                         textTransform: 'none',
-                                        background: 'linear-gradient(135deg, #FFB800 0%, #FF9800 100%)',
-                                        color: '#0D0E12',
+                                        backgroundColor: '#FFFFFF',
+                                        border: '1px solid #E6E5E1',
+                                        color: '#16181F',
                                     }}
                                 >
                                     Report Found
@@ -91,10 +87,10 @@ function UserDashboard() {
 
                 {/* Personal Activity Summary Grid */}
                 <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid item xs={12} sm={4}>
+                    <Grid size={{ xs: 12, sm: 4 }}>
                         <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', p: 1 }}>
                             <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2, p: 2.5 }}>
-                                <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: 'rgba(56, 223, 255, 0.15)', color: '#38DFFF' }}>
+                                <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
                                     <ReportProblemIcon />
                                 </Box>
                                 <Box>
@@ -104,10 +100,10 @@ function UserDashboard() {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} sm={4}>
+                    <Grid size={{ xs: 12, sm: 4 }}>
                         <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', p: 1 }}>
                             <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2, p: 2.5 }}>
-                                <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: 'rgba(0, 255, 157, 0.15)', color: '#00FF9D' }}>
+                                <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: 'rgba(21, 127, 61, 0.15)', color: '#157F3D' }}>
                                     <CheckCircleIcon />
                                 </Box>
                                 <Box>
@@ -117,10 +113,10 @@ function UserDashboard() {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} sm={4}>
+                    <Grid size={{ xs: 12, sm: 4 }}>
                         <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', p: 1 }}>
                             <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2, p: 2.5 }}>
-                                <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: 'rgba(168, 85, 247, 0.15)', color: '#A855F7' }}>
+                                <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
                                     <ForumIcon />
                                 </Box>
                                 <Box>
@@ -134,22 +130,26 @@ function UserDashboard() {
 
                 {/* Quick Navigation Cards */}
                 <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid item xs={12} md={6}>
+                    <Grid size={{ xs: 12, md: 6 }}>
                         <Card
                             elevation={0}
+                            component="button"
                             onClick={() => navigate('/search-lost')}
                             sx={{
+                                width: '100%',
+                                textAlign: 'left',
+                                font: 'inherit',
                                 backgroundColor: cardBg,
                                 border: `1px solid ${cardBorder}`,
                                 borderRadius: '24px',
                                 p: 3,
                                 cursor: 'pointer',
                                 transition: 'all 0.3s ease',
-                                '&:hover': { borderColor: '#38DFFF', transform: 'translateY(-2px)' },
+                                '&:hover': { borderColor: '#0B6BCB', transform: 'translateY(-2px)' },
                             }}
                         >
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                <Box sx={{ p: 2, borderRadius: '20px', bgcolor: 'rgba(56, 223, 255, 0.15)', color: '#38DFFF' }}>
+                                <Box sx={{ p: 2, borderRadius: '20px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
                                     <SearchIcon sx={{ fontSize: 28 }} />
                                 </Box>
                                 <Box>
@@ -163,22 +163,26 @@ function UserDashboard() {
                             </Box>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} md={6}>
+                    <Grid size={{ xs: 12, md: 6 }}>
                         <Card
                             elevation={0}
+                            component="button"
                             onClick={() => navigate('/search-found')}
                             sx={{
+                                width: '100%',
+                                textAlign: 'left',
+                                font: 'inherit',
                                 backgroundColor: cardBg,
                                 border: `1px solid ${cardBorder}`,
                                 borderRadius: '24px',
                                 p: 3,
                                 cursor: 'pointer',
                                 transition: 'all 0.3s ease',
-                                '&:hover': { borderColor: '#FFB800', transform: 'translateY(-2px)' },
+                                '&:hover': { borderColor: '#0B6BCB', transform: 'translateY(-2px)' },
                             }}
                         >
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                <Box sx={{ p: 2, borderRadius: '20px', bgcolor: 'rgba(255, 184, 0, 0.15)', color: '#FFB800' }}>
+                                <Box sx={{ p: 2, borderRadius: '20px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
                                     <FindInPageIcon sx={{ fontSize: 28 }} />
                                 </Box>
                                 <Box>

@@ -30,7 +30,7 @@ function LoginNeeded() {
             />
             <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
                 <Grid container spacing={4} alignItems="center" justifyContent="space-evenly">
-                    <Grid item xs={12} md={6} sx={{ maxWidth: 520 }}>
+                    <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 520 }}>
                         <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '2rem', md: '2.8rem' } }}>
                             <Box component="span" color="primary.main">Unlock</Box> exclusive content by <Box component="span" color="secondary.main">Signing</Box> in!
                         </Typography>
@@ -39,7 +39,7 @@ function LoginNeeded() {
                             <Button onClick={() => navigate('/signup')} variant="contained" color="secondary" size="large">Signup</Button>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} md={6} sx={{ maxWidth: 500 }}>
+                    <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 500 }}>
                         <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
                             <Box
                                 component="img"

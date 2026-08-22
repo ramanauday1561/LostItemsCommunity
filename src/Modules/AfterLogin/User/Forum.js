@@ -25,6 +25,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../../context/AuthContext';
+import { textColor, subTextColor, cardBg, cardBorder } from '../../../utils/afterLoginTokens';
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -90,11 +91,6 @@ function Forum() {
     const [replyText, setReplyText] = useState('');
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-
-    const textColor = '#F4F5F6';
-    const subTextColor = '#9A9FA5';
-    const cardBg = '#1E212B';
-    const cardBorder = '#262A36';
 
     const canDelete = (authorName) => {
         if (isSuperAdmin) return true;
@@ -165,7 +161,7 @@ function Forum() {
 
     return (
         <AfterLoginLayout pageTitle="Community Forum">
-            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 1, sm: 2 } }}>
+            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 0, sm: 2 } }}>
                 {/* Header Action Bar */}
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3, flexWrap: 'wrap', gap: 2 }}>
                     <Box>
@@ -174,7 +170,7 @@ function Forum() {
                                 Community Discussion Forum
                             </Typography>
                             {isSuperAdmin && (
-                                <Chip label="Super Admin Moderation Active" size="small" sx={{ bgcolor: 'rgba(56, 223, 255, 0.2)', color: '#38DFFF', fontWeight: 800 }} />
+                                <Chip label="Super Admin Moderation Active" size="small" sx={{ bgcolor: 'rgba(11, 107, 203, 0.2)', color: '#0B6BCB', fontWeight: 800 }} />
                             )}
                         </Box>
                         <Typography variant="body2" sx={{ color: subTextColor, mt: 0.5 }}>
@@ -192,9 +188,8 @@ function Forum() {
                             py: 1.2,
                             textTransform: 'none',
                             fontSize: '0.9rem',
-                            background: 'linear-gradient(135deg, #A855F7 0%, #9c27b0 100%)',
+                            background: '#0B6BCB',
                             color: '#FFFFFF',
-                            boxShadow: '0 0 15px rgba(168, 85, 247, 0.35)',
                         }}
                     >
                         Start New Discussion
@@ -203,7 +198,7 @@ function Forum() {
 
                 {postSuccess && (
                     <Box sx={{ mb: 3 }}>
-                        <Alert severity="success" sx={{ borderRadius: '16px', fontWeight: 600, bgcolor: 'rgba(0, 255, 157, 0.15)', color: textColor, border: '1px solid rgba(0, 255, 157, 0.3)' }} onClose={() => setPostSuccess('')}>
+                        <Alert severity="success" sx={{ borderRadius: '16px', fontWeight: 600, bgcolor: 'rgba(21, 127, 61, 0.15)', color: textColor, border: '1px solid rgba(21, 127, 61, 0.3)' }} onClose={() => setPostSuccess('')}>
                             {postSuccess}
                         </Alert>
                     </Box>
@@ -222,18 +217,17 @@ function Forum() {
                                     cursor: 'pointer',
                                     transition: 'all 0.3s ease',
                                     '&:hover': {
-                                        borderColor: '#A855F7',
+                                        borderColor: '#0B6BCB',
                                         transform: 'translateY(-2px)',
-                                        boxShadow: '0 8px 24px rgba(168, 85, 247, 0.2)',
                                     },
                                 }}
                                 onClick={() => setSelectedThread(thread)}
                             >
-                                <CardContent sx={{ p: 3 }}>
+                                <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
                                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 1 }}>
                                         <Box sx={{ flex: 1 }}>
                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
-                                                <Chip label={thread.category} size="small" sx={{ fontWeight: 700, borderRadius: '8px', bgcolor: 'rgba(168, 85, 247, 0.15)', color: '#A855F7', border: '1px solid rgba(168, 85, 247, 0.3)' }} />
+                                                <Chip label={thread.category} size="small" sx={{ fontWeight: 700, borderRadius: '8px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB', border: '1px solid rgba(11, 107, 203, 0.3)' }} />
                                             </Box>
                                             <Typography variant="h6" sx={{ fontWeight: 700, color: textColor, mb: 1, fontSize: '1.1rem' }}>
                                                 {thread.title}
@@ -243,7 +237,7 @@ function Forum() {
                                                     Posted by <strong style={{ color: textColor }}>{thread.author}</strong>
                                                 </Typography>
                                                 <Typography variant="caption" sx={{ color: subTextColor }}>{thread.date}</Typography>
-                                                <Typography variant="caption" sx={{ color: '#A855F7', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                                                <Typography variant="caption" sx={{ color: '#0B6BCB', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 0.5 }}>
                                                     <CommentIcon sx={{ fontSize: 14 }} /> {thread.replies} replies
                                                 </Typography>
                                             </Box>
@@ -256,11 +250,11 @@ function Forum() {
                                                 startIcon={<DeleteIcon />}
                                                 onClick={(e) => handleDeleteThread(e, thread.id)}
                                                 sx={{
-                                                    color: '#FF5376',
+                                                    color: '#B42318',
                                                     fontWeight: 700,
                                                     textTransform: 'none',
                                                     fontSize: '0.8rem',
-                                                    '&:hover': { bgcolor: 'rgba(255, 83, 118, 0.1)' }
+                                                    '&:hover': { bgcolor: 'rgba(180, 35, 24, 0.1)' }
                                                 }}
                                             >
                                                 {isSuperAdmin ? 'Delete Thread (Admin)' : 'Delete My Thread'}
@@ -295,7 +289,7 @@ function Forum() {
                         <DialogTitle>
                             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 1 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                                    <Chip label={selectedThread.category} size="small" sx={{ fontWeight: 700, bgcolor: 'rgba(168, 85, 247, 0.15)', color: '#A855F7' }} />
+                                    <Chip label={selectedThread.category} size="small" sx={{ fontWeight: 700, bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }} />
                                     <Typography variant="h6" fontWeight={700} sx={{ color: textColor }}>{selectedThread.title}</Typography>
                                 </Box>
                                 {canDelete(selectedThread.author) && (
@@ -314,7 +308,7 @@ function Forum() {
                             {/* Author Info & Main Content */}
                             <Box sx={{ mb: 3 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
-                                    <Avatar sx={{ width: 36, height: 36, bgcolor: '#A855F7', fontWeight: 700, fontSize: '1rem', color: '#FFFFFF' }}>
+                                    <Avatar sx={{ width: 36, height: 36, bgcolor: '#0B6BCB', fontWeight: 700, fontSize: '1rem', color: '#FFFFFF' }}>
                                         {selectedThread.author[0].toUpperCase()}
                                     </Avatar>
                                     <Box>
@@ -342,13 +336,13 @@ function Forum() {
                                             p: 2,
                                             mb: 1.5,
                                             borderRadius: '16px',
-                                            backgroundColor: '#14161D',
+                                            backgroundColor: '#FFFFFF',
                                             border: `1px solid ${cardBorder}`,
                                         }}
                                     >
                                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                                <Avatar sx={{ width: 26, height: 26, bgcolor: '#38DFFF', color: '#0D0E12', fontSize: '0.75rem', fontWeight: 800 }}>
+                                                <Avatar sx={{ width: 26, height: 26, bgcolor: '#0B6BCB', color: '#FFFFFF', fontSize: '0.75rem', fontWeight: 800 }}>
                                                     {reply.author[0].toUpperCase()}
                                                 </Avatar>
                                                 <Typography variant="body2" fontWeight={700} sx={{ color: textColor }}>{reply.author}</Typography>
@@ -358,7 +352,7 @@ function Forum() {
                                                 <Button
                                                     size="small"
                                                     onClick={() => handleDeleteReply(reply.id)}
-                                                    sx={{ color: '#FF5376', fontSize: '0.75rem', p: 0, minWidth: 'auto', fontWeight: 700 }}
+                                                    sx={{ color: '#B42318', fontSize: '0.75rem', p: 0, minWidth: 'auto', fontWeight: 700 }}
                                                 >
                                                     Delete
                                                 </Button>
@@ -383,7 +377,7 @@ function Forum() {
                                     sx={{
                                         '& .MuiOutlinedInput-root': {
                                             borderRadius: '16px',
-                                            backgroundColor: '#14161D',
+                                            backgroundColor: '#FFFFFF',
                                             '& fieldset': { borderColor: cardBorder },
                                             '& input': { color: textColor, fontSize: '0.85rem' },
                                         },
@@ -397,7 +391,7 @@ function Forum() {
                                         borderRadius: '16px',
                                         fontWeight: 800,
                                         px: 3,
-                                        background: 'linear-gradient(135deg, #A855F7 0%, #9c27b0 100%)',
+                                        background: '#0B6BCB',
                                         color: '#FFFFFF',
                                     }}
                                 >
@@ -441,7 +435,7 @@ function Forum() {
                             sx={{
                                 '& .MuiOutlinedInput-root': {
                                     borderRadius: '16px',
-                                    backgroundColor: '#14161D',
+                                    backgroundColor: '#FFFFFF',
                                     '& fieldset': { borderColor: cardBorder },
                                     '& input': { color: textColor },
                                 },
@@ -458,7 +452,7 @@ function Forum() {
                             sx={{
                                 '& .MuiOutlinedInput-root': {
                                     borderRadius: '16px',
-                                    backgroundColor: '#14161D',
+                                    backgroundColor: '#FFFFFF',
                                     '& fieldset': { borderColor: cardBorder },
                                     '& .MuiSelect-select': { color: textColor },
                                 },
@@ -466,7 +460,7 @@ function Forum() {
                             }}
                         >
                             {['General', 'Tips', 'Success Story', 'Lost', 'Found'].map((cat) => (
-                                <MenuItem key={cat} value={cat} sx={{ bgcolor: '#1E212B', color: textColor }}>{cat}</MenuItem>
+                                <MenuItem key={cat} value={cat} sx={{ bgcolor: '#FFFFFF', color: textColor }}>{cat}</MenuItem>
                             ))}
                         </TextField>
                         <TextField
@@ -482,7 +476,7 @@ function Forum() {
                             sx={{
                                 '& .MuiOutlinedInput-root': {
                                     borderRadius: '16px',
-                                    backgroundColor: '#14161D',
+                                    backgroundColor: '#FFFFFF',
                                     '& fieldset': { borderColor: cardBorder },
                                     '& textarea': { color: textColor },
                                 },
@@ -499,7 +493,7 @@ function Forum() {
                                 borderRadius: '14px',
                                 fontWeight: 800,
                                 px: 3,
-                                background: 'linear-gradient(135deg, #A855F7 0%, #9c27b0 100%)',
+                                background: '#0B6BCB',
                                 color: '#FFFFFF',
                             }}
                         >

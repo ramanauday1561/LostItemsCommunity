@@ -34,6 +34,11 @@ const withPageTransition = (Component) => (
     </PageTransition>
 );
 
+// AfterLogin screens render without the page transition: wrapping them made
+// AnimatePresence mode="wait" block on an exit that never resolved, which left the
+// URL changing while the previous screen stayed mounted. BeforeLogin keeps it.
+const withoutPageTransition = (Component) => <Component />;
+
 // Redirect to /dashboard if already logged in, otherwise render component
 const GuestRoute = ({ component: Component }) => {
     const { currentUser } = useAuth();
@@ -43,7 +48,7 @@ const GuestRoute = ({ component: Component }) => {
 // Redirect to /login if not authenticated, otherwise render component
 const ProtectedRoute = ({ component: Component }) => {
     const { currentUser } = useAuth();
-    return currentUser ? withPageTransition(Component) : <Navigate to="/login" replace />;
+    return currentUser ? withoutPageTransition(Component) : <Navigate to="/login" replace />;
 };
 
 // Dynamic Dashboard Route: Renders AdminDashboard for superadmin, UserDashboard for simple users
@@ -51,7 +56,7 @@ const DynamicDashboardRoute = () => {
     const { currentUser } = useAuth();
     if (!currentUser) return <Navigate to="/login" replace />;
     const Component = currentUser.role === 'superadmin' ? AdminDashboard : UserDashboard;
-    return withPageTransition(Component);
+    return withoutPageTransition(Component);
 };
 
 // Redirect to /login if not authenticated, redirect to /dashboard if not superadmin
@@ -59,7 +64,7 @@ const AdminRoute = ({ component: Component }) => {
     const { currentUser } = useAuth();
     if (!currentUser) return <Navigate to="/login" replace />;
     if (currentUser.role !== 'superadmin') return <Navigate to="/dashboard" replace />;
-    return withPageTransition(Component);
+    return withoutPageTransition(Component);
 };
 
 const AnimatedRoutes = () => {

@@ -94,7 +94,7 @@ function SignupLogin() {
                 justifyContent: 'center',
                 overflow: 'scroll' }}>
                 <Grid container spacing={4} alignItems="center" justifyContent="space-evenly">
-                    <Grid item xs={12} md={6} sx={{ maxWidth: 500 }}>
+                    <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 500 }}>
                         <motion.div
                             initial="hidden"
                             animate="visible"
@@ -115,7 +115,7 @@ function SignupLogin() {
                             </Box>
                         </motion.div>
                     </Grid>
-                    <Grid item xs={12} md={6} sx={{ maxWidth: 400, boxSizing: 'content-box' }} className="LoginSignupContainer">
+                    <Grid size={{ xs: 12, md: 6 }} sx={{ maxWidth: 400, boxSizing: 'content-box' }} className="LoginSignupContainer">
                         <motion.div
                             initial="hidden"
                             animate="visible"
