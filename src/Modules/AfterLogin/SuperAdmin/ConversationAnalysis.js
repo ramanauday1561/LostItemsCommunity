@@ -35,6 +35,13 @@ const initialConversations = [
     { id: 'CONV-8690', topic: 'AirTag tracking tool recommendations', author: 'Laura J.', messagesCount: 17, sentiment: 'Neutral', sentimentScore: '85%', status: 'Normal', date: '2024-06-04', snippet: 'Besides this platform, what tools do you recommend?' },
 ];
 
+const sentimentMetrics = [
+    { label: 'Total Discussions Analyzed', value: '1,420', color: '#0B6BCB', note: '↑ 18.5% this week', noteColor: '#157F3D' },
+    { label: 'Overall Sentiment Score', value: '94.2%', color: '#157F3D', note: 'Healthy & Helpful', noteColor: subTextColor },
+    { label: 'Flagged Conversations', value: '3', color: '#B42318', note: 'Requires Admin Attention', noteColor: '#B42318' },
+    { label: 'Avg Response Time', value: '8.5m', color: '#0B6BCB', note: 'High Community Velocity', noteColor: subTextColor },
+];
+
 function ConversationAnalysis() {
     const navigate = useNavigate();
     const [conversations, setConversations] = useState(initialConversations);
@@ -68,11 +75,11 @@ function ConversationAnalysis() {
 
     return (
         <AfterLoginLayout pageTitle="Analysis">
-            <Container maxWidth="xl" sx={{ py: 1, px: { xs: 0, sm: 2 } }}>
+            <Container maxWidth="xl" sx={{ py: { xs: 0, sm: 1 }, px: { xs: 0, sm: 2 } }}>
                 
                 {/* Module Header */}
-                <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Box sx={{ mb: { xs: 3, md: 4 }, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+                    <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 2 }}>
                         <Box sx={{ p: 1.5, flexShrink: 0, borderRadius: '20px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
                             <AnalyticsIcon sx={{ fontSize: 36 }} />
                         </Box>
@@ -92,6 +99,7 @@ function ConversationAnalysis() {
                         variant="outlined"
                         onClick={() => navigate('/admin/manage-posts')}
                         sx={{
+                            width: { xs: '100%', sm: 'auto' },
                             borderRadius: '16px',
                             fontWeight: 800,
                             px: 3,
@@ -113,45 +121,22 @@ function ConversationAnalysis() {
                     </Box>
                 )}
 
-                {/* Key Sentiment Metrics Grid */}
-                <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                        <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', p: 1 }}>
-                            <CardContent>
-                                <Typography variant="caption" sx={{ color: subTextColor, fontWeight: 700 }}>Total Discussions Analyzed</Typography>
-                                <Typography variant="h4" fontWeight={800} sx={{ color: '#0B6BCB', mt: 0.5 }}>1,420</Typography>
-                                <Typography variant="caption" sx={{ color: '#157F3D', mt: 1, display: 'block' }}>↑ 18.5% this week</Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                        <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', p: 1 }}>
-                            <CardContent>
-                                <Typography variant="caption" sx={{ color: subTextColor, fontWeight: 700 }}>Overall Sentiment Score</Typography>
-                                <Typography variant="h4" fontWeight={800} sx={{ color: '#157F3D', mt: 0.5 }}>94.2%</Typography>
-                                <Typography variant="caption" sx={{ color: subTextColor, mt: 1, display: 'block' }}>Healthy & Helpful</Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                        <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', p: 1 }}>
-                            <CardContent>
-                                <Typography variant="caption" sx={{ color: subTextColor, fontWeight: 700 }}>Flagged Conversations</Typography>
-                                <Typography variant="h4" fontWeight={800} sx={{ color: '#B42318', mt: 0.5 }}>3</Typography>
-                                <Typography variant="caption" sx={{ color: '#B42318', mt: 1, display: 'block' }}>Requires Admin Attention</Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                        <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', p: 1 }}>
-                            <CardContent>
-                                <Typography variant="caption" sx={{ color: subTextColor, fontWeight: 700 }}>Avg Response Time</Typography>
-                                <Typography variant="h4" fontWeight={800} sx={{ color: '#0B6BCB', mt: 0.5 }}>8.5m</Typography>
-                                <Typography variant="caption" sx={{ color: subTextColor, mt: 1, display: 'block' }}>High Community Velocity</Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
+                {/* Key Sentiment Metrics Grid — two across on a phone rather than
+                    four full-width cards the reader has to scroll past. */}
+                <Grid container spacing={{ xs: 1.5, sm: 3 }} sx={{ mb: { xs: 3, md: 4 } }}>
+                    {sentimentMetrics.map((m) => (
+                        <Grid key={m.label} size={{ xs: 6, md: 3 }}>
+                            <Card elevation={0} sx={{ height: '100%', backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '20px' }}>
+                                <CardContent sx={{ p: { xs: 2, sm: 2.5 }, '&:last-child': { pb: { xs: 2, sm: 2.5 } } }}>
+                                    <Typography variant="caption" sx={{ color: subTextColor, fontWeight: 700, display: 'block', lineHeight: 1.3 }}>{m.label}</Typography>
+                                    <Typography variant="h4" fontWeight={800} sx={{ color: m.color, mt: 0.5, fontSize: { xs: '1.6rem', sm: '2.125rem' } }}>{m.value}</Typography>
+                                    <Typography variant="caption" sx={{ color: m.noteColor, mt: 1, display: 'block', lineHeight: 1.3 }}>{m.note}</Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    ))}
                 </Grid>
+
 
                 {/* Search & Filter Bar */}
                 <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', mb: 4, p: 2 }}>

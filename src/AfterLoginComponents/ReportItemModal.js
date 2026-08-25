@@ -73,40 +73,48 @@ function ReportItemModal({ isOpen, onClose, reportType = 'lost', onPublishSucces
     ];
 
     return (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-4">
+        <div className="fixed inset-0 z-[60] flex items-stretch sm:items-center justify-center sm:p-4">
             <div className="fixed inset-0 bg-[#16181F]/30 backdrop-blur-xs" onClick={onClose}></div>
-            <div className="relative w-full max-w-xl max-h-[92vh] sm:max-h-[90vh] overflow-y-auto rounded-3xl z-10 p-6 space-y-6 border transition-colors bg-[#FFFFFF] border-[#E6E5E1] text-[#16181F]">
+            {/* Full-screen on phones so the on-screen keyboard can't squeeze the
+                form into a sliver; a normal centred dialog from `sm` up. */}
+            <div className="relative w-full sm:max-w-xl h-full sm:h-auto sm:max-h-[90vh] flex flex-col rounded-none sm:rounded-3xl z-10 border-0 sm:border bg-[#FFFFFF] border-[#E6E5E1] text-[#16181F]">
                 {/* Header */}
-                <div className="flex justify-between items-center pb-4 border-b border-[#E6E5E1]">
-                    <div className="flex items-center gap-2">
+                <div className="flex justify-between items-center gap-2 shrink-0 px-4 sm:px-6 py-3 sm:py-4 border-b border-[#E6E5E1] pt-[calc(0.75rem+env(safe-area-inset-top))] sm:pt-4">
+                    <div className="flex items-center gap-2 min-w-0">
                         <span aria-hidden="true" className={`material-symbols-outlined text-2xl ${reportType === 'lost' ? 'text-[#B42318]' : 'text-[#157F3D]'}`}>
                             {reportType === 'lost' ? 'search' : 'task_alt'}
                         </span>
-                        <h2 className="text-xl font-extrabold text-[#16181F]">
+                        <h2 className="text-lg sm:text-xl font-extrabold text-[#16181F] truncate">
                             {reportType === 'lost' ? 'Report Lost Item' : 'Report Found Item'}
                         </h2>
                     </div>
-                    <button aria-label="Close dialog" className="w-11 h-11 flex items-center justify-center hover:opacity-75 rounded-full transition-colors cursor-pointer text-[#6B7280]" onClick={onClose}>
+                    <button aria-label="Close dialog" className="w-11 h-11 shrink-0 flex items-center justify-center hover:opacity-75 rounded-full transition-colors cursor-pointer text-[#6B7280]" onClick={onClose}>
                         <span aria-hidden="true" className="material-symbols-outlined text-xl">close</span>
                     </button>
                 </div>
 
-                {/* Step Indicators */}
-                <div className="flex items-center justify-between px-4">
-                    <div className={`flex items-center gap-2 text-xs font-bold ${currentStep >= 1 ? 'text-[#0B6BCB]' : 'text-[#6B7280]'}`}>
-                        <span className="w-6 h-6 rounded-full bg-[#0B6BCB]/15 flex items-center justify-center text-xs text-[#0B6BCB]">1</span>
-                        <span>Item Details</span>
-                    </div>
-                    <div className="flex-1 h-0.5 mx-3 bg-[#E6E5E1]"></div>
-                    <div className={`flex items-center gap-2 text-xs font-bold ${currentStep >= 2 ? 'text-[#0B6BCB]' : 'text-[#6B7280]'}`}>
-                        <span className="w-6 h-6 rounded-full bg-[#0B6BCB]/15 flex items-center justify-center text-xs text-[#0B6BCB]">2</span>
-                        <span>Map Location *</span>
-                    </div>
-                    <div className="flex-1 h-0.5 mx-3 bg-[#E6E5E1]"></div>
-                    <div className={`flex items-center gap-2 text-xs font-bold ${currentStep >= 3 ? 'text-[#0B6BCB]' : 'text-[#6B7280]'}`}>
-                        <span className="w-6 h-6 rounded-full bg-[#0B6BCB]/15 flex items-center justify-center text-xs text-[#0B6BCB]">3</span>
-                        <span>Product Photo *</span>
-                    </div>
+                <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 space-y-5">
+                {/* Step Indicators — only the current step is labelled, so three
+                    captions can't wrap into three ragged columns at 375px. */}
+                <div className="flex items-center gap-2">
+                    {['Item Details', 'Map Location', 'Product Photo'].map((label, i) => {
+                        const step = i + 1;
+                        const isDone = currentStep > step;
+                        const isCurrent = currentStep === step;
+                        return (
+                            <React.Fragment key={label}>
+                                {i > 0 && <div className="flex-1 h-px bg-[#E6E5E1]"></div>}
+                                <div className="flex items-center gap-2">
+                                    <span className={`w-6 h-6 shrink-0 rounded-full flex items-center justify-center text-xs font-bold ${isDone || isCurrent ? 'bg-[#0B6BCB] text-white' : 'bg-[#F4F3F1] text-[#6B7280]'}`}>
+                                        {isDone ? '✓' : step}
+                                    </span>
+                                    {isCurrent && (
+                                        <span className="text-xs font-bold text-[#0B6BCB] whitespace-nowrap">{label}</span>
+                                    )}
+                                </div>
+                            </React.Fragment>
+                        );
+                    })}
                 </div>
 
                 {/* Validation Error Alert */}
@@ -277,11 +285,13 @@ function ReportItemModal({ isOpen, onClose, reportType = 'lost', onPublishSucces
                         </div>
                     )}
                 </div>
+                </div>
 
-                {/* Footer Navigation Buttons */}
-                <div className="flex justify-between items-center pt-4 border-t border-[#E6E5E1]">
+                {/* Footer Navigation Buttons — pinned, so the primary action is
+                    always in reach without scrolling the form to the end. */}
+                <div className="flex justify-between items-center gap-3 shrink-0 px-4 sm:px-6 py-3 border-t border-[#E6E5E1] pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
                     <button
-                        className={`min-h-[44px] px-4 py-2 rounded-full text-xs font-bold text-[#6B7280] hover:text-[#16181F] cursor-pointer ${currentStep === 1 ? 'opacity-0 pointer-events-none' : ''}`}
+                        className={`min-h-[44px] px-4 py-2 rounded-full text-sm font-bold text-[#6B7280] hover:text-[#16181F] cursor-pointer ${currentStep === 1 ? 'opacity-0 pointer-events-none' : ''}`}
                         onClick={handlePrevStep}
                     >
                         Back
@@ -289,14 +299,14 @@ function ReportItemModal({ isOpen, onClose, reportType = 'lost', onPublishSucces
 
                     {currentStep < 3 ? (
                         <button
-                            className="min-h-[44px] bg-[#0B6BCB] text-white px-5 py-2.5 rounded-full text-xs font-extrabold hover:opacity-90 transition-all cursor-pointer"
+                            className="min-h-[44px] bg-[#0B6BCB] text-white px-5 py-2.5 rounded-full text-sm font-extrabold hover:opacity-90 transition-all cursor-pointer"
                             onClick={handleNextStep}
                         >
                             Next Step
                         </button>
                     ) : (
                         <button
-                            className="min-h-[44px] bg-[#0B6BCB] text-white px-6 py-2.5 rounded-full text-xs font-extrabold hover:opacity-90 transition-all cursor-pointer flex items-center gap-1.5"
+                            className="min-h-[44px] bg-[#0B6BCB] text-white px-6 py-2.5 rounded-full text-sm font-extrabold hover:opacity-90 transition-all cursor-pointer flex items-center gap-1.5"
                             onClick={handlePublishReport}
                             disabled={isPublishing}
                         >

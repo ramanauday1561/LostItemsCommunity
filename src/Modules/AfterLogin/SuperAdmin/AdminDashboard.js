@@ -54,26 +54,26 @@ function AdminDashboard() {
 
     return (
         <AfterLoginLayout pageTitle="Admin Dashboard">
-            <Container maxWidth="xl" sx={{ py: 1, px: { xs: 0, sm: 2 } }}>
+            <Container maxWidth="xl" sx={{ py: { xs: 0, sm: 1 }, px: { xs: 0, sm: 2 } }}>
                 {/* Super Admin Control Header */}
-                <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        <Box sx={{ p: 1.5, flexShrink: 0, borderRadius: '20px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
-                            <ShieldIcon sx={{ fontSize: 36 }} />
+                <Box sx={{ mb: { xs: 3, md: 4 }, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1.5, sm: 2 } }}>
+                        <Box sx={{ p: { xs: 1, sm: 1.5 }, display: 'flex', flexShrink: 0, borderRadius: '20px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
+                            <ShieldIcon sx={{ fontSize: { xs: 26, sm: 36 } }} />
                         </Box>
                         <Box sx={{ minWidth: 0 }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
-                                <Typography variant="h5" fontWeight={800} sx={{ color: textColor }}>
+                                <Typography variant="h5" fontWeight={800} sx={{ color: textColor, fontSize: { xs: '1.125rem', sm: '1.5rem' } }}>
                                     System Control & Moderation Hub
                                 </Typography>
-                                <Chip label="Super Admin Authority" size="small" sx={{ bgcolor: 'rgba(11, 107, 203, 0.2)', color: '#0B6BCB', fontWeight: 800, borderRadius: '8px' }} />
+                                <Chip label="Super Admin Authority" size="small" sx={{ display: { xs: 'none', sm: 'flex' }, bgcolor: 'rgba(11, 107, 203, 0.2)', color: '#0B6BCB', fontWeight: 800, borderRadius: '8px' }} />
                             </Box>
-                            <Typography variant="body2" sx={{ color: subTextColor, mt: 0.5 }}>
+                            <Typography variant="body2" sx={{ display: { xs: 'none', sm: 'block' }, color: subTextColor, mt: 0.5 }}>
                                 Full platform management: conversation analysis, moderation, and content deletion.
                             </Typography>
                         </Box>
                     </Box>
-                    <Box sx={{ display: 'flex', gap: 1.5 }}>
+                    <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 1.5, width: { xs: '100%', md: 'auto' }, '& > button': { flex: { xs: 1, md: 'none' } } }}>
                         <Button
                             variant="contained"
                             startIcon={<AnalyticsIcon />}
@@ -81,8 +81,9 @@ function AdminDashboard() {
                             sx={{
                                 borderRadius: '16px',
                                 fontWeight: 800,
-                                px: 3,
+                                px: { xs: 1.5, sm: 3 },
                                 py: 1.2,
+                                whiteSpace: 'nowrap',
                                 textTransform: 'none',
                                 background: '#0B6BCB',
                                 color: '#FFFFFF',
@@ -96,8 +97,9 @@ function AdminDashboard() {
                             sx={{
                                 borderRadius: '16px',
                                 fontWeight: 800,
-                                px: 3,
+                                px: { xs: 1.5, sm: 3 },
                                 py: 1.2,
+                                whiteSpace: 'nowrap',
                                 textTransform: 'none',
                                 borderColor: cardBorder,
                                 color: textColor,
@@ -118,18 +120,18 @@ function AdminDashboard() {
                 )}
 
                 {/* Conversation Analysis & Sentiment Banner Card */}
-                <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', mb: 4, p: 1 }}>
-                    <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
+                <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', mb: { xs: 3, md: 4 } }}>
+                    <CardContent sx={{ p: { xs: 2, sm: 3 }, '&:last-child': { pb: { xs: 2, sm: 3 } } }}>
                         <Grid container spacing={3} alignItems="center">
                             <Grid size={{ xs: 12, lg: 8 }}>
-                                <Typography variant="h6" fontWeight={800} sx={{ color: textColor, mb: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
+                                <Typography variant="h6" fontWeight={800} sx={{ color: textColor, mb: 1, display: 'flex', alignItems: 'center', gap: 1, fontSize: { xs: '1rem', sm: '1.25rem' } }}>
                                     <AnalyticsIcon sx={{ color: '#0B6BCB' }} /> Community Conversation & Sentiment Analysis
                                 </Typography>
                                 <Typography variant="body2" sx={{ color: subTextColor, lineHeight: 1.6 }}>
                                     Real-time tracking of community forum messages, response velocity, and flagged safety keywords.
                                     Total active discussions: <strong style={{ color: '#16181F' }}>142 threads</strong> | Positive sentiment rate: <strong style={{ color: '#157F3D' }}>94.2%</strong>
                                 </Typography>
-                                <Box sx={{ display: 'flex', gap: 2, mt: 2, flexWrap: 'wrap' }}>
+                                <Box sx={{ display: 'flex', gap: 2, mt: 2, overflowX: 'auto', pb: 0.5, '& > *': { flexShrink: 0 } }}>
                                     <Box sx={{ bgcolor: '#FFFFFF', px: 2, py: 1, borderRadius: '12px', border: `1px solid ${cardBorder}` }}>
                                         <Typography variant="caption" sx={{ color: subTextColor }}>Avg Response Velocity</Typography>
                                         <Typography variant="body2" fontWeight={800} sx={{ color: '#0B6BCB' }}>12.4 minutes</Typography>
@@ -169,7 +171,7 @@ function AdminDashboard() {
                     <Box sx={{ px: { xs: 2, sm: 3 }, py: 2.5, borderBottom: `1px solid ${cardBorder}`, display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'center' } }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                             <FlagIcon sx={{ color: '#B42318' }} />
-                            <Typography variant="h6" fontWeight={800} sx={{ color: textColor }}>
+                            <Typography variant="h6" fontWeight={800} sx={{ color: textColor, fontSize: { xs: '1rem', sm: '1.25rem' } }}>
                                 Flagged Content Pending Moderation ({flaggedItems.length})
                             </Typography>
                         </Box>

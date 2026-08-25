@@ -72,9 +72,9 @@ const RECENT = {
 const COPY = {
     lost: {
         pageTitle: 'Report Lost Item',
-        heading: '{copy.heading}',
-        blurb: '{copy.blurb}',
-        success: '{copy.success}',
+        heading: 'File a Lost Item Report',
+        blurb: 'Provide complete details so our recovery network can broadcast your lost item.',
+        success: 'Report submitted successfully! Recovery scouts in your area have been notified.',
         iconBg: 'rgba(180, 35, 24, 0.15)',
         iconColor: '#B42318',
         titleLabel: 'Item Title *',
@@ -87,9 +87,9 @@ const COPY = {
         emailLabel: 'Contact Email *',
         descLabel: 'Detailed Description',
         descPlaceholder: 'Include color, brand, unique markings, serial numbers...',
-        submit: '{copy.submit}',
-        sidebarTitle: '{copy.sidebarTitle}',
-        sidebarBlurb: '{copy.sidebarBlurb}',
+        submit: 'Publish Lost Item Report',
+        sidebarTitle: 'Recent Lost Reports',
+        sidebarBlurb: 'Recently submitted lost item claims by community members.',
     },
     found: {
         pageTitle: 'Report Found Item',
@@ -133,31 +133,31 @@ function ReportItemForm({ kind = 'lost' }) {
 
     return (
         <AfterLoginLayout pageTitle={copy.pageTitle}>
-            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 0, sm: 2 } }}>
+            <Container maxWidth="xl" sx={{ py: { xs: 0, sm: 2 }, px: { xs: 0, sm: 2 } }}>
                 <Grid container spacing={4}>
                     
                     {/* Report Form */}
                     <Grid size={{ xs: 12, lg: 7 }}>
                         <motion.div custom={0} initial="hidden" animate="visible" variants={fadeInUp}>
                             <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '28px' }}>
-                                <CardContent sx={{ p: { xs: 3, sm: 4 } }}>
+                                <CardContent sx={{ p: { xs: 2.5, sm: 4 } }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
-                                        <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: copy.iconBg, color: copy.iconColor }}>
+                                        <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexShrink: 0, p: 1.5, borderRadius: '16px', bgcolor: copy.iconBg, color: copy.iconColor }}>
                                             {kind === 'lost' ? <ReportProblemIcon sx={{ fontSize: 32 }} /> : <FindInPageIcon sx={{ fontSize: 32 }} />}
                                         </Box>
                                         <Box>
                                             <Typography variant="h5" fontWeight={800} sx={{ color: textColor }}>
-                                                File a Lost Item Report
+                                                {copy.heading}
                                             </Typography>
                                             <Typography variant="body2" sx={{ color: subTextColor }}>
-                                                Provide complete details so our recovery network can broadcast your lost item.
+                                                {copy.blurb}
                                             </Typography>
                                         </Box>
                                     </Box>
 
                                     {submitted && (
                                         <Alert severity="success" sx={{ my: 3, borderRadius: '16px', fontWeight: 600, bgcolor: 'rgba(21, 127, 61, 0.15)', color: textColor, border: '1px solid rgba(21, 127, 61, 0.3)' }} onClose={() => setSubmitted(false)}>
-                                            Report submitted successfully! Recovery scouts in your area have been notified.
+                                            {copy.success}
                                         </Alert>
                                     )}
 
@@ -266,7 +266,7 @@ function ReportItemForm({ kind = 'lost' }) {
                                                         fontSize: '1rem',
                                                     }}
                                                 >
-                                                    Publish Lost Item Report
+                                                    {copy.submit}
                                                 </Button>
                                             </Grid>
                                         </Grid>
@@ -280,12 +280,12 @@ function ReportItemForm({ kind = 'lost' }) {
                     <Grid size={{ xs: 12, lg: 5 }}>
                         <motion.div custom={1} initial="hidden" animate="visible" variants={fadeInUp}>
                             <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '28px' }}>
-                                <CardContent sx={{ p: { xs: 3, sm: 4 } }}>
+                                <CardContent sx={{ p: { xs: 2.5, sm: 4 } }}>
                                     <Typography variant="h6" fontWeight={800} sx={{ color: textColor, mb: 1 }}>
-                                        Recent Lost Reports
+                                        {copy.sidebarTitle}
                                     </Typography>
                                     <Typography variant="body2" sx={{ color: subTextColor, mb: 3 }}>
-                                        Recently submitted lost item claims by community members.
+                                        {copy.sidebarBlurb}
                                     </Typography>
 
                                     <Divider sx={{ mb: 2, borderColor: cardBorder }} />

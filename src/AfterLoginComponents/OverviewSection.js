@@ -67,7 +67,8 @@ function OverviewSection() {
                 <h4 className="text-sm font-bold text-[#16181F]">857 new community scouts today!</h4>
                 <p className="text-xs text-[#6B7280] mt-0.5 mb-4">Send a welcome message to all new scouts joining the recovery network.</p>
 
-                <div className="flex flex-wrap items-center gap-4">
+                {/* Scrolls sideways instead of wrapping to two ragged rows on a phone */}
+                <div className="flex items-center gap-4 overflow-x-auto custom-scrollbar -mx-1 px-1 pb-1 [&>*]:shrink-0">
                     {communityScouts.map((scout, idx) => (
                         <div key={idx} className="flex flex-col items-center gap-1.5 cursor-pointer group">
                             <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#0B6BCB]/40 shadow-xs group-hover:scale-105 group-hover:border-[#0B6BCB] transition-all">

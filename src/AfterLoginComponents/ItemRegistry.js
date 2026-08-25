@@ -9,6 +9,7 @@ import {
     Grid,
     TextField,
     MenuItem,
+    Checkbox,
     Button,
     Chip,
     Dialog,
@@ -39,7 +40,7 @@ const fadeInUp = {
     }),
 };
 
-const CATEGORIES = ['All', 'Electronics', 'Clothing', 'Documents', 'Jewelry', 'Bags', 'Other'];
+const CATEGORIES = ['Electronics', 'Clothing', 'Documents', 'Jewelry', 'Bags', 'Other'];
 
 const ITEMS = {
     lost: [
@@ -71,7 +72,7 @@ const COPY = {
         detailLocation: 'Last Known Location',
         detailDescription: 'Detailed Description',
         detailContact: 'Reporter Contact',
-        cta: '{copy.cta}',
+        cta: 'View Report Details',
         primaryAction: 'Contact Reporter',
         deleteNotice: (id) => `Item report ${id} was permanently deleted by Super Admin.`,
     },
@@ -97,7 +98,7 @@ function ItemRegistry({ kind = 'lost' }) {
 
     const [items, setItems] = useState(ITEMS[kind]);
     const [search, setSearch] = useState('');
-    const [category, setCategory] = useState('All');
+    const [categories, setCategories] = useState([]); // empty = no filter
     const [selectedItem, setSelectedItem] = useState(null);
     const [actionNotice, setActionNotice] = useState('');
 
@@ -113,13 +114,13 @@ function ItemRegistry({ kind = 'lost' }) {
         const matchSearch = item.title.toLowerCase().includes(search.toLowerCase()) ||
             item.location.toLowerCase().includes(search.toLowerCase()) ||
             item.description.toLowerCase().includes(search.toLowerCase());
-        const matchCategory = category === 'All' || item.category === category;
+        const matchCategory = categories.length === 0 || categories.includes(item.category);
         return matchSearch && matchCategory;
     });
 
     return (
         <AfterLoginLayout pageTitle={copy.pageTitle}>
-            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 0, sm: 2 } }}>
+            <Container maxWidth="xl" sx={{ py: { xs: 0, sm: 2 }, px: { xs: 0, sm: 2 } }}>
                 
                 {actionNotice && (
                     <Box sx={{ mb: 3 }}>
@@ -129,104 +130,92 @@ function ItemRegistry({ kind = 'lost' }) {
                     </Box>
                 )}
 
-                {/* Search & Category Filter Section */}
+                {/* Search & Category Filter — one row at every width */}
                 <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-                    <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '24px', mb: 3, p: 3 }}>
-                        <Grid container spacing={2.5} alignItems="center">
-                            {/* Search Input */}
-                            <Grid size={{ xs: 12, lg: 8 }}>
-                                <TextField
-                                    fullWidth
-                                    placeholder={copy.placeholder}
-                                    value={search}
-                                    onChange={(e) => setSearch(e.target.value)}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <SearchIcon sx={{ color: '#0B6BCB', fontSize: 24 }} />
-                                            </InputAdornment>
-                                        ),
-                                        endAdornment: search && (
-                                            <InputAdornment position="end">
-                                                <Button size="small" onClick={() => setSearch('')} sx={{ minWidth: 32, p: 0.5, borderRadius: '50%', color: subTextColor }}>
-                                                    <ClearIcon fontSize="small" />
-                                                </Button>
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '16px',
-                                            backgroundColor: '#FFFFFF',
-                                            px: 2,
-                                            py: 0.5,
-                                            '& fieldset': { borderColor: cardBorder },
-                                            '&:hover fieldset': { borderColor: '#0B6BCB' },
-                                            '&.Mui-focused fieldset': { borderColor: '#0B6BCB' },
-                                            '& input': { color: textColor, fontSize: '0.95rem', fontWeight: 500 },
-                                            '& input::placeholder': { color: subTextColor, opacity: 1, fontSize: '0.92rem' },
-                                        },
-                                    }}
-                                />
-                            </Grid>
+                    <Box sx={{ display: 'flex', gap: { xs: 1, sm: 2 }, alignItems: 'center', mb: { xs: 2, sm: 3 } }}>
+                        <TextField
+                            fullWidth
+                            placeholder={copy.placeholder}
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon sx={{ color: '#0B6BCB', fontSize: 22 }} />
+                                    </InputAdornment>
+                                ),
+                                endAdornment: search && (
+                                    <InputAdornment position="end">
+                                        <Button size="small" aria-label="Clear search" onClick={() => setSearch('')} sx={{ minWidth: 32, p: 0.5, borderRadius: '50%', color: subTextColor }}>
+                                            <ClearIcon fontSize="small" />
+                                        </Button>
+                                    </InputAdornment>
+                                ),
+                            }}
+                            sx={{
+                                minWidth: 0,
+                                '& .MuiOutlinedInput-root': {
+                                    height: 48,
+                                    borderRadius: '14px',
+                                    backgroundColor: '#FFFFFF',
+                                    px: { xs: 1, sm: 2 },
+                                    '& fieldset': { borderColor: cardBorder },
+                                    '&:hover fieldset': { borderColor: '#0B6BCB' },
+                                    '&.Mui-focused fieldset': { borderColor: '#0B6BCB' },
+                                    '& input': { color: textColor, fontSize: '0.95rem', fontWeight: 500 },
+                                    '& input::placeholder': { color: subTextColor, opacity: 1, fontSize: '0.92rem' },
+                                },
+                            }}
+                        />
 
-                            {/* Category Dropdown Select */}
-                            <Grid size={{ xs: 12, lg: 4 }}>
-                                <TextField
-                                    select
-                                    fullWidth
-                                    label="Filter Category"
-                                    value={category}
-                                    onChange={(e) => setCategory(e.target.value)}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '16px',
-                                            backgroundColor: '#FFFFFF',
-                                            py: 0.5,
-                                            '& fieldset': { borderColor: cardBorder },
-                                            '&:hover fieldset': { borderColor: '#0B6BCB' },
-                                            '&.Mui-focused fieldset': { borderColor: '#0B6BCB' },
-                                            '& .MuiSelect-select': { color: textColor, fontSize: '0.95rem', fontWeight: 600 },
-                                        },
-                                        '& .MuiInputLabel-root': { color: subTextColor, fontWeight: 500 },
-                                        '& .MuiSvgIcon-root': { color: subTextColor },
-                                    }}
-                                >
-                                    {CATEGORIES.map((cat) => (
-                                        <MenuItem key={cat} value={cat} sx={{ bgcolor: '#FFFFFF', color: textColor, '&:hover': { bgcolor: '#FFFFFF' } }}>
-                                            <Typography variant="body2" fontWeight={cat === category ? 700 : 400}>{cat}</Typography>
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
-                            </Grid>
-                        </Grid>
-
-                        {/* Category Pill Badges */}
-                        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mt: 2.5 }}>
+                        {/* Multi-select: an empty selection means every category. */}
+                        <TextField
+                            select
+                            value={categories}
+                            onChange={(e) => setCategories(e.target.value)}
+                            SelectProps={{
+                                multiple: true,
+                                displayEmpty: true,
+                                renderValue: (sel) =>
+                                    sel.length === 0 ? 'All' : sel.length === 1 ? sel[0] : `${sel.length} selected`,
+                                MenuProps: { PaperProps: { sx: { borderRadius: '14px', mt: 0.5 } } },
+                            }}
+                            inputProps={{ 'aria-label': 'Filter by category' }}
+                            sx={{
+                                flexShrink: 0,
+                                width: { xs: 124, sm: 200 },
+                                '& .MuiOutlinedInput-root': {
+                                    height: 48,
+                                    borderRadius: '14px',
+                                    backgroundColor: '#FFFFFF',
+                                    '& fieldset': { borderColor: cardBorder },
+                                    '&:hover fieldset': { borderColor: '#0B6BCB' },
+                                    '&.Mui-focused fieldset': { borderColor: '#0B6BCB' },
+                                },
+                                '& .MuiSelect-select': {
+                                    color: categories.length ? '#0B6BCB' : subTextColor,
+                                    fontSize: '0.9rem',
+                                    fontWeight: 600,
+                                },
+                                '& .MuiSvgIcon-root': { color: subTextColor },
+                            }}
+                        >
                             {CATEGORIES.map((cat) => (
-                                <Chip
-                                    key={cat}
-                                    label={cat}
-                                    onClick={() => setCategory(cat)}
-                                    sx={{
-                                        borderRadius: '12px',
-                                        fontWeight: category === cat ? 700 : 500,
-                                        px: 1,
-                                        py: 0.5,
-                                        cursor: 'pointer',
-                                        bgcolor: category === cat ? '#0B6BCB' : '#FFFFFF',
-                                        color: category === cat ? '#FAFAF9' : subTextColor,
-                                        border: `1px solid ${category === cat ? '#0B6BCB' : cardBorder}`,
-                                        '&:hover': { bgcolor: category === cat ? '#0B6BCB' : '#F4F3F1' },
-                                    }}
-                                />
+                                <MenuItem key={cat} value={cat} sx={{ py: 0.5 }}>
+                                    <Checkbox
+                                        checked={categories.includes(cat)}
+                                        size="small"
+                                        sx={{ p: 0.5, mr: 1, color: subTextColor, '&.Mui-checked': { color: '#0B6BCB' } }}
+                                    />
+                                    <Typography variant="body2" sx={{ color: textColor }}>{cat}</Typography>
+                                </MenuItem>
                             ))}
-                        </Box>
-                    </Card>
+                        </TextField>
+                    </Box>
                 </motion.div>
 
                 {/* Items Found Alert Banner */}
-                <Box sx={{ mb: 3 }}>
+                <Box sx={{ mb: { xs: 2, sm: 3 } }}>
                     <Alert
                         icon={<InfoOutlinedIcon fontSize="inherit" sx={{ color: '#0B6BCB' }} />}
                         sx={{
@@ -243,7 +232,7 @@ function ItemRegistry({ kind = 'lost' }) {
                 </Box>
 
                 {/* Card Grid with 2 Items Per Row */}
-                <Grid container spacing={3}>
+                <Grid container spacing={{ xs: 2, sm: 3 }}>
                     {filtered.map((item, i) => (
                         <Grid size={{ xs: 12, md: 6 }} key={item.id} sx={{ display: 'flex' }}>
                             <motion.div custom={i} initial="hidden" animate="visible" variants={fadeInUp} style={{ width: '100%', display: 'flex' }}>
@@ -332,7 +321,7 @@ function ItemRegistry({ kind = 'lost' }) {
                                             }}
                                             onClick={() => setSelectedItem(item)}
                                         >
-                                            View Report Details
+                                            {copy.cta}
                                         </Button>
 
                                         {/* Super Admin Direct Delete Button */}

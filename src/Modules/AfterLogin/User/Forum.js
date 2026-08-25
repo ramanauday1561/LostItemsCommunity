@@ -161,10 +161,12 @@ function Forum() {
 
     return (
         <AfterLoginLayout pageTitle="Community Forum">
-            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 0, sm: 2 } }}>
+            <Container maxWidth="xl" sx={{ py: { xs: 0, sm: 2 }, px: { xs: 0, sm: 2 } }}>
                 {/* Header Action Bar */}
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3, flexWrap: 'wrap', gap: 2 }}>
-                    <Box>
+                    {/* The layout header already says "Community Forum"; on a phone
+                        this repeat costs a fifth of the screen to say it twice. */}
+                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                             <Typography variant="h5" fontWeight={800} sx={{ color: textColor }}>
                                 Community Discussion Forum
@@ -182,6 +184,7 @@ function Forum() {
                         startIcon={<AddIcon />}
                         onClick={() => setNewPostOpen(true)}
                         sx={{
+                            width: { xs: '100%', sm: 'auto' },
                             borderRadius: '16px',
                             fontWeight: 800,
                             px: 3,
@@ -225,7 +228,7 @@ function Forum() {
                             >
                                 <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
                                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 1 }}>
-                                        <Box sx={{ flex: 1 }}>
+                                        <Box sx={{ flex: 1, minWidth: 0 }}>
                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
                                                 <Chip label={thread.category} size="small" sx={{ fontWeight: 700, borderRadius: '8px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB', border: '1px solid rgba(11, 107, 203, 0.3)' }} />
                                             </Box>
@@ -249,15 +252,22 @@ function Forum() {
                                                 size="small"
                                                 startIcon={<DeleteIcon />}
                                                 onClick={(e) => handleDeleteThread(e, thread.id)}
+                                                aria-label={isSuperAdmin ? 'Delete thread (admin)' : 'Delete my thread'}
                                                 sx={{
+                                                    flexShrink: 0,
                                                     color: '#B42318',
                                                     fontWeight: 700,
                                                     textTransform: 'none',
                                                     fontSize: '0.8rem',
+                                                    // A 250px label next to the title left ~90px for the title itself.
+                                                    minWidth: { xs: 44, sm: 'auto' },
+                                                    '& .MuiButton-startIcon': { mr: { xs: 0, sm: 1 }, ml: 0 },
                                                     '&:hover': { bgcolor: 'rgba(180, 35, 24, 0.1)' }
                                                 }}
                                             >
-                                                {isSuperAdmin ? 'Delete Thread (Admin)' : 'Delete My Thread'}
+                                                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+                                                    {isSuperAdmin ? 'Delete Thread (Admin)' : 'Delete My Thread'}
+                                                </Box>
                                             </Button>
                                         )}
                                     </Box>

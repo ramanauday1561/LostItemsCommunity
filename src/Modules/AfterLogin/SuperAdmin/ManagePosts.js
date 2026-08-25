@@ -64,14 +64,14 @@ const initialForumPosts = [
 
 function StatCard({ title, value, icon, color }) {
     return (
-        <Card elevation={0} sx={{ backgroundColor: '#FFFFFF', border: '1px solid #E6E5E1', borderRadius: '24px', p: 1 }}>
-            <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2, p: 3 }}>
-                <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: `${color}15`, color }}>
+        <Card elevation={0} sx={{ height: '100%', backgroundColor: '#FFFFFF', border: '1px solid #E6E5E1', borderRadius: '20px' }}>
+            <CardContent sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 2 }, p: { xs: 1.5, sm: 3 }, '&:last-child': { pb: { xs: 1.5, sm: 3 } }, flexDirection: { xs: 'column', sm: 'row' }, textAlign: { xs: 'center', sm: 'left' } }}>
+                <Box sx={{ display: 'flex', p: { xs: 1, sm: 1.5 }, borderRadius: '14px', bgcolor: `${color}15`, color }}>
                     {icon}
                 </Box>
                 <Box>
-                    <Typography variant="body2" sx={{ color: '#6B7280', fontWeight: 600 }}>{title}</Typography>
-                    <Typography variant="h5" fontWeight={800} sx={{ color: '#16181F' }}>{value}</Typography>
+                    <Typography variant="h5" fontWeight={800} sx={{ color: '#16181F', lineHeight: 1.2 }}>{value}</Typography>
+                    <Typography variant="caption" sx={{ color: '#6B7280', fontWeight: 600, display: 'block', lineHeight: 1.3 }}>{title}</Typography>
                 </Box>
             </CardContent>
         </Card>
@@ -133,10 +133,10 @@ function ManagePosts() {
     };
 
     return (
-        <AfterLoginLayout pageTitle="Moderation Dashboard">
-            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 0, sm: 2 } }}>
+        <AfterLoginLayout pageTitle="Moderation">
+            <Container maxWidth="xl" sx={{ py: { xs: 0, sm: 2 }, px: { xs: 0, sm: 2 } }}>
                 <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
-                    <Box>
+                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         <Typography variant="h5" fontWeight={800} sx={{ color: textColor }}>
                             System Moderation Center
                         </Typography>
@@ -149,6 +149,7 @@ function ManagePosts() {
                         startIcon={<AnalyticsIcon />}
                         onClick={() => navigate('/admin/conversation-analysis')}
                         sx={{
+                            width: { xs: '100%', sm: 'auto' },
                             borderRadius: '16px',
                             fontWeight: 800,
                             px: 3,
@@ -171,14 +172,14 @@ function ManagePosts() {
                 )}
 
                 {/* Metric Summary Cards */}
-                <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid size={{ xs: 12, sm: 4 }}>
+                <Grid container spacing={{ xs: 1.5, sm: 3 }} sx={{ mb: { xs: 3, md: 4 } }}>
+                    <Grid size={{ xs: 4 }}>
                         <StatCard title="Total Posts" value={stats.total} icon={<ArticleIcon />} color="#0B6BCB" />
                     </Grid>
-                    <Grid size={{ xs: 12, sm: 4 }}>
+                    <Grid size={{ xs: 4 }}>
                         <StatCard title="Resolved Claims" value={stats.resolved} icon={<CheckCircleIcon />} color="#157F3D" />
                     </Grid>
-                    <Grid size={{ xs: 12, sm: 4 }}>
+                    <Grid size={{ xs: 4 }}>
                         <StatCard title="Flagged for Review" value={stats.flagged} icon={<FlagIcon />} color="#B42318" />
                     </Grid>
                 </Grid>

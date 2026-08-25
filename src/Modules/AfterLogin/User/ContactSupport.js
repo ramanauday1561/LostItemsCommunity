@@ -62,16 +62,16 @@ function ContactSupport() {
 
     return (
         <AfterLoginLayout pageTitle="Contact Support">
-            <Container maxWidth="xl" sx={{ py: 2, px: { xs: 0, sm: 2 } }}>
+            <Container maxWidth="xl" sx={{ py: { xs: 0, sm: 2 }, px: { xs: 0, sm: 2 } }}>
                 <Grid container spacing={4}>
                     
                     {/* Contact Form */}
                     <Grid size={{ xs: 12, lg: 7 }}>
                         <motion.div custom={0} initial="hidden" animate="visible" variants={fadeInUp}>
                             <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '28px' }}>
-                                <CardContent sx={{ p: { xs: 3, sm: 4 } }}>
+                                <CardContent sx={{ p: { xs: 2.5, sm: 4 } }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
-                                        <Box sx={{ p: 1.5, borderRadius: '16px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
+                                        <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexShrink: 0, p: 1.5, borderRadius: '16px', bgcolor: 'rgba(11, 107, 203, 0.15)', color: '#0B6BCB' }}>
                                             <SupportAgentIcon sx={{ fontSize: 32 }} />
                                         </Box>
                                         <Box>
@@ -171,7 +171,7 @@ function ContactSupport() {
                     <Grid size={{ xs: 12, lg: 5 }}>
                         <motion.div custom={1} initial="hidden" animate="visible" variants={fadeInUp}>
                             <Card elevation={0} sx={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: '28px' }}>
-                                <CardContent sx={{ p: { xs: 3, sm: 4 } }}>
+                                <CardContent sx={{ p: { xs: 2.5, sm: 4 } }}>
                                     <Typography variant="h6" fontWeight={800} sx={{ color: textColor, mb: 1 }}>
                                         Direct Contact Details
                                     </Typography>

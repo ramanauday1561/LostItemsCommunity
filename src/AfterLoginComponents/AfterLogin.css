@@ -42,3 +42,14 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
 }
+
+/* iOS Safari zooms the whole page when a focused field is under 16px, and the
+   page stays zoomed afterwards. One rule beats chasing `text-xs` across every
+   form; desktop keeps the smaller type. */
+@media (max-width: 767px) {
+  .afterlogin-root input,
+  .afterlogin-root select,
+  .afterlogin-root textarea {
+    font-size: 16px;
+  }
+}
